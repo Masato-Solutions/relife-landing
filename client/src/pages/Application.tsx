@@ -1,6 +1,8 @@
 import { Button } from "@/components/ui/button";
 import Navigation from "@/components/Navigation";
 import { Smartphone, Globe, Download, Check } from "lucide-react";
+import { motion } from "framer-motion";
+import { AnimatedSection, StaggerContainer, StaggerItem } from "@/components/AnimatedSection";
 
 export default function Application() {
   return (
@@ -8,29 +10,41 @@ export default function Application() {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="py-16 bg-white border-b border-border">
-        <div className="container">
-          <div className="space-y-4">
-            <h1 className="text-4xl md:text-5xl font-bold text-foreground">
-              Re:Life Applications
+      <section className="py-20 relative overflow-hidden">
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{ background: "radial-gradient(ellipse at top center, rgba(51,183,250,0.08) 0%, transparent 60%)" }}
+        />
+        <div className="container relative z-10">
+          <AnimatedSection className="space-y-4">
+            <span className="text-xs font-semibold tracking-widest uppercase" style={{ color: "#33b7fa" }}>
+              Digital Platform
+            </span>
+            <h1 className="text-4xl md:text-5xl font-bold">
+              Re:Life <span className="gradient-text-blue">Applications</span>
             </h1>
-            <p className="text-lg text-muted-foreground max-w-2xl">
+            <p className="text-lg text-white/50 max-w-2xl">
               Access mental health support and wellness tools anytime, anywhere through our web and mobile applications.
             </p>
-          </div>
+          </AnimatedSection>
         </div>
       </section>
 
       {/* Web App Section */}
-      <section className="py-20">
+      <section className="py-16">
         <div className="container">
-          <div className="grid md:grid-cols-2 gap-12 items-center mb-20">
-            <div className="space-y-6">
+          <div className="grid md:grid-cols-2 gap-16 items-center mb-24">
+            <AnimatedSection className="space-y-6">
               <div className="flex items-center gap-3">
-                <Globe className="w-8 h-8 text-primary" />
-                <h2 className="text-3xl font-bold text-foreground">Web Application</h2>
+                <div
+                  className="w-10 h-10 rounded-xl flex items-center justify-center"
+                  style={{ background: "rgba(51,183,250,0.15)", border: "1px solid rgba(51,183,250,0.3)" }}
+                >
+                  <Globe className="w-5 h-5" style={{ color: "#33b7fa" }} />
+                </div>
+                <h2 className="text-2xl font-bold text-white">Web Application</h2>
               </div>
-              <p className="text-lg text-muted-foreground">
+              <p className="text-white/60 leading-relaxed">
                 Access the full Re:Life platform from any device with a web browser. Manage your wellness journey with comprehensive tools and resources.
               </p>
               <ul className="space-y-3">
@@ -43,41 +57,74 @@ export default function Application() {
                   "Secure video conferencing",
                 ].map((feature, idx) => (
                   <li key={idx} className="flex items-center gap-3">
-                    <Check className="w-5 h-5 text-primary flex-shrink-0" />
-                    <span className="text-foreground">{feature}</span>
+                    <Check className="w-4 h-4 flex-shrink-0" style={{ color: "#33b7fa" }} />
+                    <span className="text-white/70 text-sm">{feature}</span>
                   </li>
                 ))}
               </ul>
-              <Button className="bg-primary hover:bg-primary/90 text-white rounded-full px-8 h-12 text-base">
+              <Button
+                className="rounded-full px-8 h-12 text-base text-black font-semibold hover:opacity-90"
+                style={{ background: "linear-gradient(135deg, #33b7fa, #4cd7ef)" }}
+              >
                 Launch Web App
               </Button>
-            </div>
-            <div className="relative h-96">
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-accent/10 rounded-3xl flex items-center justify-center">
-                <Globe className="w-32 h-32 text-primary/30" />
+            </AnimatedSection>
+            <AnimatedSection delay={0.15} className="relative h-80">
+              <div
+                className="absolute inset-0 rounded-3xl flex items-center justify-center"
+                style={{
+                  background: "linear-gradient(135deg, rgba(51,183,250,0.08) 0%, rgba(0,0,0,0.3) 100%)",
+                  border: "1px solid rgba(51,183,250,0.15)",
+                }}
+              >
+                <motion.div
+                  animate={{ scale: [1, 1.05, 1] }}
+                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                >
+                  <Globe className="w-24 h-24" style={{ color: "rgba(51,183,250,0.35)" }} />
+                </motion.div>
               </div>
-            </div>
+            </AnimatedSection>
           </div>
 
           {/* Mobile App Section */}
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="relative h-96 order-2 md:order-1">
-              <div className="absolute inset-0 bg-gradient-to-br from-secondary/10 to-accent/10 rounded-3xl flex items-center justify-center">
-                <Smartphone className="w-32 h-32 text-secondary/30" />
+          <div className="grid md:grid-cols-2 gap-16 items-center">
+            <AnimatedSection delay={0.1} className="relative h-80 order-2 md:order-1">
+              <div
+                className="absolute inset-0 rounded-3xl flex items-center justify-center"
+                style={{
+                  background: "linear-gradient(135deg, rgba(171,146,241,0.08) 0%, rgba(0,0,0,0.3) 100%)",
+                  border: "1px solid rgba(171,146,241,0.15)",
+                }}
+              >
+                <motion.div
+                  animate={{ scale: [1, 1.05, 1] }}
+                  transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                >
+                  <Smartphone className="w-24 h-24" style={{ color: "rgba(171,146,241,0.35)" }} />
+                </motion.div>
               </div>
-            </div>
-            <div className="space-y-6 order-1 md:order-2">
+            </AnimatedSection>
+            <AnimatedSection className="space-y-6 order-1 md:order-2">
               <div className="flex items-center gap-3">
-                <Smartphone className="w-8 h-8 text-secondary" />
-                <h2 className="text-3xl font-bold text-foreground">Mobile Application</h2>
+                <div
+                  className="w-10 h-10 rounded-xl flex items-center justify-center"
+                  style={{ background: "rgba(171,146,241,0.15)", border: "1px solid rgba(171,146,241,0.3)" }}
+                >
+                  <Smartphone className="w-5 h-5" style={{ color: "#ab92f1" }} />
+                </div>
+                <h2 className="text-2xl font-bold text-white">Mobile Application</h2>
               </div>
-              <div className="p-4 bg-accent/10 rounded-lg border border-accent/20">
-                <p className="text-sm text-foreground font-semibold">Coming Soon</p>
-                <p className="text-sm text-muted-foreground mt-1">
+              <div
+                className="p-4 rounded-xl"
+                style={{ background: "rgba(171,146,241,0.08)", border: "1px solid rgba(171,146,241,0.2)" }}
+              >
+                <p className="text-sm font-semibold" style={{ color: "#ab92f1" }}>Coming Soon</p>
+                <p className="text-sm text-white/50 mt-1">
                   Our native mobile app for iOS and Android is currently in development and will be available soon.
                 </p>
               </div>
-              <p className="text-lg text-muted-foreground">
+              <p className="text-white/60 leading-relaxed text-sm">
                 Take mental health support with you wherever you go. Our mobile app will provide on-the-go access to wellness tools, notifications, and community support.
               </p>
               <ul className="space-y-3">
@@ -90,32 +137,38 @@ export default function Application() {
                   "Quick access to emergency resources",
                 ].map((feature, idx) => (
                   <li key={idx} className="flex items-center gap-3">
-                    <Check className="w-5 h-5 text-secondary flex-shrink-0" />
-                    <span className="text-foreground">{feature}</span>
+                    <Check className="w-4 h-4 flex-shrink-0" style={{ color: "#ab92f1" }} />
+                    <span className="text-white/70 text-sm">{feature}</span>
                   </li>
                 ))}
               </ul>
-              <Button variant="outline" className="rounded-full px-8 h-12 text-base border-secondary text-secondary hover:bg-secondary/5">
+              <Button
+                variant="outline"
+                className="rounded-full px-8 h-12 text-base bg-transparent"
+                style={{ borderColor: "rgba(171,146,241,0.4)", color: "#ab92f1" }}
+              >
                 Notify Me When Available
               </Button>
-            </div>
+            </AnimatedSection>
           </div>
         </div>
       </section>
 
       {/* Features Comparison */}
-      <section className="py-20 bg-white">
+      <section className="py-20" style={{ background: "rgba(255,255,255,0.02)" }}>
         <div className="container">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-12 text-center">
-            Platform Features
-          </h2>
-          <div className="overflow-x-auto">
+          <AnimatedSection className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold">
+              Platform <span className="gradient-text-blue">Features</span>
+            </h2>
+          </AnimatedSection>
+          <AnimatedSection delay={0.1} className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
-                <tr className="border-b border-border">
-                  <th className="text-left py-4 px-4 font-bold text-foreground">Feature</th>
-                  <th className="text-center py-4 px-4 font-bold text-foreground">Web App</th>
-                  <th className="text-center py-4 px-4 font-bold text-foreground">Mobile App</th>
+                <tr className="border-b border-white/8">
+                  <th className="text-left py-4 px-4 font-bold text-white/70">Feature</th>
+                  <th className="text-center py-4 px-4 font-bold" style={{ color: "#33b7fa" }}>Web App</th>
+                  <th className="text-center py-4 px-4 font-bold" style={{ color: "#ab92f1" }}>Mobile App</th>
                 </tr>
               </thead>
               <tbody>
@@ -129,57 +182,68 @@ export default function Application() {
                   { feature: "Prescription Management", web: true, mobile: true },
                   { feature: "Community Forum", web: true, mobile: true },
                 ].map((row, idx) => (
-                  <tr key={idx} className="border-b border-border hover:bg-background transition-colors">
-                    <td className="py-4 px-4 text-foreground">{row.feature}</td>
+                  <tr key={idx} className="border-b border-white/5 hover:bg-white/2 transition-colors">
+                    <td className="py-4 px-4 text-white/70">{row.feature}</td>
                     <td className="py-4 px-4 text-center">
                       {row.web ? (
-                        <Check className="w-5 h-5 text-primary mx-auto" />
+                        <Check className="w-4 h-4 mx-auto" style={{ color: "#33b7fa" }} />
                       ) : (
-                        <span className="text-muted-foreground">—</span>
+                        <span className="text-white/20">—</span>
                       )}
                     </td>
                     <td className="py-4 px-4 text-center">
                       {row.mobile ? (
-                        <Check className="w-5 h-5 text-primary mx-auto" />
+                        <Check className="w-4 h-4 mx-auto" style={{ color: "#ab92f1" }} />
                       ) : (
-                        <span className="text-muted-foreground">—</span>
+                        <span className="text-white/20">—</span>
                       )}
                     </td>
                   </tr>
                 ))}
               </tbody>
             </table>
-          </div>
+          </AnimatedSection>
         </div>
       </section>
 
       {/* Download Section */}
-      <section className="py-20 bg-primary/5">
-        <div className="container text-center space-y-8">
-          <div className="space-y-4">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground">
-              Get Started Today
+      <section className="py-24 relative overflow-hidden">
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{ background: "radial-gradient(ellipse at center, rgba(51,183,250,0.07) 0%, transparent 70%)" }}
+        />
+        <div className="container text-center space-y-8 relative z-10">
+          <AnimatedSection className="space-y-4">
+            <h2 className="text-3xl md:text-4xl font-bold">
+              Get Started <span className="gradient-text-blue">Today</span>
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-lg text-white/50 max-w-2xl mx-auto">
               Access the web app immediately or sign up to be notified when our mobile app launches.
             </p>
-          </div>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button className="bg-primary hover:bg-primary/90 text-white rounded-full px-8 h-12 text-base flex items-center justify-center gap-2">
-              <Globe size={20} />
+          </AnimatedSection>
+          <AnimatedSection delay={0.15} className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button
+              className="rounded-full px-8 h-12 text-base text-black font-semibold hover:opacity-90 flex items-center justify-center gap-2"
+              style={{ background: "linear-gradient(135deg, #33b7fa, #4cd7ef)" }}
+            >
+              <Globe size={18} />
               Launch Web App
             </Button>
-            <Button variant="outline" className="rounded-full px-8 h-12 text-base border-primary text-primary hover:bg-primary/5 flex items-center justify-center gap-2">
-              <Download size={20} />
+            <Button
+              variant="outline"
+              className="rounded-full px-8 h-12 text-base bg-transparent flex items-center justify-center gap-2"
+              style={{ borderColor: "rgba(255,255,255,0.15)", color: "rgba(255,255,255,0.6)" }}
+            >
+              <Download size={18} />
               Download Mobile (Coming Soon)
             </Button>
-          </div>
+          </AnimatedSection>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-foreground text-white py-12">
-        <div className="container text-center text-sm text-white/70">
+      <footer className="border-t border-white/8 py-10">
+        <div className="container text-center text-sm text-white/30">
           <p>&copy; 2026 Re:Life Health. All rights reserved.</p>
         </div>
       </footer>

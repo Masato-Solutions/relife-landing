@@ -2,6 +2,8 @@ import { Button } from "@/components/ui/button";
 import Navigation from "@/components/Navigation";
 import { Mail, Phone, MapPin, Clock } from "lucide-react";
 import { useState } from "react";
+import { motion } from "framer-motion";
+import { AnimatedSection, StaggerContainer, StaggerItem } from "@/components/AnimatedSection";
 
 export default function ContactUs() {
   const [formData, setFormData] = useState({
@@ -23,140 +25,119 @@ export default function ContactUs() {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="py-16 bg-white border-b border-border">
-        <div className="container">
-          <div className="space-y-4">
-            <h1 className="text-4xl md:text-5xl font-bold text-foreground">
-              Get In Touch
+      <section className="py-20 relative overflow-hidden">
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{ background: "radial-gradient(ellipse at top left, rgba(51,183,250,0.08) 0%, transparent 60%)" }}
+        />
+        <div className="container relative z-10">
+          <AnimatedSection className="space-y-4">
+            <span className="text-xs font-semibold tracking-widest uppercase" style={{ color: "#33b7fa" }}>
+              Contact Us
+            </span>
+            <h1 className="text-4xl md:text-5xl font-bold">
+              Get In <span className="gradient-text-blue">Touch</span>
             </h1>
-            <p className="text-lg text-muted-foreground max-w-2xl">
+            <p className="text-lg text-white/50 max-w-2xl">
               Have questions or feedback? We'd love to hear from you. Contact us anytime.
             </p>
-          </div>
+          </AnimatedSection>
         </div>
       </section>
 
       {/* Contact Information */}
-      <section className="py-20">
+      <section className="py-16">
         <div className="container">
-          <div className="grid md:grid-cols-4 gap-8 mb-20">
+          <StaggerContainer className="grid md:grid-cols-4 gap-6 mb-20" staggerDelay={0.08}>
             {[
-              {
-                icon: Mail,
-                title: "Email",
-                content: "hello@relife.health",
-                subtext: "We respond within 24 hours",
-              },
-              {
-                icon: Phone,
-                title: "Phone",
-                content: "+94 (0) 123 456 789",
-                subtext: "Monday to Friday, 9 AM - 6 PM",
-              },
-              {
-                icon: MapPin,
-                title: "Location",
-                content: "Dambulla, Sri Lanka",
-                subtext: "Visit our wellness center",
-              },
-              {
-                icon: Clock,
-                title: "Support Hours",
-                content: "24/7 Available",
-                subtext: "Via chat and email",
-              },
+              { icon: Mail, title: "Email", content: "hello@relife.health", subtext: "We respond within 24 hours", accent: "#33b7fa" },
+              { icon: Phone, title: "Phone", content: "+94 (0) 123 456 789", subtext: "Monday to Friday, 9 AM - 6 PM", accent: "#4cd7ef" },
+              { icon: MapPin, title: "Location", content: "Dambulla, Sri Lanka", subtext: "Visit our wellness center", accent: "#ab92f1" },
+              { icon: Clock, title: "Support Hours", content: "24/7 Available", subtext: "Via chat and email", accent: "#33b7fa" },
             ].map((info, idx) => {
               const Icon = info.icon;
               return (
-                <div key={idx} className="text-center p-6 rounded-2xl border border-border bg-white hover:border-primary hover:shadow-lg transition-all duration-300">
-                  <Icon className="w-12 h-12 text-primary mx-auto mb-4" />
-                  <h3 className="text-xl font-bold text-foreground mb-2">{info.title}</h3>
-                  <p className="font-semibold text-foreground mb-1">{info.content}</p>
-                  <p className="text-sm text-muted-foreground">{info.subtext}</p>
-                </div>
+                <StaggerItem key={idx}>
+                  <motion.div
+                    whileHover={{ y: -4 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                    className="text-center p-6 rounded-2xl glass-card"
+                  >
+                    <div
+                      className="w-12 h-12 rounded-xl mx-auto mb-4 flex items-center justify-center"
+                      style={{ background: `${info.accent}18`, border: `1px solid ${info.accent}30` }}
+                    >
+                      <Icon className="w-6 h-6" style={{ color: info.accent }} />
+                    </div>
+                    <h3 className="text-lg font-bold text-white mb-1">{info.title}</h3>
+                    <p className="font-semibold text-white/80 text-sm mb-1">{info.content}</p>
+                    <p className="text-xs text-white/40">{info.subtext}</p>
+                  </motion.div>
+                </StaggerItem>
               );
             })}
-          </div>
+          </StaggerContainer>
 
-          {/* Contact Form and Map */}
+          {/* Contact Form and Info */}
           <div className="grid md:grid-cols-2 gap-12">
             {/* Contact Form */}
-            <div className="space-y-6">
-              <div>
-                <h2 className="text-3xl font-bold text-foreground mb-2">Send Us a Message</h2>
-                <p className="text-muted-foreground">
-                  Fill out the form below and we'll get back to you as soon as possible.
-                </p>
+            <AnimatedSection>
+              <div className="space-y-6">
+                <div>
+                  <h2 className="text-2xl font-bold text-white mb-2">Send Us a Message</h2>
+                  <p className="text-white/50 text-sm">
+                    Fill out the form below and we'll get back to you as soon as possible.
+                  </p>
+                </div>
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  {[
+                    { label: "Full Name", type: "text", key: "name", placeholder: "Your name" },
+                    { label: "Email Address", type: "email", key: "email", placeholder: "your@email.com" },
+                    { label: "Subject", type: "text", key: "subject", placeholder: "How can we help?" },
+                  ].map(({ label, type, key, placeholder }) => (
+                    <div key={key}>
+                      <label className="block text-sm font-semibold text-white/70 mb-2">{label}</label>
+                      <input
+                        type={type}
+                        value={formData[key as keyof typeof formData]}
+                        onChange={(e) => setFormData({ ...formData, [key]: e.target.value })}
+                        className="w-full px-4 py-3 rounded-xl text-white placeholder-white/30 text-sm focus:outline-none focus:ring-1 focus:ring-primary transition-all"
+                        style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)" }}
+                        placeholder={placeholder}
+                        required
+                      />
+                    </div>
+                  ))}
+                  <div>
+                    <label className="block text-sm font-semibold text-white/70 mb-2">Message</label>
+                    <textarea
+                      value={formData.message}
+                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                      className="w-full px-4 py-3 rounded-xl text-white placeholder-white/30 text-sm focus:outline-none focus:ring-1 focus:ring-primary resize-none transition-all"
+                      style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)" }}
+                      rows={5}
+                      placeholder="Your message here..."
+                      required
+                    />
+                  </div>
+                  <Button
+                    type="submit"
+                    className="w-full rounded-full h-12 text-base text-black font-semibold hover:opacity-90"
+                    style={{ background: "linear-gradient(135deg, #33b7fa, #4cd7ef)" }}
+                  >
+                    Send Message
+                  </Button>
+                </form>
               </div>
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div>
-                  <label className="block text-sm font-semibold text-foreground mb-2">
-                    Full Name
-                  </label>
-                  <input
-                    type="text"
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full px-4 py-3 rounded-lg border border-border focus:outline-none focus:ring-2 focus:ring-primary"
-                    placeholder="Your name"
-                    required
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-semibold text-foreground mb-2">
-                    Email Address
-                  </label>
-                  <input
-                    type="email"
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full px-4 py-3 rounded-lg border border-border focus:outline-none focus:ring-2 focus:ring-primary"
-                    placeholder="your@email.com"
-                    required
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-semibold text-foreground mb-2">
-                    Subject
-                  </label>
-                  <input
-                    type="text"
-                    value={formData.subject}
-                    onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                    className="w-full px-4 py-3 rounded-lg border border-border focus:outline-none focus:ring-2 focus:ring-primary"
-                    placeholder="How can we help?"
-                    required
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-semibold text-foreground mb-2">
-                    Message
-                  </label>
-                  <textarea
-                    value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full px-4 py-3 rounded-lg border border-border focus:outline-none focus:ring-2 focus:ring-primary resize-none"
-                    rows={5}
-                    placeholder="Your message here..."
-                    required
-                  ></textarea>
-                </div>
-                <Button
-                  type="submit"
-                  className="w-full bg-primary hover:bg-primary/90 text-white rounded-full h-12 text-base"
-                >
-                  Send Message
-                </Button>
-              </form>
-            </div>
+            </AnimatedSection>
 
             {/* Info Box */}
-            <div className="space-y-6">
-              <div className="p-8 rounded-2xl bg-white border border-border">
-                <h3 className="text-2xl font-bold text-foreground mb-4">
+            <AnimatedSection delay={0.15} className="space-y-6">
+              <div className="p-8 rounded-2xl glass-card">
+                <h3 className="text-xl font-bold text-white mb-5">
                   Why Contact Us?
                 </h3>
-                <ul className="space-y-4">
+                <ul className="space-y-3">
                   {[
                     "Product inquiries and support",
                     "Partnership and collaboration opportunities",
@@ -166,74 +147,63 @@ export default function ContactUs() {
                     "General questions about our services",
                   ].map((reason, idx) => (
                     <li key={idx} className="flex items-start gap-3">
-                      <span className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0"></span>
-                      <span className="text-foreground">{reason}</span>
+                      <span className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0" style={{ background: "#33b7fa" }} />
+                      <span className="text-white/60 text-sm">{reason}</span>
                     </li>
                   ))}
                 </ul>
               </div>
 
-              <div className="p-8 rounded-2xl bg-primary/5 border border-primary/20">
-                <h3 className="text-xl font-bold text-foreground mb-3">
+              <div
+                className="p-8 rounded-2xl"
+                style={{ background: "rgba(51,183,250,0.06)", border: "1px solid rgba(51,183,250,0.15)" }}
+              >
+                <h3 className="text-lg font-bold text-white mb-3">
                   Quick Response Time
                 </h3>
-                <p className="text-muted-foreground mb-4">
+                <p className="text-white/50 text-sm mb-3">
                   We value your time and aim to respond to all inquiries within 24 hours during business days.
                 </p>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-xs text-white/40">
                   For urgent matters, please call our support line or use the chat feature in the web app.
                 </p>
               </div>
-            </div>
+            </AnimatedSection>
           </div>
         </div>
       </section>
 
       {/* FAQ Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20" style={{ background: "rgba(255,255,255,0.02)" }}>
         <div className="container">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-12 text-center">
-            Frequently Asked Questions
-          </h2>
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <AnimatedSection className="text-center mb-14">
+            <h2 className="text-3xl md:text-4xl font-bold">
+              Frequently Asked <span className="gradient-text-blue">Questions</span>
+            </h2>
+          </AnimatedSection>
+          <StaggerContainer className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto" staggerDelay={0.08}>
             {[
-              {
-                q: "How do I create an account?",
-                a: "Visit our web app and click 'Sign Up'. Follow the simple registration process to get started.",
-              },
-              {
-                q: "Are your products covered by insurance?",
-                a: "Some products may be eligible for insurance coverage. Contact us for specific details.",
-              },
-              {
-                q: "What is your refund policy?",
-                a: "We offer a 30-day satisfaction guarantee on all products. Contact us for refund requests.",
-              },
-              {
-                q: "How do I join a support group?",
-                a: "Visit the Services page to see upcoming programs and register for groups that interest you.",
-              },
-              {
-                q: "Is my data secure?",
-                a: "Yes, we use enterprise-grade encryption and comply with all healthcare data protection regulations.",
-              },
-              {
-                q: "When will the mobile app be available?",
-                a: "The mobile app is coming soon! Sign up on the Application page to be notified at launch.",
-              },
+              { q: "How do I create an account?", a: "Visit our web app and click 'Sign Up'. Follow the simple registration process to get started." },
+              { q: "Are your products covered by insurance?", a: "Some products may be eligible for insurance coverage. Contact us for specific details." },
+              { q: "What is your refund policy?", a: "We offer a 30-day satisfaction guarantee on all products. Contact us for refund requests." },
+              { q: "How do I join a support group?", a: "Visit the Services page to see upcoming programs and register for groups that interest you." },
+              { q: "Is my data secure?", a: "Yes, we use enterprise-grade encryption and comply with all healthcare data protection regulations." },
+              { q: "When will the mobile app be available?", a: "The mobile app is coming soon! Sign up on the Application page to be notified at launch." },
             ].map((faq, idx) => (
-              <div key={idx} className="p-6 rounded-2xl border border-border bg-background hover:border-primary transition-all duration-300">
-                <h3 className="font-bold text-foreground mb-3">{faq.q}</h3>
-                <p className="text-muted-foreground text-sm">{faq.a}</p>
-              </div>
+              <StaggerItem key={idx}>
+                <div className="p-6 rounded-2xl glass-card">
+                  <h3 className="font-bold text-white mb-2 text-sm">{faq.q}</h3>
+                  <p className="text-white/50 text-sm">{faq.a}</p>
+                </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-foreground text-white py-12">
-        <div className="container text-center text-sm text-white/70">
+      <footer className="border-t border-white/8 py-10">
+        <div className="container text-center text-sm text-white/30">
           <p>&copy; 2026 Re:Life Health. All rights reserved.</p>
         </div>
       </footer>
