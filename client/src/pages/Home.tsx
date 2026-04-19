@@ -84,7 +84,7 @@ function MouseParallaxHero() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: 0.1 }}
                 className="inline-block text-xs font-semibold tracking-widest uppercase mb-2"
-                style={{ color: "#33b7fa" }}
+                style={{ color: "#ab92f1" }}
               >
                 Mental Health &amp; Wellness Platform
               </motion.span>
@@ -106,7 +106,7 @@ function MouseParallaxHero() {
               <Link href="/products">
                 <Button
                   className="rounded-full px-8 h-12 text-base text-black font-semibold hover:opacity-90 transition-opacity"
-                  style={{ background: "linear-gradient(135deg, #33b7fa, #4cd7ef)" }}
+                  style={{ background: "linear-gradient(135deg, #ab92f1, #c4aef5)" }}
                 >
                   Explore Products
                 </Button>
@@ -176,7 +176,7 @@ function MouseParallaxHero() {
                   className="w-24 h-24 rounded-full mx-auto flex items-center justify-center"
                   style={{ background: "linear-gradient(135deg, rgba(51,183,250,0.2), rgba(171,146,241,0.2))", border: "1px solid rgba(51,183,250,0.3)" }}
                 >
-                  <Heart className="w-12 h-12" style={{ color: "#33b7fa" }} />
+                  <Heart className="w-12 h-12" style={{ color: "#ab92f1" }} />
                 </div>
                 <p className="text-foreground/60 font-semibold text-sm">Wellness Awaits</p>
               </motion.div>
@@ -213,14 +213,14 @@ export default function Home() {
                 title: "Premium Products",
                 description: "Wellness products like sleeping boxes and poppy pads designed for your comfort",
                 href: "/products",
-                color: "#33b7fa",
+                color: "#ab92f1",
               },
               {
                 icon: Users,
                 title: "Community Programs",
                 description: "Join CSR events, seminars, and mental health programs with like-minded individuals",
                 href: "/services",
-                color: "#4cd7ef",
+                color: "#c4aef5",
               },
               {
                 icon: Leaf,
@@ -234,7 +234,7 @@ export default function Home() {
                 title: "Mobile App",
                 description: "Download our app for mental health support and wellness tracking on the go",
                 href: "/application",
-                color: "#33b7fa",
+                color: "#ab92f1",
               },
             ].map((feature, idx) => {
               const Icon = feature.icon;
@@ -278,7 +278,7 @@ export default function Home() {
           <AnimatedSection delay={0.15}>
             <Button
               className="rounded-full px-10 h-12 text-base text-black font-semibold hover:opacity-90 transition-opacity"
-              style={{ background: "linear-gradient(135deg, #33b7fa, #4cd7ef)" }}
+              style={{ background: "linear-gradient(135deg, #ab92f1, #c4aef5)" }}
               onClick={() => window.location.href = "#register"}
             >
               Get Started Now
@@ -295,7 +295,7 @@ export default function Home() {
               <div className="flex items-center gap-2 mb-3">
                 <div
                   className="w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold text-black"
-                  style={{ background: "linear-gradient(135deg, #33b7fa, #4cd7ef)" }}
+                  style={{ background: "linear-gradient(135deg, #ab92f1, #c4aef5)" }}
                 >
                   RL
                 </div>

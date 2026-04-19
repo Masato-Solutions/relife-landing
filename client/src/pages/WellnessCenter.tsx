@@ -6,18 +6,18 @@ import { AnimatedSection, StaggerContainer, StaggerItem } from "@/components/Ani
 
 export default function WellnessCenter() {
   const resources = [
-    { id: 1, icon: BookOpen, title: "Wellness Guides", description: "Comprehensive guides on mental health, stress management, and wellness practices", count: "24 guides", accent: "#33b7fa" },
-    { id: 2, icon: Lightbulb, title: "Expert Tips", description: "Daily wellness tips and insights from certified mental health professionals", count: "100+ tips", accent: "#4cd7ef" },
+    { id: 1, icon: BookOpen, title: "Wellness Guides", description: "Comprehensive guides on mental health, stress management, and wellness practices", count: "24 guides", accent: "#ab92f1" },
+    { id: 2, icon: Lightbulb, title: "Expert Tips", description: "Daily wellness tips and insights from certified mental health professionals", count: "100+ tips", accent: "#c4aef5" },
     { id: 3, icon: Users, title: "Community Stories", description: "Real stories from community members on their wellness journeys", count: "50+ stories", accent: "#ab92f1" },
-    { id: 4, icon: TrendingUp, title: "Progress Tracking", description: "Tools to monitor your wellness progress and celebrate milestones", count: "Unlimited", accent: "#33b7fa" },
+    { id: 4, icon: TrendingUp, title: "Progress Tracking", description: "Tools to monitor your wellness progress and celebrate milestones", count: "Unlimited", accent: "#ab92f1" },
   ];
 
   const articles = [
-    { title: "Understanding Anxiety: A Comprehensive Guide", category: "Mental Health", readTime: "8 min read", date: "April 10, 2026", accent: "#33b7fa" },
-    { title: "5 Meditation Techniques for Beginners", category: "Mindfulness", readTime: "6 min read", date: "April 8, 2026", accent: "#4cd7ef" },
+    { title: "Understanding Anxiety: A Comprehensive Guide", category: "Mental Health", readTime: "8 min read", date: "April 10, 2026", accent: "#ab92f1" },
+    { title: "5 Meditation Techniques for Beginners", category: "Mindfulness", readTime: "6 min read", date: "April 8, 2026", accent: "#c4aef5" },
     { title: "Sleep Hygiene: Tips for Better Rest", category: "Sleep Wellness", readTime: "7 min read", date: "April 5, 2026", accent: "#ab92f1" },
-    { title: "Building Resilience in Daily Life", category: "Personal Growth", readTime: "9 min read", date: "April 1, 2026", accent: "#33b7fa" },
-    { title: "Nutrition and Mental Health Connection", category: "Wellness", readTime: "10 min read", date: "March 28, 2026", accent: "#4cd7ef" },
+    { title: "Building Resilience in Daily Life", category: "Personal Growth", readTime: "9 min read", date: "April 1, 2026", accent: "#ab92f1" },
+    { title: "Nutrition and Mental Health Connection", category: "Wellness", readTime: "10 min read", date: "March 28, 2026", accent: "#c4aef5" },
     { title: "Workplace Stress Management Strategies", category: "Work-Life Balance", readTime: "8 min read", date: "March 25, 2026", accent: "#ab92f1" },
   ];
 
@@ -33,7 +33,7 @@ export default function WellnessCenter() {
         />
         <div className="container relative z-10">
           <AnimatedSection className="space-y-4">
-            <span className="text-xs font-semibold tracking-widest uppercase" style={{ color: "#4cd7ef" }}>
+            <span className="text-xs font-semibold tracking-widest uppercase" style={{ color: "#c4aef5" }}>
               Resource Hub
             </span>
             <h1 className="text-4xl md:text-5xl font-bold">
@@ -117,7 +117,7 @@ export default function WellnessCenter() {
           <AnimatedSection delay={0.2} className="mt-12 text-center">
             <Button
               className="rounded-full px-8 h-12 text-base text-black font-semibold hover:opacity-90"
-              style={{ background: "linear-gradient(135deg, #33b7fa, #4cd7ef)" }}
+              style={{ background: "linear-gradient(135deg, #ab92f1, #c4aef5)" }}
             >
               View All Articles
             </Button>
@@ -135,8 +135,8 @@ export default function WellnessCenter() {
           </AnimatedSection>
           <StaggerContainer className="grid md:grid-cols-3 gap-8" staggerDelay={0.1}>
             {[
-              { title: "Morning Routine", tips: ["Start with 5 minutes of meditation", "Drink water before coffee", "Set daily intentions"], accent: "#33b7fa" },
-              { title: "During the Day", tips: ["Take regular breaks", "Practice deep breathing", "Move your body regularly"], accent: "#4cd7ef" },
+              { title: "Morning Routine", tips: ["Start with 5 minutes of meditation", "Drink water before coffee", "Set daily intentions"], accent: "#ab92f1" },
+              { title: "During the Day", tips: ["Take regular breaks", "Practice deep breathing", "Move your body regularly"], accent: "#c4aef5" },
               { title: "Evening Routine", tips: ["Limit screen time", "Reflect on your day", "Prepare for quality sleep"], accent: "#ab92f1" },
             ].map((section, idx) => (
               <StaggerItem key={idx}>
@@ -178,7 +178,7 @@ export default function WellnessCenter() {
           <AnimatedSection delay={0.15}>
             <Button
               className="rounded-full px-10 h-12 text-base text-black font-semibold hover:opacity-90"
-              style={{ background: "linear-gradient(135deg, #33b7fa, #4cd7ef)" }}
+              style={{ background: "linear-gradient(135deg, #ab92f1, #c4aef5)" }}
             >
               Explore Wellness Center
             </Button>

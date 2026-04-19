@@ -28,11 +28,11 @@ export default function ContactUs() {
       <section className="py-20 relative overflow-hidden">
         <div
           className="absolute inset-0 pointer-events-none"
-          style={{ background: "radial-gradient(ellipse at top left, rgba(51,183,250,0.08) 0%, transparent 60%)" }}
+          style={{ background: "radial-gradient(ellipse at top left, rgba(171,146,241,0.08) 0%, transparent 60%)" }}
         />
         <div className="container relative z-10">
           <AnimatedSection className="space-y-4">
-            <span className="text-xs font-semibold tracking-widest uppercase" style={{ color: "#33b7fa" }}>
+            <span className="text-xs font-semibold tracking-widest uppercase" style={{ color: "#ab92f1" }}>
               Contact Us
             </span>
             <h1 className="text-4xl md:text-5xl font-bold">
@@ -50,10 +50,10 @@ export default function ContactUs() {
         <div className="container">
           <StaggerContainer className="grid md:grid-cols-4 gap-6 mb-20" staggerDelay={0.08}>
             {[
-              { icon: Mail, title: "Email", content: "hello@relife.health", subtext: "We respond within 24 hours", accent: "#33b7fa" },
-              { icon: Phone, title: "Phone", content: "+94 (0) 123 456 789", subtext: "Monday to Friday, 9 AM - 6 PM", accent: "#4cd7ef" },
+              { icon: Mail, title: "Email", content: "hello@relife.health", subtext: "We respond within 24 hours", accent: "#ab92f1" },
+              { icon: Phone, title: "Phone", content: "+94 (0) 123 456 789", subtext: "Monday to Friday, 9 AM - 6 PM", accent: "#c4aef5" },
               { icon: MapPin, title: "Location", content: "Dambulla, Sri Lanka", subtext: "Visit our wellness center", accent: "#ab92f1" },
-              { icon: Clock, title: "Support Hours", content: "24/7 Available", subtext: "Via chat and email", accent: "#33b7fa" },
+              { icon: Clock, title: "Support Hours", content: "24/7 Available", subtext: "Via chat and email", accent: "#ab92f1" },
             ].map((info, idx) => {
               const Icon = info.icon;
               return (
@@ -121,7 +121,7 @@ export default function ContactUs() {
                   <Button
                     type="submit"
                     className="w-full rounded-full h-12 text-base text-black font-semibold hover:opacity-90"
-                    style={{ background: "linear-gradient(135deg, #33b7fa, #4cd7ef)" }}
+                    style={{ background: "linear-gradient(135deg, #ab92f1, #c4aef5)" }}
                   >
                     Send Message
                   </Button>
@@ -145,7 +145,7 @@ export default function ContactUs() {
                     "General questions about our services",
                   ].map((reason, idx) => (
                     <li key={idx} className="flex items-start gap-3">
-                      <span className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0" style={{ background: "#33b7fa" }} />
+                      <span className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0" style={{ background: "#ab92f1" }} />
                       <span className="text-foreground/60 text-sm">{reason}</span>
                     </li>
                   ))}
