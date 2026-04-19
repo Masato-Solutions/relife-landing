@@ -203,7 +203,7 @@ export default function Services() {
               { title: "Practical Tools", description: "Gain actionable strategies for mental health and wellness" },
               { title: "Flexible Access", description: "Virtual and in-person options to fit your schedule" },
             ].map((benefit, idx) => {
-              const colors = ["#ab92f1", "#c4aef5", "#ab92f1", "#ab92f1"];
+              const colors = ["#ab92f1", "#c4aef5", "#b8a0f3", "#d4c5f9"];
               return (
                 <StaggerItem key={idx}>
                   <div className="text-center">
