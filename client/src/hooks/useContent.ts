@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import {
   fetchProducts,
   fetchServices,
@@ -31,26 +31,34 @@ function useContent<T>(fetcher: () => Promise<T>): UseContentResult<T> {
   const [data, setData] = useState<T | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-
-  const load = useCallback(() => {
-    setLoading(true);
-    setError(null);
-    fetcher()
-      .then((d) => {
-        setData(d);
-        setLoading(false);
-      })
-      .catch((e: unknown) => {
-        setError(e instanceof Error ? e.message : String(e));
-        setLoading(false);
-      });
-  }, [fetcher]);
+  const [tick, setTick] = useState(0);
+  // Store fetcher in a ref to prevent it from causing re-renders
+  const fetcherRef = useRef(fetcher);
+  fetcherRef.current = fetcher;
 
   useEffect(() => {
-    load();
-  }, [load]);
+    let cancelled = false;
+    setLoading(true);
+    setError(null);
+    fetcherRef.current()
+      .then((d) => {
+        if (!cancelled) {
+          setData(d);
+          setLoading(false);
+        }
+      })
+      .catch((e: unknown) => {
+        if (!cancelled) {
+          setError(e instanceof Error ? e.message : String(e));
+          setLoading(false);
+        }
+      });
+    return () => { cancelled = true; };
+  }, [tick]);
 
-  return { data, loading, error, refetch: load };
+  const refetch = useCallback(() => setTick((t) => t + 1), []);
+
+  return { data, loading, error, refetch };
 }
 
 export function useProducts(): UseContentResult<Product[]> {

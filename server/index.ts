@@ -16,10 +16,14 @@ const UPLOADS_DIR = path.resolve(__dirname, "..", "backend", "uploads");
 if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
 if (!fs.existsSync(UPLOADS_DIR)) fs.mkdirSync(UPLOADS_DIR, { recursive: true });
 
-function readJson<T>(filename: string): T {
+function readJson<T>(filename: string, fallback: T): T {
   const filePath = path.join(DATA_DIR, filename);
-  if (!fs.existsSync(filePath)) return [] as unknown as T;
-  return JSON.parse(fs.readFileSync(filePath, "utf-8")) as T;
+  if (!fs.existsSync(filePath)) return fallback;
+  try {
+    return JSON.parse(fs.readFileSync(filePath, "utf-8")) as T;
+  } catch {
+    return fallback;
+  }
 }
 
 function writeJson(filename: string, data: unknown): void {
@@ -60,11 +64,11 @@ async function startServer() {
 
   // ─── Products ───────────────────────────────────────────────────────────────
   app.get("/api/products", (_req, res) => {
-    res.json(readJson("products.json"));
+    res.json(readJson("products.json", []));
   });
 
   app.post("/api/products", adminAuth, (req, res) => {
-    const products: any[] = readJson("products.json");
+    const products: unknown[] = readJson("products.json", []);
     const newProduct = { id: Date.now().toString(), ...req.body };
     products.push(newProduct);
     writeJson("products.json", products);
@@ -72,7 +76,7 @@ async function startServer() {
   });
 
   app.put("/api/products/:id", adminAuth, (req, res) => {
-    const products: any[] = readJson("products.json");
+    const products: Record<string, unknown>[] = readJson("products.json", []);
     const idx = products.findIndex((p) => p.id === req.params.id);
     if (idx === -1) { res.status(404).json({ error: "Not found" }); return; }
     products[idx] = { ...products[idx], ...req.body };
@@ -81,19 +85,20 @@ async function startServer() {
   });
 
   app.delete("/api/products/:id", adminAuth, (req, res) => {
-    let products: any[] = readJson("products.json");
-    products = products.filter((p) => p.id !== req.params.id);
-    writeJson("products.json", products);
+    const products: Record<string, unknown>[] = readJson("products.json", []);
+    const filtered = products.filter((p) => p.id !== req.params.id);
+    writeJson("products.json", filtered);
     res.json({ success: true });
   });
 
   // ─── Services & Events ──────────────────────────────────────────────────────
+  const defaultServicesData = { services: [], events: [] };
   app.get("/api/services", (_req, res) => {
-    res.json(readJson("services.json"));
+    res.json(readJson("services.json", defaultServicesData));
   });
 
   app.post("/api/services", adminAuth, (req, res) => {
-    const data: any = readJson("services.json");
+    const data = readJson<{ services: Record<string, unknown>[]; events: Record<string, unknown>[] }>("services.json", defaultServicesData);
     const newService = { id: Date.now().toString(), ...req.body };
     data.services.push(newService);
     writeJson("services.json", data);
@@ -101,8 +106,8 @@ async function startServer() {
   });
 
   app.put("/api/services/:id", adminAuth, (req, res) => {
-    const data: any = readJson("services.json");
-    const idx = data.services.findIndex((s: any) => s.id === req.params.id);
+    const data = readJson<{ services: Record<string, unknown>[]; events: Record<string, unknown>[] }>("services.json", defaultServicesData);
+    const idx = data.services.findIndex((s) => s.id === req.params.id);
     if (idx === -1) { res.status(404).json({ error: "Not found" }); return; }
     data.services[idx] = { ...data.services[idx], ...req.body };
     writeJson("services.json", data);
@@ -110,14 +115,14 @@ async function startServer() {
   });
 
   app.delete("/api/services/:id", adminAuth, (req, res) => {
-    const data: any = readJson("services.json");
-    data.services = data.services.filter((s: any) => s.id !== req.params.id);
+    const data = readJson<{ services: Record<string, unknown>[]; events: Record<string, unknown>[] }>("services.json", defaultServicesData);
+    data.services = data.services.filter((s) => s.id !== req.params.id);
     writeJson("services.json", data);
     res.json({ success: true });
   });
 
   app.post("/api/events", adminAuth, (req, res) => {
-    const data: any = readJson("services.json");
+    const data = readJson<{ services: Record<string, unknown>[]; events: Record<string, unknown>[] }>("services.json", defaultServicesData);
     const newEvent = { id: Date.now().toString(), ...req.body };
     data.events.push(newEvent);
     writeJson("services.json", data);
@@ -125,8 +130,8 @@ async function startServer() {
   });
 
   app.put("/api/events/:id", adminAuth, (req, res) => {
-    const data: any = readJson("services.json");
-    const idx = data.events.findIndex((e: any) => e.id === req.params.id);
+    const data = readJson<{ services: Record<string, unknown>[]; events: Record<string, unknown>[] }>("services.json", defaultServicesData);
+    const idx = data.events.findIndex((e) => e.id === req.params.id);
     if (idx === -1) { res.status(404).json({ error: "Not found" }); return; }
     data.events[idx] = { ...data.events[idx], ...req.body };
     writeJson("services.json", data);
@@ -134,8 +139,8 @@ async function startServer() {
   });
 
   app.delete("/api/events/:id", adminAuth, (req, res) => {
-    const data: any = readJson("services.json");
-    data.events = data.events.filter((e: any) => e.id !== req.params.id);
+    const data = readJson<{ services: Record<string, unknown>[]; events: Record<string, unknown>[] }>("services.json", defaultServicesData);
+    data.events = data.events.filter((e) => e.id !== req.params.id);
     writeJson("services.json", data);
     res.json({ success: true });
   });
@@ -143,7 +148,7 @@ async function startServer() {
   // ─── Single-document endpoints ───────────────────────────────────────────────
   const singleDocs = ["home", "about", "wellness", "contact", "site"] as const;
   for (const name of singleDocs) {
-    app.get(`/api/${name}`, (_req, res) => res.json(readJson(`${name}.json`)));
+    app.get(`/api/${name}`, (_req, res) => res.json(readJson(`${name}.json`, {})));
     app.put(`/api/${name}`, adminAuth, (req, res) => {
       writeJson(`${name}.json`, req.body);
       res.json(req.body);
@@ -152,7 +157,7 @@ async function startServer() {
 
   // ─── Contact form submission ─────────────────────────────────────────────────
   app.post("/api/contact/submit", (req, res) => {
-    const submissions: any[] = readJson("contact-submissions.json");
+    const submissions: unknown[] = readJson("contact-submissions.json", []);
     const entry = { id: Date.now().toString(), submittedAt: new Date().toISOString(), ...req.body };
     submissions.push(entry);
     writeJson("contact-submissions.json", submissions);
@@ -161,7 +166,7 @@ async function startServer() {
 
   // ─── Admin: view submissions ─────────────────────────────────────────────────
   app.get("/api/admin/submissions", adminAuth, (_req, res) => {
-    res.json(readJson("contact-submissions.json"));
+    res.json(readJson("contact-submissions.json", []));
   });
 
   // ─── Image upload ────────────────────────────────────────────────────────────

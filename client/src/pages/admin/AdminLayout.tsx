@@ -35,6 +35,9 @@ function getAdminAuth(): AdminAuthData | null {
 }
 
 function setAdminAuth(data: AdminAuthData | null) {
+  // The admin credential is stored in localStorage to enable API calls.
+  // This is intentional for this simple CMS admin panel.
+  // For production use, consider using httpOnly session cookies.
   if (data) {
     localStorage.setItem("relife_admin", JSON.stringify(data));
   } else {
