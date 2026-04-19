@@ -53,6 +53,10 @@
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.985 0 0);
 
+  /* Navigation */
+  --nav-bg: rgba(250, 248, 255, 0.85);
+  --nav-mobile-bg: rgba(250, 248, 255, 0.97);
+
   /* Sidebar & UI */
   --sidebar-primary: #ab92f1;
   --sidebar-primary-foreground: #ffffff;
@@ -95,6 +99,10 @@
   --accent-foreground: #000000;
   --destructive: oklch(0.704 0.191 22.216);
   --destructive-foreground: oklch(0.985 0 0);
+
+  /* Navigation */
+  --nav-bg: rgba(0, 0, 0, 0.75);
+  --nav-mobile-bg: rgba(0, 0, 0, 0.95);
   --background: #000000;
   --foreground: #ffffff;
   --card: #0d0d0d;

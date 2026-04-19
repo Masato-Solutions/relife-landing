@@ -23,7 +23,7 @@ export default function Navigation() {
     <nav
       className="sticky top-0 z-50 border-b border-border"
       style={{
-        background: theme === "dark" ? "rgba(0,0,0,0.75)" : "rgba(250,248,255,0.85)",
+        background: "var(--nav-bg)",
         backdropFilter: "blur(16px)",
       }}
     >
@@ -98,7 +98,7 @@ export default function Navigation() {
             transition={{ duration: 0.3, ease: "easeInOut" }}
             className="md:hidden border-t border-border overflow-hidden"
             style={{
-              background: theme === "dark" ? "rgba(0,0,0,0.95)" : "rgba(250,248,255,0.97)",
+              background: "var(--nav-mobile-bg)",
             }}
           >
             <div className="container py-4 flex flex-col gap-2">

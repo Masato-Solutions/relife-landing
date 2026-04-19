@@ -101,8 +101,7 @@ export default function ContactUs() {
                         type={type}
                         value={formData[key as keyof typeof formData]}
                         onChange={(e) => setFormData({ ...formData, [key]: e.target.value })}
-                        className="w-full px-4 py-3 rounded-xl text-foreground placeholder-muted-foreground/60 text-sm focus:outline-none focus:ring-1 focus:ring-primary transition-all"
-                        style={{ background: "var(--input)", border: "1px solid var(--border)" }}
+                        className="w-full px-4 py-3 rounded-xl bg-input border border-border text-foreground placeholder-muted-foreground/60 text-sm focus:outline-none focus:ring-1 focus:ring-primary transition-all"
                         placeholder={placeholder}
                         required
                       />
@@ -113,8 +112,7 @@ export default function ContactUs() {
                     <textarea
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl text-foreground placeholder-muted-foreground/60 text-sm focus:outline-none focus:ring-1 focus:ring-primary resize-none transition-all"
-                      style={{ background: "var(--input)", border: "1px solid var(--border)" }}
+                      className="w-full px-4 py-3 rounded-xl bg-input border border-border text-foreground placeholder-muted-foreground/60 text-sm focus:outline-none focus:ring-1 focus:ring-primary resize-none transition-all"
                       rows={5}
                       placeholder="Your message here..."
                       required
