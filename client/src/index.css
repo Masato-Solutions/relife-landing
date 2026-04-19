@@ -91,11 +91,11 @@
 
 .dark {
   /* Re:Life Dark Palette */
-  --primary: #33b7fa;
+  --primary: #ab92f1;
   --primary-foreground: #000000;
-  --secondary: #4cd7ef;
+  --secondary: #c4aef5;
   --secondary-foreground: #000000;
-  --accent: #ab92f1;
+  --accent: #33b7fa;
   --accent-foreground: #000000;
   --destructive: oklch(0.704 0.191 22.216);
   --destructive-foreground: oklch(0.985 0 0);
@@ -113,20 +113,20 @@
   --muted-foreground: #888888;
   --border: rgba(255, 255, 255, 0.08);
   --input: #111111;
-  --ring: #33b7fa;
-  --chart-1: #33b7fa;
-  --chart-2: #4cd7ef;
-  --chart-3: #ab92f1;
-  --chart-4: #6ed4f7;
-  --chart-5: #c4aef5;
-  --sidebar-primary: #33b7fa;
+  --ring: #ab92f1;
+  --chart-1: #ab92f1;
+  --chart-2: #c4aef5;
+  --chart-3: #33b7fa;
+  --chart-4: #d4c5f9;
+  --chart-5: #4cd7ef;
+  --sidebar-primary: #ab92f1;
   --sidebar-primary-foreground: #000000;
   --sidebar: #0d0d0d;
   --sidebar-foreground: #ffffff;
-  --sidebar-accent: #4cd7ef;
+  --sidebar-accent: #c4aef5;
   --sidebar-accent-foreground: #000000;
   --sidebar-border: rgba(255, 255, 255, 0.08);
-  --sidebar-ring: #33b7fa;
+  --sidebar-ring: #ab92f1;
 }
 
 @layer base {
@@ -173,13 +173,13 @@
 @layer utilities {
   /* Gradient text utilities */
   .gradient-text-blue {
-    background: linear-gradient(135deg, #33b7fa 0%, #4cd7ef 100%);
+    background: linear-gradient(135deg, #ab92f1 0%, #c4aef5 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
   .gradient-text-purple {
-    background: linear-gradient(135deg, #ab92f1 0%, #33b7fa 100%);
+    background: linear-gradient(135deg, #ab92f1 0%, #c4aef5 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -187,7 +187,7 @@
 
   /* Glow utilities */
   .glow-blue {
-    box-shadow: 0 0 30px rgba(51, 183, 250, 0.3);
+    box-shadow: 0 0 30px rgba(171, 146, 241, 0.3);
   }
   .glow-purple {
     box-shadow: 0 0 30px rgba(171, 146, 241, 0.3);
@@ -209,8 +209,8 @@
     border: 1px solid rgba(255, 255, 255, 0.08);
   }
   .dark .glass-card:hover {
-    background: rgba(51, 183, 250, 0.06);
-    border-color: rgba(51, 183, 250, 0.3);
+    background: rgba(171, 146, 241, 0.06);
+    border-color: rgba(171, 146, 241, 0.3);
   }
 
   /* Alternate section background */

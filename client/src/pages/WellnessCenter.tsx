@@ -109,7 +109,7 @@ export default function WellnessCenter() {
         />
         <div className="container relative z-10">
           <AnimatedSection className="max-w-3xl space-y-6">
-            <span className="text-xs font-semibold tracking-widest uppercase" style={{ color: "#4cd7ef" }}>
+            <span className="text-xs font-semibold tracking-widest uppercase" style={{ color: "#c4aef5" }}>
               Wellness Center
             </span>
             <h1 className="text-4xl md:text-6xl font-bold leading-tight">
@@ -263,7 +263,7 @@ export default function WellnessCenter() {
           <AnimatedSection delay={0.15}>
             <Button
               className="rounded-full px-10 h-12 text-base text-black font-semibold hover:opacity-90 transition-opacity"
-              style={{ background: "linear-gradient(135deg, #ab92f1, #33b7fa)" }}
+              style={{ background: "linear-gradient(135deg, #ab92f1, #c4aef5)" }}
             >
               Register Now
             </Button>

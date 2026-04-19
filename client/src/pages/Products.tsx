@@ -23,7 +23,7 @@ export default function Products() {
       reviews: 156,
       description: "Ergonomic sleeping box designed for optimal rest and recovery",
       features: ["Orthopedic support", "Breathable fabric", "Portable design"],
-      accent: "#33b7fa",
+      accent: "#ab92f1",
     },
     {
       id: 2,
@@ -34,7 +34,7 @@ export default function Products() {
       reviews: 203,
       description: "Therapeutic poppy pad for stress relief and meditation",
       features: ["Natural materials", "Aromatherapy infused", "Easy to clean"],
-      accent: "#4cd7ef",
+      accent: "#c4aef5",
     },
     {
       id: 3,
@@ -56,7 +56,7 @@ export default function Products() {
       reviews: 127,
       description: "Supportive cushion for meditation and yoga practices",
       features: ["Memory foam", "Adjustable height", "Portable"],
-      accent: "#33b7fa",
+      accent: "#ab92f1",
     },
     {
       id: 5,
@@ -67,7 +67,7 @@ export default function Products() {
       reviews: 234,
       description: "Organic herbal tea blend for better sleep quality",
       features: ["100% organic", "No caffeine", "30-day supply"],
-      accent: "#4cd7ef",
+      accent: "#c4aef5",
     },
     {
       id: 6,
@@ -90,11 +90,11 @@ export default function Products() {
       <section className="py-20 relative overflow-hidden">
         <div
           className="absolute inset-0 pointer-events-none"
-          style={{ background: "radial-gradient(ellipse at top left, rgba(51,183,250,0.08) 0%, transparent 60%)" }}
+          style={{ background: "radial-gradient(ellipse at top left, rgba(171,146,241,0.08) 0%, transparent 60%)" }}
         />
         <div className="container relative z-10">
           <AnimatedSection className="space-y-4">
-            <span className="text-xs font-semibold tracking-widest uppercase" style={{ color: "#33b7fa" }}>
+            <span className="text-xs font-semibold tracking-widest uppercase" style={{ color: "#ab92f1" }}>
               Our Collection
             </span>
             <h1 className="text-4xl md:text-5xl font-bold">
@@ -178,7 +178,7 @@ export default function Products() {
                       <span className="text-2xl font-bold" style={{ color: product.accent }}>{product.price}</span>
                       <Button
                         className="rounded-full px-5 text-sm text-black font-semibold hover:opacity-90"
-                        style={{ background: `linear-gradient(135deg, ${product.accent}, #4cd7ef)` }}
+                        style={{ background: `linear-gradient(135deg, ${product.accent}, #c4aef5)` }}
                       >
                         Add to Cart
                       </Button>
@@ -209,7 +209,7 @@ export default function Products() {
           <AnimatedSection delay={0.15}>
             <Button
               className="rounded-full px-10 h-12 text-base text-black font-semibold hover:opacity-90"
-              style={{ background: "linear-gradient(135deg, #33b7fa, #4cd7ef)" }}
+              style={{ background: "linear-gradient(135deg, #ab92f1, #c4aef5)" }}
             >
               Shop All Products
             </Button>

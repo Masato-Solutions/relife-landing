@@ -14,7 +14,7 @@ export default function Services() {
       schedule: "Weekly on Thursdays",
       participants: "50-100",
       duration: "2 hours",
-      accent: "#33b7fa",
+      accent: "#ab92f1",
     },
     {
       id: 2,
@@ -24,7 +24,7 @@ export default function Services() {
       schedule: "Bi-weekly on Sundays",
       participants: "20-30",
       duration: "1.5 hours",
-      accent: "#4cd7ef",
+      accent: "#c4aef5",
     },
     {
       id: 3,
@@ -44,7 +44,7 @@ export default function Services() {
       schedule: "Custom scheduling",
       participants: "Variable",
       duration: "Flexible",
-      accent: "#33b7fa",
+      accent: "#ab92f1",
     },
   ];
 
@@ -55,7 +55,7 @@ export default function Services() {
       time: "6:00 PM - 8:00 PM",
       location: "Virtual",
       spots: 45,
-      accent: "#33b7fa",
+      accent: "#ab92f1",
     },
     {
       title: "Mindfulness & Meditation Workshop",
@@ -63,7 +63,7 @@ export default function Services() {
       time: "10:00 AM - 1:00 PM",
       location: "Dambulla Wellness Center",
       spots: 30,
-      accent: "#4cd7ef",
+      accent: "#c4aef5",
     },
     {
       title: "Mental Health Awareness Seminar",
@@ -87,7 +87,7 @@ export default function Services() {
         />
         <div className="container relative z-10">
           <AnimatedSection className="space-y-4">
-            <span className="text-xs font-semibold tracking-widest uppercase" style={{ color: "#4cd7ef" }}>
+            <span className="text-xs font-semibold tracking-widest uppercase" style={{ color: "#c4aef5" }}>
               Programs &amp; Events
             </span>
             <h1 className="text-4xl md:text-5xl font-bold">
@@ -177,7 +177,7 @@ export default function Services() {
                   </div>
                   <Button
                     className="w-full rounded-full text-black font-semibold hover:opacity-90"
-                    style={{ background: `linear-gradient(135deg, ${event.accent}, #4cd7ef)` }}
+                    style={{ background: `linear-gradient(135deg, ${event.accent}, #c4aef5)` }}
                   >
                     Register Now
                   </Button>
@@ -203,13 +203,13 @@ export default function Services() {
               { title: "Practical Tools", description: "Gain actionable strategies for mental health and wellness" },
               { title: "Flexible Access", description: "Virtual and in-person options to fit your schedule" },
             ].map((benefit, idx) => {
-              const colors = ["#33b7fa", "#4cd7ef", "#ab92f1", "#33b7fa"];
+              const colors = ["#ab92f1", "#c4aef5", "#b8a0f3", "#d4c5f9"];
               return (
                 <StaggerItem key={idx}>
                   <div className="text-center">
                     <div
                       className="w-12 h-12 rounded-full mx-auto mb-4 flex items-center justify-center text-black font-bold"
-                      style={{ background: `linear-gradient(135deg, ${colors[idx]}, #4cd7ef)` }}
+                      style={{ background: `linear-gradient(135deg, ${colors[idx]}, #c4aef5)` }}
                     >
                       {idx + 1}
                     </div>

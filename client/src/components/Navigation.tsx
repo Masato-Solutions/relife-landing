@@ -33,7 +33,7 @@ export default function Navigation() {
           <a className="flex items-center gap-2 text-2xl font-bold hover:opacity-80 transition-opacity">
             <div
               className="w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold text-white"
-              style={{ background: "linear-gradient(135deg, #ab92f1, #33b7fa)" }}
+              style={{ background: "linear-gradient(135deg, #ab92f1, #c4aef5)" }}
             >
               RL
             </div>
@@ -63,7 +63,7 @@ export default function Navigation() {
           </button>
           <Button
             className="rounded-full px-6 text-white font-semibold"
-            style={{ background: "linear-gradient(135deg, #ab92f1, #33b7fa)" }}
+            style={{ background: "linear-gradient(135deg, #ab92f1, #c4aef5)" }}
             onClick={() => window.location.href = "#register"}
           >
             Register Now
@@ -121,7 +121,7 @@ export default function Navigation() {
               ))}
               <Button
                 className="rounded-full w-full mt-3 text-white font-semibold"
-                style={{ background: "linear-gradient(135deg, #ab92f1, #33b7fa)" }}
+                style={{ background: "linear-gradient(135deg, #ab92f1, #c4aef5)" }}
                 onClick={() => {
                   setIsOpen(false);
                   window.location.href = "#register";
