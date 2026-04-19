@@ -97,7 +97,7 @@ export default function AboutUs() {
                       <Icon className="w-7 h-7" style={{ color: value.accent }} />
                     </div>
                     <h3 className="text-lg font-bold text-foreground mb-2">{value.title}</h3>
-                    <p className="text-foreground/50 text-sm">{value.description}</p>
+                    <p className="text-blue-accent text-sm">{value.description}</p>
                   </div>
                 </StaggerItem>
               );
@@ -144,7 +144,7 @@ export default function AboutUs() {
                     {section.items.map((item, itemIdx) => (
                       <li key={itemIdx} className="flex items-center gap-3">
                         <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: section.accent }} />
-                        <span className="text-foreground/60 text-sm">{item}</span>
+                        <span className="text-blue-accent text-sm">{item}</span>
                       </li>
                     ))}
                   </ul>
@@ -186,7 +186,7 @@ export default function AboutUs() {
                   </div>
                   <h3 className="text-lg font-bold text-foreground mb-1">{member.name}</h3>
                   <p className="text-sm font-semibold mb-3" style={{ color: member.accent }}>{member.role}</p>
-                  <p className="text-sm text-foreground/50">{member.bio}</p>
+                  <p className="text-sm text-blue-accent">{member.bio}</p>
                 </motion.div>
               </StaggerItem>
             ))}

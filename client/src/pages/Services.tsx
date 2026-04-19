@@ -120,7 +120,7 @@ export default function Services() {
                       <Icon className="w-7 h-7" style={{ color: service.accent }} />
                     </div>
                     <h3 className="text-xl font-bold text-foreground mb-3">{service.title}</h3>
-                    <p className="text-foreground/50 mb-6">{service.description}</p>
+                    <p className="text-blue-accent mb-6">{service.description}</p>
                     <div className="space-y-2 text-sm border-t border-border pt-4">
                       {[
                         { label: "Schedule", value: service.schedule },
@@ -214,7 +214,7 @@ export default function Services() {
                       {idx + 1}
                     </div>
                     <h3 className="font-bold text-foreground mb-2">{benefit.title}</h3>
-                    <p className="text-sm text-foreground/50">{benefit.description}</p>
+                    <p className="text-sm text-blue-accent">{benefit.description}</p>
                   </div>
                 </StaggerItem>
               );
