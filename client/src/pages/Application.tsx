@@ -17,7 +17,7 @@ export default function Application() {
         />
         <div className="container relative z-10">
           <AnimatedSection className="space-y-4">
-            <span className="text-xs font-semibold tracking-widest uppercase" style={{ color: "#33b7fa" }}>
+            <span className="text-xs font-semibold tracking-widest uppercase" style={{ color: "#ab92f1" }}>
               Digital Platform
             </span>
             <h1 className="text-4xl md:text-5xl font-bold">
@@ -40,7 +40,7 @@ export default function Application() {
                   className="w-10 h-10 rounded-xl flex items-center justify-center"
                   style={{ background: "rgba(51,183,250,0.15)", border: "1px solid rgba(51,183,250,0.3)" }}
                 >
-                  <Globe className="w-5 h-5" style={{ color: "#33b7fa" }} />
+                  <Globe className="w-5 h-5" style={{ color: "#ab92f1" }} />
                 </div>
                 <h2 className="text-2xl font-bold text-foreground">Web Application</h2>
               </div>
@@ -57,14 +57,14 @@ export default function Application() {
                   "Secure video conferencing",
                 ].map((feature, idx) => (
                   <li key={idx} className="flex items-center gap-3">
-                    <Check className="w-4 h-4 flex-shrink-0" style={{ color: "#33b7fa" }} />
+                    <Check className="w-4 h-4 flex-shrink-0" style={{ color: "#ab92f1" }} />
                     <span className="text-foreground/70 text-sm">{feature}</span>
                   </li>
                 ))}
               </ul>
               <Button
                 className="rounded-full px-8 h-12 text-base text-black font-semibold hover:opacity-90"
-                style={{ background: "linear-gradient(135deg, #33b7fa, #4cd7ef)" }}
+                style={{ background: "linear-gradient(135deg, #ab92f1, #c4aef5)" }}
               >
                 Launch Web App
               </Button>
@@ -167,7 +167,7 @@ export default function Application() {
               <thead>
                 <tr className="border-b border-border">
                   <th className="text-left py-4 px-4 font-bold text-foreground/70">Feature</th>
-                  <th className="text-center py-4 px-4 font-bold" style={{ color: "#33b7fa" }}>Web App</th>
+                  <th className="text-center py-4 px-4 font-bold" style={{ color: "#ab92f1" }}>Web App</th>
                   <th className="text-center py-4 px-4 font-bold" style={{ color: "#ab92f1" }}>Mobile App</th>
                 </tr>
               </thead>
@@ -186,7 +186,7 @@ export default function Application() {
                     <td className="py-4 px-4 text-foreground/70">{row.feature}</td>
                     <td className="py-4 px-4 text-center">
                       {row.web ? (
-                        <Check className="w-4 h-4 mx-auto" style={{ color: "#33b7fa" }} />
+                        <Check className="w-4 h-4 mx-auto" style={{ color: "#ab92f1" }} />
                       ) : (
                         <span className="text-foreground/20">—</span>
                       )}
@@ -224,7 +224,7 @@ export default function Application() {
           <AnimatedSection delay={0.15} className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
               className="rounded-full px-8 h-12 text-base text-black font-semibold hover:opacity-90 flex items-center justify-center gap-2"
-              style={{ background: "linear-gradient(135deg, #33b7fa, #4cd7ef)" }}
+              style={{ background: "linear-gradient(135deg, #ab92f1, #c4aef5)" }}
             >
               <Globe size={18} />
               Launch Web App

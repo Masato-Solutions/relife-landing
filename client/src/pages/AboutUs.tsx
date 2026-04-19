@@ -46,7 +46,7 @@ export default function AboutUs() {
               </p>
               <Button
                 className="rounded-full px-8 text-black font-semibold hover:opacity-90"
-                style={{ background: "linear-gradient(135deg, #33b7fa, #4cd7ef)" }}
+                style={{ background: "linear-gradient(135deg, #ab92f1, #c4aef5)" }}
               >
                 Learn More
               </Button>
@@ -81,10 +81,10 @@ export default function AboutUs() {
           </AnimatedSection>
           <StaggerContainer className="grid md:grid-cols-4 gap-8" staggerDelay={0.1}>
             {[
-              { icon: Heart, title: "Compassion", description: "We approach every interaction with empathy and understanding", accent: "#33b7fa" },
-              { icon: Target, title: "Excellence", description: "We strive for the highest standards in everything we do", accent: "#4cd7ef" },
+              { icon: Heart, title: "Compassion", description: "We approach every interaction with empathy and understanding", accent: "#ab92f1" },
+              { icon: Target, title: "Excellence", description: "We strive for the highest standards in everything we do", accent: "#c4aef5" },
               { icon: Users, title: "Community", description: "We believe in the power of connection and shared experiences", accent: "#ab92f1" },
-              { icon: Award, title: "Innovation", description: "We continuously innovate to improve mental health care", accent: "#33b7fa" },
+              { icon: Award, title: "Innovation", description: "We continuously innovate to improve mental health care", accent: "#ab92f1" },
             ].map((value, idx) => {
               const Icon = value.icon;
               return (
@@ -119,12 +119,12 @@ export default function AboutUs() {
               {
                 title: "Comprehensive Platform",
                 items: ["AI-powered mental health chatbot", "Professional consultation services", "Patient record management", "Prescription tracking"],
-                accent: "#33b7fa",
+                accent: "#ab92f1",
               },
               {
                 title: "Community & Support",
                 items: ["Support group programs", "Mental health seminars", "Wellness workshops", "CSR initiatives"],
-                accent: "#4cd7ef",
+                accent: "#c4aef5",
               },
               {
                 title: "Wellness Products",
@@ -134,7 +134,7 @@ export default function AboutUs() {
               {
                 title: "Technology Solutions",
                 items: ["Web application", "Mobile app (coming soon)", "Video conferencing", "Secure data management"],
-                accent: "#33b7fa",
+                accent: "#ab92f1",
               },
             ].map((section, idx) => (
               <StaggerItem key={idx}>
@@ -168,8 +168,8 @@ export default function AboutUs() {
           </AnimatedSection>
           <StaggerContainer className="grid md:grid-cols-3 gap-8" staggerDelay={0.12}>
             {[
-              { name: "Avrina Lanka", role: "Founder & CEO", bio: "Mental health advocate with 10+ years of experience in healthcare technology", accent: "#33b7fa" },
-              { name: "Dr. Sarah Johnson", role: "Chief Medical Officer", bio: "Licensed psychiatrist specializing in digital mental health solutions", accent: "#4cd7ef" },
+              { name: "Avrina Lanka", role: "Founder & CEO", bio: "Mental health advocate with 10+ years of experience in healthcare technology", accent: "#ab92f1" },
+              { name: "Dr. Sarah Johnson", role: "Chief Medical Officer", bio: "Licensed psychiatrist specializing in digital mental health solutions", accent: "#c4aef5" },
               { name: "Michael Chen", role: "Chief Technology Officer", bio: "Tech innovator passionate about accessible healthcare technology", accent: "#ab92f1" },
             ].map((member, idx) => (
               <StaggerItem key={idx}>
@@ -199,10 +199,10 @@ export default function AboutUs() {
         <div className="container">
           <StaggerContainer className="grid md:grid-cols-4 gap-8 text-center" staggerDelay={0.1}>
             {[
-              { number: "50K+", label: "Active Users", accent: "#33b7fa" },
-              { number: "500+", label: "Mental Health Professionals", accent: "#4cd7ef" },
+              { number: "50K+", label: "Active Users", accent: "#ab92f1" },
+              { number: "500+", label: "Mental Health Professionals", accent: "#c4aef5" },
               { number: "1000+", label: "Success Stories", accent: "#ab92f1" },
-              { number: "24/7", label: "Support Available", accent: "#33b7fa" },
+              { number: "24/7", label: "Support Available", accent: "#ab92f1" },
             ].map((stat, idx) => (
               <StaggerItem key={idx}>
                 <div className="p-8">
@@ -233,7 +233,7 @@ export default function AboutUs() {
           <AnimatedSection delay={0.15}>
             <Button
               className="rounded-full px-10 h-12 text-base text-black font-semibold hover:opacity-90"
-              style={{ background: "linear-gradient(135deg, #33b7fa, #4cd7ef)" }}
+              style={{ background: "linear-gradient(135deg, #ab92f1, #c4aef5)" }}
             >
               Get Started Now
             </Button>
