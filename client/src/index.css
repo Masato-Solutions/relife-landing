@@ -173,7 +173,7 @@
 @layer utilities {
   /* Gradient text utilities */
   .gradient-text-blue {
-    background: linear-gradient(135deg, #ab92f1 0%, #c4aef5 100%);
+    background: linear-gradient(135deg, #33b7fa 0%, #4cd7ef 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -187,10 +187,18 @@
 
   /* Glow utilities */
   .glow-blue {
-    box-shadow: 0 0 30px rgba(171, 146, 241, 0.3);
+    box-shadow: 0 0 30px rgba(51, 183, 250, 0.3);
   }
   .glow-purple {
     box-shadow: 0 0 30px rgba(171, 146, 241, 0.3);
+  }
+
+  /* Card description text — blue accent */
+  .text-blue-accent {
+    color: rgba(51, 183, 250, 0.75);
+  }
+  .dark .text-blue-accent {
+    color: rgba(76, 215, 239, 0.68);
   }
 
   /* Glass card — adapts to theme */

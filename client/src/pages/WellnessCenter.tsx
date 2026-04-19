@@ -66,7 +66,7 @@ export default function WellnessCenter() {
                       <Icon className="w-6 h-6" style={{ color: resource.accent }} />
                     </div>
                     <h3 className="text-lg font-bold text-foreground mb-2">{resource.title}</h3>
-                    <p className="text-sm text-foreground/50 mb-3">{resource.description}</p>
+                    <p className="text-sm text-blue-accent mb-3">{resource.description}</p>
                     <p className="text-sm font-semibold" style={{ color: resource.accent }}>{resource.count}</p>
                   </motion.div>
                 </StaggerItem>
@@ -149,7 +149,7 @@ export default function WellnessCenter() {
                     {section.tips.map((tip, tipIdx) => (
                       <li key={tipIdx} className="flex items-start gap-3">
                         <span className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0" style={{ background: section.accent }} />
-                        <span className="text-foreground/60 text-sm">{tip}</span>
+                        <span className="text-blue-accent text-sm">{tip}</span>
                       </li>
                     ))}
                   </ul>
