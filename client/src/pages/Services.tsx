@@ -93,7 +93,7 @@ export default function Services() {
             <h1 className="text-4xl md:text-5xl font-bold">
               Our Services &amp; <span className="gradient-text-blue">Programs</span>
             </h1>
-            <p className="text-lg text-white/50 max-w-2xl">
+            <p className="text-lg text-foreground/50 max-w-2xl">
               Join our community programs, seminars, and CSR initiatives designed to support mental health and wellness for everyone.
             </p>
           </AnimatedSection>
@@ -119,17 +119,17 @@ export default function Services() {
                     >
                       <Icon className="w-7 h-7" style={{ color: service.accent }} />
                     </div>
-                    <h3 className="text-xl font-bold text-white mb-3">{service.title}</h3>
-                    <p className="text-white/50 mb-6">{service.description}</p>
-                    <div className="space-y-2 text-sm border-t border-white/8 pt-4">
+                    <h3 className="text-xl font-bold text-foreground mb-3">{service.title}</h3>
+                    <p className="text-foreground/50 mb-6">{service.description}</p>
+                    <div className="space-y-2 text-sm border-t border-border pt-4">
                       {[
                         { label: "Schedule", value: service.schedule },
                         { label: "Participants", value: service.participants },
                         { label: "Duration", value: service.duration },
                       ].map((item) => (
                         <div key={item.label} className="flex justify-between">
-                          <span className="text-white/40">{item.label}:</span>
-                          <span className="font-semibold text-white/80">{item.value}</span>
+                          <span className="text-foreground/40">{item.label}:</span>
+                          <span className="font-semibold text-foreground/80">{item.value}</span>
                         </div>
                       ))}
                     </div>
@@ -142,13 +142,13 @@ export default function Services() {
       </section>
 
       {/* Upcoming Events */}
-      <section className="py-20" style={{ background: "rgba(255,255,255,0.02)" }}>
+      <section className="py-20 alt-section">
         <div className="container">
           <AnimatedSection className="mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-3">
               Upcoming <span className="gradient-text-blue">Events</span>
             </h2>
-            <p className="text-lg text-white/50">
+            <p className="text-lg text-foreground/50">
               Register now for our upcoming seminars and workshops
             </p>
           </AnimatedSection>
@@ -157,19 +157,19 @@ export default function Services() {
             {upcomingEvents.map((event, idx) => (
               <StaggerItem key={idx}>
                 <div className="p-6 rounded-2xl glass-card flex flex-col h-full">
-                  <h3 className="text-lg font-bold text-white mb-5">{event.title}</h3>
+                  <h3 className="text-lg font-bold text-foreground mb-5">{event.title}</h3>
                   <div className="space-y-3 mb-5 flex-1">
                     <div className="flex items-center gap-3 text-sm">
                       <Calendar size={16} style={{ color: event.accent }} />
-                      <span className="text-white/50">{event.date}</span>
+                      <span className="text-foreground/50">{event.date}</span>
                     </div>
                     <div className="flex items-center gap-3 text-sm">
                       <Zap size={16} style={{ color: event.accent }} />
-                      <span className="text-white/50">{event.time}</span>
+                      <span className="text-foreground/50">{event.time}</span>
                     </div>
                     <div className="flex items-center gap-3 text-sm">
                       <Users size={16} style={{ color: event.accent }} />
-                      <span className="text-white/50">{event.location}</span>
+                      <span className="text-foreground/50">{event.location}</span>
                     </div>
                   </div>
                   <div className="mb-4 p-3 rounded-lg" style={{ background: `${event.accent}12`, border: `1px solid ${event.accent}20` }}>
@@ -213,8 +213,8 @@ export default function Services() {
                     >
                       {idx + 1}
                     </div>
-                    <h3 className="font-bold text-white mb-2">{benefit.title}</h3>
-                    <p className="text-sm text-white/50">{benefit.description}</p>
+                    <h3 className="font-bold text-foreground mb-2">{benefit.title}</h3>
+                    <p className="text-sm text-foreground/50">{benefit.description}</p>
                   </div>
                 </StaggerItem>
               );
@@ -224,8 +224,8 @@ export default function Services() {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-white/8 py-10">
-        <div className="container text-center text-sm text-white/30">
+      <footer className="border-t border-border py-10">
+        <div className="container text-center text-sm text-foreground/30">
           <p>&copy; 2026 Re:Life Health. All rights reserved.</p>
         </div>
       </footer>

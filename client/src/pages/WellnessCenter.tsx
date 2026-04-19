@@ -39,7 +39,7 @@ export default function WellnessCenter() {
             <h1 className="text-4xl md:text-5xl font-bold">
               Wellness <span className="gradient-text-blue">Center</span>
             </h1>
-            <p className="text-lg text-white/50 max-w-2xl">
+            <p className="text-lg text-foreground/50 max-w-2xl">
               Your comprehensive resource hub for mental health information, wellness guides, and community support.
             </p>
           </AnimatedSection>
@@ -65,8 +65,8 @@ export default function WellnessCenter() {
                     >
                       <Icon className="w-6 h-6" style={{ color: resource.accent }} />
                     </div>
-                    <h3 className="text-lg font-bold text-white mb-2">{resource.title}</h3>
-                    <p className="text-sm text-white/50 mb-3">{resource.description}</p>
+                    <h3 className="text-lg font-bold text-foreground mb-2">{resource.title}</h3>
+                    <p className="text-sm text-foreground/50 mb-3">{resource.description}</p>
                     <p className="text-sm font-semibold" style={{ color: resource.accent }}>{resource.count}</p>
                   </motion.div>
                 </StaggerItem>
@@ -77,13 +77,13 @@ export default function WellnessCenter() {
       </section>
 
       {/* Featured Articles */}
-      <section className="py-20" style={{ background: "rgba(255,255,255,0.02)" }}>
+      <section className="py-20 alt-section">
         <div className="container">
           <AnimatedSection className="mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-3">
               Latest <span className="gradient-text-blue">Articles</span>
             </h2>
-            <p className="text-lg text-white/50">
+            <p className="text-lg text-foreground/50">
               Stay informed with our latest wellness content and expert insights
             </p>
           </AnimatedSection>
@@ -103,12 +103,12 @@ export default function WellnessCenter() {
                     >
                       {article.category}
                     </span>
-                    <span className="text-xs text-white/30">{article.date}</span>
+                    <span className="text-xs text-foreground/30">{article.date}</span>
                   </div>
-                  <h3 className="text-base font-bold text-white mb-2 group-hover:text-primary transition-colors">
+                  <h3 className="text-base font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
                     {article.title}
                   </h3>
-                  <p className="text-xs text-white/40">{article.readTime}</p>
+                  <p className="text-xs text-foreground/40">{article.readTime}</p>
                 </motion.div>
               </StaggerItem>
             ))}
@@ -149,7 +149,7 @@ export default function WellnessCenter() {
                     {section.tips.map((tip, tipIdx) => (
                       <li key={tipIdx} className="flex items-start gap-3">
                         <span className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0" style={{ background: section.accent }} />
-                        <span className="text-white/60 text-sm">{tip}</span>
+                        <span className="text-foreground/60 text-sm">{tip}</span>
                       </li>
                     ))}
                   </ul>
@@ -161,7 +161,7 @@ export default function WellnessCenter() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 relative overflow-hidden" style={{ background: "rgba(255,255,255,0.02)" }}>
+      <section className="py-20 relative overflow-hidden alt-section">
         <div
           className="absolute inset-0 pointer-events-none"
           style={{ background: "radial-gradient(ellipse at center, rgba(76,215,239,0.06) 0%, transparent 70%)" }}
@@ -171,7 +171,7 @@ export default function WellnessCenter() {
             <h2 className="text-3xl md:text-4xl font-bold">
               Start Your Wellness <span className="gradient-text-blue">Journey</span>
             </h2>
-            <p className="text-lg text-white/50 max-w-2xl mx-auto">
+            <p className="text-lg text-foreground/50 max-w-2xl mx-auto">
               Access all wellness resources and join our community of people committed to better health
             </p>
           </AnimatedSection>
@@ -187,8 +187,8 @@ export default function WellnessCenter() {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-white/8 py-10">
-        <div className="container text-center text-sm text-white/30">
+      <footer className="border-t border-border py-10">
+        <div className="container text-center text-sm text-foreground/30">
           <p>&copy; 2026 Re:Life Health. All rights reserved.</p>
         </div>
       </footer>
