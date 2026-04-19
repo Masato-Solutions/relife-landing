@@ -93,7 +93,7 @@ function MouseParallaxHero() {
                 <span className="gradient-text-blue">Journey</span>{" "}
                 Starts Here
               </h1>
-              <p className="text-lg text-white/60 leading-relaxed max-w-lg">
+              <p className="text-lg text-foreground/60 leading-relaxed max-w-lg">
                 Discover holistic wellness solutions combining mental health support, premium wellness products, and community programs designed for your wellbeing.
               </p>
             </motion.div>
@@ -114,7 +114,7 @@ function MouseParallaxHero() {
               <Link href="/services">
                 <Button
                   variant="outline"
-                  className="rounded-full px-8 h-12 text-base border-white/20 text-white hover:border-primary hover:text-primary bg-transparent"
+                  className="rounded-full px-8 h-12 text-base border-border text-foreground hover:border-primary hover:text-primary bg-transparent"
                 >
                   Join Our Programs
                 </Button>
@@ -135,7 +135,7 @@ function MouseParallaxHero() {
               ].map((s, idx) => (
                 <div key={idx}>
                   <p className="text-2xl font-bold gradient-text-blue">{s.number}</p>
-                  <p className="text-xs text-white/50 mt-0.5">{s.label}</p>
+                  <p className="text-xs text-foreground/50 mt-0.5">{s.label}</p>
                 </div>
               ))}
             </motion.div>
@@ -178,7 +178,7 @@ function MouseParallaxHero() {
                 >
                   <Heart className="w-12 h-12" style={{ color: "#33b7fa" }} />
                 </div>
-                <p className="text-white/60 font-semibold text-sm">Wellness Awaits</p>
+                <p className="text-foreground/60 font-semibold text-sm">Wellness Awaits</p>
               </motion.div>
             </div>
           </motion.div>
@@ -195,13 +195,13 @@ export default function Home() {
       <MouseParallaxHero />
 
       {/* Features Section */}
-      <section className="py-24" style={{ background: "rgba(255,255,255,0.02)" }}>
+      <section className="py-24 alt-section">
         <div className="container">
           <AnimatedSection className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
               What We <span className="gradient-text-blue">Offer</span>
             </h2>
-            <p className="text-lg text-white/50 max-w-2xl mx-auto">
+            <p className="text-lg text-foreground/50 max-w-2xl mx-auto">
               Comprehensive wellness solutions tailored to support your mental and physical health
             </p>
           </AnimatedSection>
@@ -248,8 +248,8 @@ export default function Home() {
                       >
                         <Icon className="w-7 h-7" style={{ color: feature.color }} />
                       </div>
-                      <h3 className="text-lg font-bold text-white mb-2">{feature.title}</h3>
-                      <p className="text-white/50 text-sm leading-relaxed">{feature.description}</p>
+                      <h3 className="text-lg font-bold text-foreground mb-2">{feature.title}</h3>
+                      <p className="text-foreground/50 text-sm leading-relaxed">{feature.description}</p>
                     </a>
                   </Link>
                 </StaggerItem>
@@ -271,7 +271,7 @@ export default function Home() {
               Ready to Transform Your{" "}
               <span className="gradient-text-purple">Wellness?</span>
             </h2>
-            <p className="text-lg text-white/50 max-w-2xl mx-auto">
+            <p className="text-lg text-foreground/50 max-w-2xl mx-auto">
               Join thousands of people taking control of their mental and physical health with Re:Life
             </p>
           </AnimatedSection>
@@ -288,7 +288,7 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-white/8 py-14">
+      <footer className="border-t border-border py-14">
         <div className="container">
           <div className="grid md:grid-cols-4 gap-8 mb-10">
             <div>
@@ -301,31 +301,31 @@ export default function Home() {
                 </div>
                 <h4 className="font-bold gradient-text-blue">Re:Life</h4>
               </div>
-              <p className="text-sm text-white/40">Your partner in mental health and wellness</p>
+              <p className="text-sm text-foreground/40">Your partner in mental health and wellness</p>
             </div>
             <div>
-              <h4 className="font-bold text-white/80 mb-4">Products</h4>
-              <ul className="space-y-2 text-sm text-white/40">
+              <h4 className="font-bold text-foreground/80 mb-4">Products</h4>
+              <ul className="space-y-2 text-sm text-foreground/40">
                 <li><a href="/products" className="hover:text-primary transition">Wellness Products</a></li>
                 <li><a href="/products" className="hover:text-primary transition">Shop Now</a></li>
               </ul>
             </div>
             <div>
-              <h4 className="font-bold text-white/80 mb-4">Services</h4>
-              <ul className="space-y-2 text-sm text-white/40">
+              <h4 className="font-bold text-foreground/80 mb-4">Services</h4>
+              <ul className="space-y-2 text-sm text-foreground/40">
                 <li><a href="/services" className="hover:text-primary transition">Programs</a></li>
                 <li><a href="/services" className="hover:text-primary transition">Events</a></li>
               </ul>
             </div>
             <div>
-              <h4 className="font-bold text-white/80 mb-4">Company</h4>
-              <ul className="space-y-2 text-sm text-white/40">
+              <h4 className="font-bold text-foreground/80 mb-4">Company</h4>
+              <ul className="space-y-2 text-sm text-foreground/40">
                 <li><a href="/about-us" className="hover:text-primary transition">About Us</a></li>
                 <li><a href="/contact-us" className="hover:text-primary transition">Contact</a></li>
               </ul>
             </div>
           </div>
-          <div className="border-t border-white/8 pt-8 text-center text-sm text-white/30">
+          <div className="border-t border-border pt-8 text-center text-sm text-foreground/30">
             <p>&copy; 2026 Re:Life Health. All rights reserved.</p>
           </div>
         </div>

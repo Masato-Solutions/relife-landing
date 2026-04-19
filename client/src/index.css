@@ -43,49 +43,50 @@
 }
 
 :root {
-  /* Re:Life Dark Palette */
-  --primary: #33b7fa;           /* Blue */
-  --primary-foreground: #000000;
-  --secondary: #4cd7ef;         /* Light Blue */
-  --secondary-foreground: #000000;
-  --accent: #ab92f1;            /* Pastel Purple */
-  --accent-foreground: #000000;
+  /* Re:Life Light Palette — pastel purple dominant */
+  --primary: #ab92f1;           /* Pastel Purple — dominant */
+  --primary-foreground: #ffffff;
+  --secondary: #ede8ff;         /* Light Purple */
+  --secondary-foreground: #2d1f5e;
+  --accent: #33b7fa;            /* Blue as accent */
+  --accent-foreground: #ffffff;
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.985 0 0);
 
   /* Sidebar & UI */
-  --sidebar-primary: #33b7fa;
-  --sidebar-primary-foreground: #000000;
-  --sidebar: #0d0d0d;
-  --sidebar-foreground: #ffffff;
-  --sidebar-accent: #4cd7ef;
-  --sidebar-accent-foreground: #000000;
-  --sidebar-border: rgba(255, 255, 255, 0.08);
-  --sidebar-ring: #33b7fa;
+  --sidebar-primary: #ab92f1;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar: #f5f0ff;
+  --sidebar-foreground: #2d1f5e;
+  --sidebar-accent: #ede8ff;
+  --sidebar-accent-foreground: #2d1f5e;
+  --sidebar-border: rgba(171, 146, 241, 0.15);
+  --sidebar-ring: #ab92f1;
 
   /* Charts */
-  --chart-1: #33b7fa;
-  --chart-2: #4cd7ef;
-  --chart-3: #ab92f1;
-  --chart-4: #6ed4f7;
-  --chart-5: #c4aef5;
+  --chart-1: #ab92f1;
+  --chart-2: #33b7fa;
+  --chart-3: #4cd7ef;
+  --chart-4: #c4aef5;
+  --chart-5: #6ed4f7;
 
   /* Base Colors */
   --radius: 0.75rem;
-  --background: #000000;        /* Black */
-  --foreground: #ffffff;        /* White */
-  --card: #0d0d0d;
-  --card-foreground: #ffffff;
-  --popover: #111111;
-  --popover-foreground: #ffffff;
-  --muted: #1a1a1a;
-  --muted-foreground: #888888;
-  --border: rgba(255, 255, 255, 0.08);
-  --input: #111111;
-  --ring: #33b7fa;
+  --background: #faf8ff;        /* Very light lavender */
+  --foreground: #1a1020;        /* Deep dark purple-black */
+  --card: #ffffff;
+  --card-foreground: #1a1020;
+  --popover: #ffffff;
+  --popover-foreground: #1a1020;
+  --muted: #f0ecff;
+  --muted-foreground: #7c6ba0;
+  --border: rgba(171, 146, 241, 0.2);
+  --input: #f0ecff;
+  --ring: #ab92f1;
 }
 
 .dark {
+  /* Re:Life Dark Palette */
   --primary: #33b7fa;
   --primary-foreground: #000000;
   --secondary: #4cd7ef;
@@ -184,15 +185,32 @@
     box-shadow: 0 0 30px rgba(171, 146, 241, 0.3);
   }
 
-  /* Glass card */
+  /* Glass card — adapts to theme */
   .glass-card {
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.75);
+    border: 1px solid rgba(171, 146, 241, 0.18);
     backdrop-filter: blur(12px);
   }
   .glass-card:hover {
+    background: rgba(171, 146, 241, 0.08);
+    border-color: rgba(171, 146, 241, 0.35);
+  }
+
+  .dark .glass-card {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .dark .glass-card:hover {
     background: rgba(51, 183, 250, 0.06);
     border-color: rgba(51, 183, 250, 0.3);
+  }
+
+  /* Alternate section background */
+  .alt-section {
+    background: rgba(171, 146, 241, 0.04);
+  }
+  .dark .alt-section {
+    background: rgba(255, 255, 255, 0.02);
   }
 }
 

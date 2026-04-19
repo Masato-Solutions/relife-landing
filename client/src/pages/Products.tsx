@@ -5,8 +5,8 @@ import { motion } from "framer-motion";
 import { AnimatedSection, StaggerContainer, StaggerItem } from "@/components/AnimatedSection";
 
 const FOOTER_COMMON = (
-  <footer className="border-t border-white/8 py-10">
-    <div className="container text-center text-sm text-white/30">
+  <footer className="border-t border-border py-10">
+    <div className="container text-center text-sm text-foreground/30">
       <p>&copy; 2026 Re:Life Health. All rights reserved.</p>
     </div>
   </footer>
@@ -100,7 +100,7 @@ export default function Products() {
             <h1 className="text-4xl md:text-5xl font-bold">
               Wellness <span className="gradient-text-blue">Products</span>
             </h1>
-            <p className="text-lg text-white/50 max-w-2xl">
+            <p className="text-lg text-foreground/50 max-w-2xl">
               Discover our curated collection of premium wellness products designed to enhance your mental and physical health journey.
             </p>
           </AnimatedSection>
@@ -121,7 +121,7 @@ export default function Products() {
                   {/* Product Image Placeholder */}
                   <div
                     className="h-48 flex items-center justify-center relative overflow-hidden"
-                    style={{ background: `linear-gradient(135deg, ${product.accent}12, rgba(0,0,0,0.3))` }}
+                    style={{ background: `linear-gradient(135deg, ${product.accent}12, ${product.accent}06)` }}
                   >
                     <motion.div
                       whileHover={{ scale: 1.15 }}
@@ -142,8 +142,8 @@ export default function Products() {
                   {/* Product Info */}
                   <div className="p-6 space-y-4 flex flex-col flex-1">
                     <div>
-                      <h3 className="text-lg font-bold text-white mb-1">{product.name}</h3>
-                      <p className="text-sm text-white/50">{product.description}</p>
+                      <h3 className="text-lg font-bold text-foreground mb-1">{product.name}</h3>
+                      <p className="text-sm text-foreground/50">{product.description}</p>
                     </div>
 
                     {/* Rating */}
@@ -158,7 +158,7 @@ export default function Products() {
                           />
                         ))}
                       </div>
-                      <span className="text-xs text-white/40">
+                      <span className="text-xs text-foreground/40">
                         {product.rating} ({product.reviews})
                       </span>
                     </div>
@@ -166,7 +166,7 @@ export default function Products() {
                     {/* Features */}
                     <ul className="space-y-1.5 flex-1">
                       {product.features.map((feature, idx) => (
-                        <li key={idx} className="text-sm text-white/50 flex items-center gap-2">
+                        <li key={idx} className="text-sm text-foreground/50 flex items-center gap-2">
                           <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: product.accent }} />
                           {feature}
                         </li>
@@ -174,7 +174,7 @@ export default function Products() {
                     </ul>
 
                     {/* Price and CTA */}
-                    <div className="flex items-center justify-between pt-4 border-t border-white/8">
+                    <div className="flex items-center justify-between pt-4 border-t border-border">
                       <span className="text-2xl font-bold" style={{ color: product.accent }}>{product.price}</span>
                       <Button
                         className="rounded-full px-5 text-sm text-black font-semibold hover:opacity-90"
@@ -202,7 +202,7 @@ export default function Products() {
             <h2 className="text-3xl md:text-4xl font-bold">
               Ready to Invest in Your <span className="gradient-text-purple">Wellness?</span>
             </h2>
-            <p className="text-lg text-white/50 max-w-2xl mx-auto">
+            <p className="text-lg text-foreground/50 max-w-2xl mx-auto">
               All products come with a 30-day satisfaction guarantee and free shipping on orders over $100
             </p>
           </AnimatedSection>

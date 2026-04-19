@@ -23,7 +23,7 @@ export default function Application() {
             <h1 className="text-4xl md:text-5xl font-bold">
               Re:Life <span className="gradient-text-blue">Applications</span>
             </h1>
-            <p className="text-lg text-white/50 max-w-2xl">
+            <p className="text-lg text-foreground/50 max-w-2xl">
               Access mental health support and wellness tools anytime, anywhere through our web and mobile applications.
             </p>
           </AnimatedSection>
@@ -42,9 +42,9 @@ export default function Application() {
                 >
                   <Globe className="w-5 h-5" style={{ color: "#33b7fa" }} />
                 </div>
-                <h2 className="text-2xl font-bold text-white">Web Application</h2>
+                <h2 className="text-2xl font-bold text-foreground">Web Application</h2>
               </div>
-              <p className="text-white/60 leading-relaxed">
+              <p className="text-foreground/60 leading-relaxed">
                 Access the full Re:Life platform from any device with a web browser. Manage your wellness journey with comprehensive tools and resources.
               </p>
               <ul className="space-y-3">
@@ -58,7 +58,7 @@ export default function Application() {
                 ].map((feature, idx) => (
                   <li key={idx} className="flex items-center gap-3">
                     <Check className="w-4 h-4 flex-shrink-0" style={{ color: "#33b7fa" }} />
-                    <span className="text-white/70 text-sm">{feature}</span>
+                    <span className="text-foreground/70 text-sm">{feature}</span>
                   </li>
                 ))}
               </ul>
@@ -73,7 +73,7 @@ export default function Application() {
               <div
                 className="absolute inset-0 rounded-3xl flex items-center justify-center"
                 style={{
-                  background: "linear-gradient(135deg, rgba(51,183,250,0.08) 0%, rgba(0,0,0,0.3) 100%)",
+                  background: "linear-gradient(135deg, rgba(51,183,250,0.08) 0%, rgba(51,183,250,0.04) 100%)",
                   border: "1px solid rgba(51,183,250,0.15)",
                 }}
               >
@@ -93,7 +93,7 @@ export default function Application() {
               <div
                 className="absolute inset-0 rounded-3xl flex items-center justify-center"
                 style={{
-                  background: "linear-gradient(135deg, rgba(171,146,241,0.08) 0%, rgba(0,0,0,0.3) 100%)",
+                  background: "linear-gradient(135deg, rgba(171,146,241,0.08) 0%, rgba(171,146,241,0.04) 100%)",
                   border: "1px solid rgba(171,146,241,0.15)",
                 }}
               >
@@ -113,18 +113,18 @@ export default function Application() {
                 >
                   <Smartphone className="w-5 h-5" style={{ color: "#ab92f1" }} />
                 </div>
-                <h2 className="text-2xl font-bold text-white">Mobile Application</h2>
+                <h2 className="text-2xl font-bold text-foreground">Mobile Application</h2>
               </div>
               <div
                 className="p-4 rounded-xl"
                 style={{ background: "rgba(171,146,241,0.08)", border: "1px solid rgba(171,146,241,0.2)" }}
               >
                 <p className="text-sm font-semibold" style={{ color: "#ab92f1" }}>Coming Soon</p>
-                <p className="text-sm text-white/50 mt-1">
+                <p className="text-sm text-foreground/50 mt-1">
                   Our native mobile app for iOS and Android is currently in development and will be available soon.
                 </p>
               </div>
-              <p className="text-white/60 leading-relaxed text-sm">
+              <p className="text-foreground/60 leading-relaxed text-sm">
                 Take mental health support with you wherever you go. Our mobile app will provide on-the-go access to wellness tools, notifications, and community support.
               </p>
               <ul className="space-y-3">
@@ -138,7 +138,7 @@ export default function Application() {
                 ].map((feature, idx) => (
                   <li key={idx} className="flex items-center gap-3">
                     <Check className="w-4 h-4 flex-shrink-0" style={{ color: "#ab92f1" }} />
-                    <span className="text-white/70 text-sm">{feature}</span>
+                    <span className="text-foreground/70 text-sm">{feature}</span>
                   </li>
                 ))}
               </ul>
@@ -155,7 +155,7 @@ export default function Application() {
       </section>
 
       {/* Features Comparison */}
-      <section className="py-20" style={{ background: "rgba(255,255,255,0.02)" }}>
+      <section className="py-20 alt-section">
         <div className="container">
           <AnimatedSection className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold">
@@ -165,8 +165,8 @@ export default function Application() {
           <AnimatedSection delay={0.1} className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
-                <tr className="border-b border-white/8">
-                  <th className="text-left py-4 px-4 font-bold text-white/70">Feature</th>
+                <tr className="border-b border-border">
+                  <th className="text-left py-4 px-4 font-bold text-foreground/70">Feature</th>
                   <th className="text-center py-4 px-4 font-bold" style={{ color: "#33b7fa" }}>Web App</th>
                   <th className="text-center py-4 px-4 font-bold" style={{ color: "#ab92f1" }}>Mobile App</th>
                 </tr>
@@ -182,20 +182,20 @@ export default function Application() {
                   { feature: "Prescription Management", web: true, mobile: true },
                   { feature: "Community Forum", web: true, mobile: true },
                 ].map((row, idx) => (
-                  <tr key={idx} className="border-b border-white/5 hover:bg-white/2 transition-colors">
-                    <td className="py-4 px-4 text-white/70">{row.feature}</td>
+                  <tr key={idx} className="border-b border-border/60 hover:bg-muted/30 transition-colors">
+                    <td className="py-4 px-4 text-foreground/70">{row.feature}</td>
                     <td className="py-4 px-4 text-center">
                       {row.web ? (
                         <Check className="w-4 h-4 mx-auto" style={{ color: "#33b7fa" }} />
                       ) : (
-                        <span className="text-white/20">—</span>
+                        <span className="text-foreground/20">—</span>
                       )}
                     </td>
                     <td className="py-4 px-4 text-center">
                       {row.mobile ? (
                         <Check className="w-4 h-4 mx-auto" style={{ color: "#ab92f1" }} />
                       ) : (
-                        <span className="text-white/20">—</span>
+                        <span className="text-foreground/20">—</span>
                       )}
                     </td>
                   </tr>
@@ -217,7 +217,7 @@ export default function Application() {
             <h2 className="text-3xl md:text-4xl font-bold">
               Get Started <span className="gradient-text-blue">Today</span>
             </h2>
-            <p className="text-lg text-white/50 max-w-2xl mx-auto">
+            <p className="text-lg text-foreground/50 max-w-2xl mx-auto">
               Access the web app immediately or sign up to be notified when our mobile app launches.
             </p>
           </AnimatedSection>
@@ -232,7 +232,7 @@ export default function Application() {
             <Button
               variant="outline"
               className="rounded-full px-8 h-12 text-base bg-transparent flex items-center justify-center gap-2"
-              style={{ borderColor: "rgba(255,255,255,0.15)", color: "rgba(255,255,255,0.6)" }}
+              style={{ borderColor: "var(--border)", color: "var(--muted-foreground)" }}
             >
               <Download size={18} />
               Download Mobile (Coming Soon)
@@ -242,8 +242,8 @@ export default function Application() {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-white/8 py-10">
-        <div className="container text-center text-sm text-white/30">
+      <footer className="border-t border-border py-10">
+        <div className="container text-center text-sm text-foreground/30">
           <p>&copy; 2026 Re:Life Health. All rights reserved.</p>
         </div>
       </footer>
