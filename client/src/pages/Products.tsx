@@ -143,7 +143,7 @@ export default function Products() {
                   <div className="p-6 space-y-4 flex flex-col flex-1">
                     <div>
                       <h3 className="text-lg font-bold text-foreground mb-1">{product.name}</h3>
-                      <p className="text-sm text-foreground/50">{product.description}</p>
+                      <p className="text-sm text-blue-accent">{product.description}</p>
                     </div>
 
                     {/* Rating */}
@@ -166,7 +166,7 @@ export default function Products() {
                     {/* Features */}
                     <ul className="space-y-1.5 flex-1">
                       {product.features.map((feature, idx) => (
-                        <li key={idx} className="text-sm text-foreground/50 flex items-center gap-2">
+                        <li key={idx} className="text-sm text-blue-accent flex items-center gap-2">
                           <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: product.accent }} />
                           {feature}
                         </li>

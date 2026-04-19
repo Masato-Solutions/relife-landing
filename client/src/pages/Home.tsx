@@ -249,7 +249,7 @@ export default function Home() {
                         <Icon className="w-7 h-7" style={{ color: feature.color }} />
                       </div>
                       <h3 className="text-lg font-bold text-foreground mb-2">{feature.title}</h3>
-                      <p className="text-foreground/50 text-sm leading-relaxed">{feature.description}</p>
+                      <p className="text-blue-accent text-sm leading-relaxed">{feature.description}</p>
                     </a>
                   </Link>
                 </StaggerItem>

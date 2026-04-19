@@ -146,7 +146,7 @@ export default function ContactUs() {
                   ].map((reason, idx) => (
                     <li key={idx} className="flex items-start gap-3">
                       <span className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0" style={{ background: "#ab92f1" }} />
-                      <span className="text-foreground/60 text-sm">{reason}</span>
+                      <span className="text-blue-accent text-sm">{reason}</span>
                     </li>
                   ))}
                 </ul>
@@ -191,7 +191,7 @@ export default function ContactUs() {
               <StaggerItem key={idx}>
                 <div className="p-6 rounded-2xl glass-card">
                   <h3 className="font-bold text-foreground mb-2 text-sm">{faq.q}</h3>
-                  <p className="text-foreground/50 text-sm">{faq.a}</p>
+                  <p className="text-blue-accent text-sm">{faq.a}</p>
                 </div>
               </StaggerItem>
             ))}
