@@ -11,17 +11,20 @@ import type {
 
 const BASE = "/api";
 
+// Password is kept in memory only — never written to storage.
+// Cleared automatically on page refresh, requiring re-login.
+let _adminPassword = "";
+
+export function setAdminCredential(password: string): void {
+  _adminPassword = password;
+}
+
+export function clearAdminCredential(): void {
+  _adminPassword = "";
+}
+
 function getAuth(): string {
-  try {
-    const raw = localStorage.getItem("relife_admin");
-    if (raw) {
-      const parsed = JSON.parse(raw);
-      if (parsed?.password) return `Bearer ${parsed.password}`;
-    }
-  } catch {
-    // ignore
-  }
-  return "";
+  return _adminPassword ? `Bearer ${_adminPassword}` : "";
 }
 
 async function apiFetch<T>(url: string, options?: RequestInit): Promise<T> {

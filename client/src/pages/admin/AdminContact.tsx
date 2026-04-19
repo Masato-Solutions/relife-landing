@@ -1,3 +1,4 @@
+import { nanoid } from "nanoid";
 import { useState, useEffect } from "react";
 import { useContactContent } from "@/hooks/useContent";
 import { saveContact } from "@/lib/api";
@@ -114,7 +115,7 @@ export default function AdminContact() {
       <section className="bg-white rounded-xl border border-gray-200 p-6 space-y-4">
         <div className="flex items-center justify-between">
           <h3 className="font-semibold text-gray-900 text-lg">FAQ Items</h3>
-          <button onClick={() => setForm({ ...form, faq: [...form.faq, { id: Date.now().toString(), q: "", a: "" }] })} className="flex items-center gap-1 text-sm text-blue-500 hover:underline"><Plus size={14} />Add FAQ</button>
+          <button onClick={() => setForm({ ...form, faq: [...form.faq, { id: nanoid(), q: "", a: "" }] })} className="flex items-center gap-1 text-sm text-blue-500 hover:underline"><Plus size={14} />Add FAQ</button>
         </div>
         {form.faq.map((item, idx) => (
           <div key={item.id} className="p-4 bg-gray-50 rounded-xl space-y-3">

@@ -1,3 +1,4 @@
+import { nanoid } from "nanoid";
 import { useState, useEffect } from "react";
 import { useAboutContent } from "@/hooks/useContent";
 import { saveAbout, uploadImage } from "@/lib/api";
@@ -40,7 +41,7 @@ export default function AdminAbout() {
   };
 
   const addTeamMember = () => {
-    const newMember: TeamMember = { id: Date.now().toString(), name: "", role: "", bio: "", accent: "#33b7fa", imageUrl: "" };
+    const newMember: TeamMember = { id: nanoid(), name: "", role: "", bio: "", accent: "#33b7fa", imageUrl: "" };
     setForm({ ...form, team: [...form.team, newMember] });
   };
 

@@ -1,3 +1,4 @@
+import { nanoid } from "nanoid";
 import { useState, useEffect } from "react";
 import { useWellnessContent } from "@/hooks/useContent";
 import { saveWellness } from "@/lib/api";
@@ -45,7 +46,7 @@ export default function AdminWellness() {
       <section className="bg-white rounded-xl border border-gray-200 p-6 space-y-4">
         <div className="flex items-center justify-between">
           <h3 className="font-semibold text-gray-900 text-lg">Resources</h3>
-          <button onClick={() => setForm({ ...form, resources: [...form.resources, { id: Date.now().toString(), iconName: "BookOpen", title: "", description: "", count: "", accent: "#33b7fa" }] })} className="flex items-center gap-1 text-sm text-blue-500 hover:underline"><Plus size={14} />Add</button>
+          <button onClick={() => setForm({ ...form, resources: [...form.resources, { id: nanoid(), iconName: "BookOpen", title: "", description: "", count: "", accent: "#33b7fa" }] })} className="flex items-center gap-1 text-sm text-blue-500 hover:underline"><Plus size={14} />Add</button>
         </div>
         {form.resources.map((r, idx) => (
           <div key={r.id} className="p-4 bg-gray-50 rounded-xl space-y-3">
@@ -95,7 +96,7 @@ export default function AdminWellness() {
       <section className="bg-white rounded-xl border border-gray-200 p-6 space-y-4">
         <div className="flex items-center justify-between">
           <h3 className="font-semibold text-gray-900 text-lg">Articles</h3>
-          <button onClick={() => setForm({ ...form, articles: [...form.articles, { id: Date.now().toString(), title: "", category: "", readTime: "", date: "", accent: "#33b7fa" }] })} className="flex items-center gap-1 text-sm text-blue-500 hover:underline"><Plus size={14} />Add</button>
+          <button onClick={() => setForm({ ...form, articles: [...form.articles, { id: nanoid(), title: "", category: "", readTime: "", date: "", accent: "#33b7fa" }] })} className="flex items-center gap-1 text-sm text-blue-500 hover:underline"><Plus size={14} />Add</button>
         </div>
         {form.articles.map((a, idx) => (
           <div key={a.id} className="p-4 bg-gray-50 rounded-xl space-y-3">
@@ -136,7 +137,7 @@ export default function AdminWellness() {
       <section className="bg-white rounded-xl border border-gray-200 p-6 space-y-4">
         <div className="flex items-center justify-between">
           <h3 className="font-semibold text-gray-900 text-lg">Daily Tips</h3>
-          <button onClick={() => setForm({ ...form, dailyTips: [...form.dailyTips, { id: Date.now().toString(), title: "", accent: "#33b7fa", tips: [] }] })} className="flex items-center gap-1 text-sm text-blue-500 hover:underline"><Plus size={14} />Add Section</button>
+          <button onClick={() => setForm({ ...form, dailyTips: [...form.dailyTips, { id: nanoid(), title: "", accent: "#33b7fa", tips: [] }] })} className="flex items-center gap-1 text-sm text-blue-500 hover:underline"><Plus size={14} />Add Section</button>
         </div>
         {form.dailyTips.map((section, sIdx) => (
           <div key={section.id} className="p-4 bg-gray-50 rounded-xl space-y-3">

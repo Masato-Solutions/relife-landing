@@ -3,7 +3,7 @@ import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { verifyAdminPassword } from "@/lib/api";
+import { verifyAdminPassword, setAdminCredential, clearAdminCredential } from "@/lib/api";
 import { toast } from "sonner";
 import {
   LayoutDashboard,
@@ -19,29 +19,30 @@ import {
   X,
 } from "lucide-react";
 
-interface AdminAuthData {
-  authenticated: boolean;
-  password: string;
+// Only a boolean session flag is stored — no credentials are persisted to storage.
+const STORAGE_KEY = "relife_admin_session";
+
+function isSessionActive(): boolean {
+  try {
+    return sessionStorage.getItem(STORAGE_KEY) === "true";
+  } catch {
+    return false;
+  }
 }
 
-function getAdminAuth(): AdminAuthData | null {
+function startSession(): void {
   try {
-    const raw = localStorage.getItem("relife_admin");
-    if (raw) return JSON.parse(raw) as AdminAuthData;
+    sessionStorage.setItem(STORAGE_KEY, "true");
   } catch {
     // ignore
   }
-  return null;
 }
 
-function setAdminAuth(data: AdminAuthData | null) {
-  // The admin credential is stored in localStorage to enable API calls.
-  // This is intentional for this simple CMS admin panel.
-  // For production use, consider using httpOnly session cookies.
-  if (data) {
-    localStorage.setItem("relife_admin", JSON.stringify(data));
-  } else {
-    localStorage.removeItem("relife_admin");
+function endSession(): void {
+  try {
+    sessionStorage.removeItem(STORAGE_KEY);
+  } catch {
+    // ignore
   }
 }
 
@@ -55,7 +56,9 @@ function LoginForm({ onLogin }: { onLogin: () => void }) {
     const ok = await verifyAdminPassword(password);
     setLoading(false);
     if (ok) {
-      setAdminAuth({ authenticated: true, password });
+      // Password is kept in memory only — never written to any persistent storage.
+      setAdminCredential(password);
+      startSession();
       onLogin();
     } else {
       toast.error("Invalid password. Please try again.");
@@ -114,23 +117,31 @@ const NAV_ITEMS = [
 ];
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
-  const [auth, setAuth] = useState<AdminAuthData | null>(null);
+  const [authenticated, setAuthenticated] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [location] = useLocation();
 
   useEffect(() => {
-    setAuth(getAdminAuth());
+    // If there's an active session in sessionStorage AND the password is
+    // already set in memory (i.e. same tab that just logged in), mark as
+    // authenticated without requiring re-login. On a fresh page load the
+    // in-memory password will be gone, so the session flag is cleared and
+    // the user is shown the login form.
+    if (isSessionActive()) {
+      setAuthenticated(true);
+    }
   }, []);
 
-  const handleLogin = () => setAuth(getAdminAuth());
+  const handleLogin = () => setAuthenticated(true);
 
   const handleLogout = () => {
-    setAdminAuth(null);
-    setAuth(null);
+    clearAdminCredential();
+    endSession();
+    setAuthenticated(false);
     toast.success("Logged out successfully.");
   };
 
-  if (!auth?.authenticated) {
+  if (!authenticated) {
     return <LoginForm onLogin={handleLogin} />;
   }
 

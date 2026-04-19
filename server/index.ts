@@ -4,6 +4,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import fs from "fs";
 import multer from "multer";
+import { nanoid } from "nanoid";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -42,6 +43,12 @@ const upload = multer({ storage, limits: { fileSize: 10 * 1024 * 1024 } });
 
 // Admin auth middleware
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD ?? "relife-admin-2026";
+if (!process.env.ADMIN_PASSWORD) {
+  console.warn(
+    "[WARN] ADMIN_PASSWORD env variable is not set. Using the default password. " +
+    "Set ADMIN_PASSWORD in production to a strong, unique value.",
+  );
+}
 
 function adminAuth(req: Request, res: Response, next: NextFunction): void {
   const auth = req.headers.authorization;
@@ -69,7 +76,7 @@ async function startServer() {
 
   app.post("/api/products", adminAuth, (req, res) => {
     const products: unknown[] = readJson("products.json", []);
-    const newProduct = { id: Date.now().toString(), ...req.body };
+    const newProduct = { id: nanoid(), ...req.body };
     products.push(newProduct);
     writeJson("products.json", products);
     res.json(newProduct);
@@ -99,7 +106,7 @@ async function startServer() {
 
   app.post("/api/services", adminAuth, (req, res) => {
     const data = readJson<{ services: Record<string, unknown>[]; events: Record<string, unknown>[] }>("services.json", defaultServicesData);
-    const newService = { id: Date.now().toString(), ...req.body };
+    const newService = { id: nanoid(), ...req.body };
     data.services.push(newService);
     writeJson("services.json", data);
     res.json(newService);
@@ -123,7 +130,7 @@ async function startServer() {
 
   app.post("/api/events", adminAuth, (req, res) => {
     const data = readJson<{ services: Record<string, unknown>[]; events: Record<string, unknown>[] }>("services.json", defaultServicesData);
-    const newEvent = { id: Date.now().toString(), ...req.body };
+    const newEvent = { id: nanoid(), ...req.body };
     data.events.push(newEvent);
     writeJson("services.json", data);
     res.json(newEvent);
@@ -158,7 +165,7 @@ async function startServer() {
   // ─── Contact form submission ─────────────────────────────────────────────────
   app.post("/api/contact/submit", (req, res) => {
     const submissions: unknown[] = readJson("contact-submissions.json", []);
-    const entry = { id: Date.now().toString(), submittedAt: new Date().toISOString(), ...req.body };
+    const entry = { id: nanoid(), submittedAt: new Date().toISOString(), ...req.body };
     submissions.push(entry);
     writeJson("contact-submissions.json", submissions);
     res.json({ success: true });
