@@ -1,0 +1,74 @@
+[
+  {
+    "id": "1",
+    "name": "Premium Sleeping Box",
+    "category": "Sleep Wellness",
+    "price": "$299.99",
+    "rating": 4.8,
+    "reviews": 156,
+    "description": "Ergonomic sleeping box designed for optimal rest and recovery",
+    "features": ["Orthopedic support", "Breathable fabric", "Portable design"],
+    "accent": "#33b7fa",
+    "imageUrl": ""
+  },
+  {
+    "id": "2",
+    "name": "Poppy Pad Comfort",
+    "category": "Relaxation",
+    "price": "$149.99",
+    "rating": 4.9,
+    "reviews": 203,
+    "description": "Therapeutic poppy pad for stress relief and meditation",
+    "features": ["Natural materials", "Aromatherapy infused", "Easy to clean"],
+    "accent": "#4cd7ef",
+    "imageUrl": ""
+  },
+  {
+    "id": "3",
+    "name": "Wellness Bundle",
+    "category": "Complete Care",
+    "price": "$399.99",
+    "rating": 4.7,
+    "reviews": 89,
+    "description": "Complete wellness package with sleeping box and poppy pad",
+    "features": ["Best value", "Free shipping", "1-year warranty"],
+    "accent": "#ab92f1",
+    "imageUrl": ""
+  },
+  {
+    "id": "4",
+    "name": "Meditation Cushion",
+    "category": "Mindfulness",
+    "price": "$79.99",
+    "rating": 4.6,
+    "reviews": 127,
+    "description": "Supportive cushion for meditation and yoga practices",
+    "features": ["Memory foam", "Adjustable height", "Portable"],
+    "accent": "#33b7fa",
+    "imageUrl": ""
+  },
+  {
+    "id": "5",
+    "name": "Sleep Wellness Tea Set",
+    "category": "Herbal",
+    "price": "$49.99",
+    "rating": 4.8,
+    "reviews": 234,
+    "description": "Organic herbal tea blend for better sleep quality",
+    "features": ["100% organic", "No caffeine", "30-day supply"],
+    "accent": "#4cd7ef",
+    "imageUrl": ""
+  },
+  {
+    "id": "6",
+    "name": "Aromatherapy Diffuser",
+    "category": "Ambiance",
+    "price": "$89.99",
+    "rating": 4.7,
+    "reviews": 178,
+    "description": "Essential oil diffuser for creating a calming environment",
+    "features": ["Ultrasonic technology", "Auto shut-off", "7-color LED"],
+    "accent": "#ab92f1",
+    "imageUrl": ""
+  }
+]

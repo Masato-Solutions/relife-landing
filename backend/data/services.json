@@ -1,0 +1,73 @@
+{
+  "services": [
+    {
+      "id": "1",
+      "iconName": "Calendar",
+      "title": "Mental Health Seminars",
+      "description": "Expert-led seminars covering stress management, anxiety relief, and emotional wellness",
+      "schedule": "Weekly on Thursdays",
+      "participants": "50-100",
+      "duration": "2 hours",
+      "accent": "#33b7fa"
+    },
+    {
+      "id": "2",
+      "iconName": "Users",
+      "title": "Support Group Programs",
+      "description": "Community-driven support groups for peer connection and shared experiences",
+      "schedule": "Bi-weekly on Sundays",
+      "participants": "20-30",
+      "duration": "1.5 hours",
+      "accent": "#4cd7ef"
+    },
+    {
+      "id": "3",
+      "iconName": "Zap",
+      "title": "Wellness Workshops",
+      "description": "Practical workshops on meditation, yoga, and holistic health practices",
+      "schedule": "Monthly events",
+      "participants": "30-50",
+      "duration": "3 hours",
+      "accent": "#ab92f1"
+    },
+    {
+      "id": "4",
+      "iconName": "Award",
+      "title": "Corporate CSR Programs",
+      "description": "Tailored mental health and wellness programs for corporate teams",
+      "schedule": "Custom scheduling",
+      "participants": "Variable",
+      "duration": "Flexible",
+      "accent": "#33b7fa"
+    }
+  ],
+  "events": [
+    {
+      "id": "1",
+      "title": "Stress Management Masterclass",
+      "date": "April 25, 2026",
+      "time": "6:00 PM - 8:00 PM",
+      "location": "Virtual",
+      "spots": 45,
+      "accent": "#33b7fa"
+    },
+    {
+      "id": "2",
+      "title": "Mindfulness & Meditation Workshop",
+      "date": "May 2, 2026",
+      "time": "10:00 AM - 1:00 PM",
+      "location": "Dambulla Wellness Center",
+      "spots": 30,
+      "accent": "#4cd7ef"
+    },
+    {
+      "id": "3",
+      "title": "Mental Health Awareness Seminar",
+      "date": "May 9, 2026",
+      "time": "7:00 PM - 9:00 PM",
+      "location": "Virtual",
+      "spots": 60,
+      "accent": "#ab92f1"
+    }
+  ]
+}

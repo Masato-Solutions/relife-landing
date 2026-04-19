@@ -1,79 +1,23 @@
 import { Button } from "@/components/ui/button";
 import Navigation from "@/components/Navigation";
 import { Calendar, Users, Zap, Award } from "lucide-react";
+import type { ComponentType } from "react";
 import { motion } from "framer-motion";
 import { AnimatedSection, StaggerContainer, StaggerItem } from "@/components/AnimatedSection";
+import { useServices } from "@/hooks/useContent";
+import { Skeleton } from "@/components/ui/skeleton";
+
+const ICON_MAP: Record<string, ComponentType<{ className?: string; style?: React.CSSProperties; size?: number }>> = {
+  Calendar,
+  Users,
+  Zap,
+  Award,
+};
 
 export default function Services() {
-  const services = [
-    {
-      id: 1,
-      icon: Calendar,
-      title: "Mental Health Seminars",
-      description: "Expert-led seminars covering stress management, anxiety relief, and emotional wellness",
-      schedule: "Weekly on Thursdays",
-      participants: "50-100",
-      duration: "2 hours",
-      accent: "#33b7fa",
-    },
-    {
-      id: 2,
-      icon: Users,
-      title: "Support Group Programs",
-      description: "Community-driven support groups for peer connection and shared experiences",
-      schedule: "Bi-weekly on Sundays",
-      participants: "20-30",
-      duration: "1.5 hours",
-      accent: "#4cd7ef",
-    },
-    {
-      id: 3,
-      icon: Zap,
-      title: "Wellness Workshops",
-      description: "Practical workshops on meditation, yoga, and holistic health practices",
-      schedule: "Monthly events",
-      participants: "30-50",
-      duration: "3 hours",
-      accent: "#ab92f1",
-    },
-    {
-      id: 4,
-      icon: Award,
-      title: "Corporate CSR Programs",
-      description: "Tailored mental health and wellness programs for corporate teams",
-      schedule: "Custom scheduling",
-      participants: "Variable",
-      duration: "Flexible",
-      accent: "#33b7fa",
-    },
-  ];
-
-  const upcomingEvents = [
-    {
-      title: "Stress Management Masterclass",
-      date: "April 25, 2026",
-      time: "6:00 PM - 8:00 PM",
-      location: "Virtual",
-      spots: 45,
-      accent: "#33b7fa",
-    },
-    {
-      title: "Mindfulness & Meditation Workshop",
-      date: "May 2, 2026",
-      time: "10:00 AM - 1:00 PM",
-      location: "Dambulla Wellness Center",
-      spots: 30,
-      accent: "#4cd7ef",
-    },
-    {
-      title: "Mental Health Awareness Seminar",
-      date: "May 9, 2026",
-      time: "7:00 PM - 9:00 PM",
-      location: "Virtual",
-      spots: 60,
-      accent: "#ab92f1",
-    },
-  ];
+  const { data, loading } = useServices();
+  const services = data?.services ?? [];
+  const upcomingEvents = data?.events ?? [];
 
   return (
     <div className="min-h-screen bg-background">
@@ -103,41 +47,47 @@ export default function Services() {
       {/* Services Overview */}
       <section className="py-16">
         <div className="container">
-          <StaggerContainer className="grid md:grid-cols-2 gap-8" staggerDelay={0.1}>
-            {services.map((service) => {
-              const Icon = service.icon;
-              return (
-                <StaggerItem key={service.id}>
-                  <motion.div
-                    whileHover={{ y: -4 }}
-                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                    className="p-8 rounded-2xl glass-card transition-all duration-300"
-                  >
-                    <div
-                      className="w-14 h-14 rounded-xl flex items-center justify-center mb-5"
-                      style={{ background: `${service.accent}18`, border: `1px solid ${service.accent}30` }}
+          {loading ? (
+            <div className="grid md:grid-cols-2 gap-8">
+              {[...Array(4)].map((_, i) => <Skeleton key={i} className="h-48 rounded-2xl" />)}
+            </div>
+          ) : (
+            <StaggerContainer className="grid md:grid-cols-2 gap-8" staggerDelay={0.1}>
+              {services.map((service) => {
+                const Icon = ICON_MAP[service.iconName] ?? Calendar;
+                return (
+                  <StaggerItem key={service.id}>
+                    <motion.div
+                      whileHover={{ y: -4 }}
+                      transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                      className="p-8 rounded-2xl glass-card transition-all duration-300"
                     >
-                      <Icon className="w-7 h-7" style={{ color: service.accent }} />
-                    </div>
-                    <h3 className="text-xl font-bold text-white mb-3">{service.title}</h3>
-                    <p className="text-white/50 mb-6">{service.description}</p>
-                    <div className="space-y-2 text-sm border-t border-white/8 pt-4">
-                      {[
-                        { label: "Schedule", value: service.schedule },
-                        { label: "Participants", value: service.participants },
-                        { label: "Duration", value: service.duration },
-                      ].map((item) => (
-                        <div key={item.label} className="flex justify-between">
-                          <span className="text-white/40">{item.label}:</span>
-                          <span className="font-semibold text-white/80">{item.value}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </motion.div>
-                </StaggerItem>
-              );
-            })}
-          </StaggerContainer>
+                      <div
+                        className="w-14 h-14 rounded-xl flex items-center justify-center mb-5"
+                        style={{ background: `${service.accent}18`, border: `1px solid ${service.accent}30` }}
+                      >
+                        <Icon className="w-7 h-7" style={{ color: service.accent }} />
+                      </div>
+                      <h3 className="text-xl font-bold text-white mb-3">{service.title}</h3>
+                      <p className="text-white/50 mb-6">{service.description}</p>
+                      <div className="space-y-2 text-sm border-t border-white/8 pt-4">
+                        {[
+                          { label: "Schedule", value: service.schedule },
+                          { label: "Participants", value: service.participants },
+                          { label: "Duration", value: service.duration },
+                        ].map((item) => (
+                          <div key={item.label} className="flex justify-between">
+                            <span className="text-white/40">{item.label}:</span>
+                            <span className="font-semibold text-white/80">{item.value}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </motion.div>
+                  </StaggerItem>
+                );
+              })}
+            </StaggerContainer>
+          )}
         </div>
       </section>
 
@@ -153,38 +103,44 @@ export default function Services() {
             </p>
           </AnimatedSection>
 
-          <StaggerContainer className="grid md:grid-cols-3 gap-8" staggerDelay={0.1}>
-            {upcomingEvents.map((event, idx) => (
-              <StaggerItem key={idx}>
-                <div className="p-6 rounded-2xl glass-card flex flex-col h-full">
-                  <h3 className="text-lg font-bold text-white mb-5">{event.title}</h3>
-                  <div className="space-y-3 mb-5 flex-1">
-                    <div className="flex items-center gap-3 text-sm">
-                      <Calendar size={16} style={{ color: event.accent }} />
-                      <span className="text-white/50">{event.date}</span>
+          {loading ? (
+            <div className="grid md:grid-cols-3 gap-8">
+              {[...Array(3)].map((_, i) => <Skeleton key={i} className="h-64 rounded-2xl" />)}
+            </div>
+          ) : (
+            <StaggerContainer className="grid md:grid-cols-3 gap-8" staggerDelay={0.1}>
+              {upcomingEvents.map((event) => (
+                <StaggerItem key={event.id}>
+                  <div className="p-6 rounded-2xl glass-card flex flex-col h-full">
+                    <h3 className="text-lg font-bold text-white mb-5">{event.title}</h3>
+                    <div className="space-y-3 mb-5 flex-1">
+                      <div className="flex items-center gap-3 text-sm">
+                        <Calendar size={16} style={{ color: event.accent }} />
+                        <span className="text-white/50">{event.date}</span>
+                      </div>
+                      <div className="flex items-center gap-3 text-sm">
+                        <Zap size={16} style={{ color: event.accent }} />
+                        <span className="text-white/50">{event.time}</span>
+                      </div>
+                      <div className="flex items-center gap-3 text-sm">
+                        <Users size={16} style={{ color: event.accent }} />
+                        <span className="text-white/50">{event.location}</span>
+                      </div>
                     </div>
-                    <div className="flex items-center gap-3 text-sm">
-                      <Zap size={16} style={{ color: event.accent }} />
-                      <span className="text-white/50">{event.time}</span>
+                    <div className="mb-4 p-3 rounded-lg" style={{ background: `${event.accent}12`, border: `1px solid ${event.accent}20` }}>
+                      <p className="text-sm font-semibold" style={{ color: event.accent }}>{event.spots} spots available</p>
                     </div>
-                    <div className="flex items-center gap-3 text-sm">
-                      <Users size={16} style={{ color: event.accent }} />
-                      <span className="text-white/50">{event.location}</span>
-                    </div>
+                    <Button
+                      className="w-full rounded-full text-black font-semibold hover:opacity-90"
+                      style={{ background: `linear-gradient(135deg, ${event.accent}, #4cd7ef)` }}
+                    >
+                      Register Now
+                    </Button>
                   </div>
-                  <div className="mb-4 p-3 rounded-lg" style={{ background: `${event.accent}12`, border: `1px solid ${event.accent}20` }}>
-                    <p className="text-sm font-semibold" style={{ color: event.accent }}>{event.spots} spots available</p>
-                  </div>
-                  <Button
-                    className="w-full rounded-full text-black font-semibold hover:opacity-90"
-                    style={{ background: `linear-gradient(135deg, ${event.accent}, #4cd7ef)` }}
-                  >
-                    Register Now
-                  </Button>
-                </div>
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
+                </StaggerItem>
+              ))}
+            </StaggerContainer>
+          )}
         </div>
       </section>
 

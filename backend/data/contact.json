@@ -1,0 +1,24 @@
+{
+  "cards": [
+    { "iconName": "Mail", "title": "Email", "content": "hello@relife.health", "subtext": "We respond within 24 hours", "accent": "#33b7fa" },
+    { "iconName": "Phone", "title": "Phone", "content": "+94 (0) 123 456 789", "subtext": "Monday to Friday, 9 AM - 6 PM", "accent": "#4cd7ef" },
+    { "iconName": "MapPin", "title": "Location", "content": "Dambulla, Sri Lanka", "subtext": "Visit our wellness center", "accent": "#ab92f1" },
+    { "iconName": "Clock", "title": "Support Hours", "content": "24/7 Available", "subtext": "Via chat and email", "accent": "#33b7fa" }
+  ],
+  "whyContactUs": [
+    "Product inquiries and support",
+    "Partnership and collaboration opportunities",
+    "Feedback and suggestions",
+    "Media and press inquiries",
+    "Corporate wellness programs",
+    "General questions about our services"
+  ],
+  "faq": [
+    { "id": "1", "q": "How do I create an account?", "a": "Visit our web app and click 'Sign Up'. Follow the simple registration process to get started." },
+    { "id": "2", "q": "Are your products covered by insurance?", "a": "Some products may be eligible for insurance coverage. Contact us for specific details." },
+    { "id": "3", "q": "What is your refund policy?", "a": "We offer a 30-day satisfaction guarantee on all products. Contact us for refund requests." },
+    { "id": "4", "q": "How do I join a support group?", "a": "Visit the Services page to see upcoming programs and register for groups that interest you." },
+    { "id": "5", "q": "Is my data secure?", "a": "Yes, we use enterprise-grade encryption and comply with all healthcare data protection regulations." },
+    { "id": "6", "q": "When will the mobile app be available?", "a": "The mobile app is coming soon! Sign up on the Application page to be notified at launch." }
+  ]
+}

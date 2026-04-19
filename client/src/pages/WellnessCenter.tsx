@@ -1,25 +1,24 @@
 import { Button } from "@/components/ui/button";
 import Navigation from "@/components/Navigation";
 import { BookOpen, Lightbulb, Users, TrendingUp } from "lucide-react";
+import type { ComponentType } from "react";
 import { motion } from "framer-motion";
 import { AnimatedSection, StaggerContainer, StaggerItem } from "@/components/AnimatedSection";
+import { useWellnessContent } from "@/hooks/useContent";
+import { Skeleton } from "@/components/ui/skeleton";
+
+const ICON_MAP: Record<string, ComponentType<{ className?: string; style?: React.CSSProperties }>> = {
+  BookOpen,
+  Lightbulb,
+  Users,
+  TrendingUp,
+};
 
 export default function WellnessCenter() {
-  const resources = [
-    { id: 1, icon: BookOpen, title: "Wellness Guides", description: "Comprehensive guides on mental health, stress management, and wellness practices", count: "24 guides", accent: "#33b7fa" },
-    { id: 2, icon: Lightbulb, title: "Expert Tips", description: "Daily wellness tips and insights from certified mental health professionals", count: "100+ tips", accent: "#4cd7ef" },
-    { id: 3, icon: Users, title: "Community Stories", description: "Real stories from community members on their wellness journeys", count: "50+ stories", accent: "#ab92f1" },
-    { id: 4, icon: TrendingUp, title: "Progress Tracking", description: "Tools to monitor your wellness progress and celebrate milestones", count: "Unlimited", accent: "#33b7fa" },
-  ];
-
-  const articles = [
-    { title: "Understanding Anxiety: A Comprehensive Guide", category: "Mental Health", readTime: "8 min read", date: "April 10, 2026", accent: "#33b7fa" },
-    { title: "5 Meditation Techniques for Beginners", category: "Mindfulness", readTime: "6 min read", date: "April 8, 2026", accent: "#4cd7ef" },
-    { title: "Sleep Hygiene: Tips for Better Rest", category: "Sleep Wellness", readTime: "7 min read", date: "April 5, 2026", accent: "#ab92f1" },
-    { title: "Building Resilience in Daily Life", category: "Personal Growth", readTime: "9 min read", date: "April 1, 2026", accent: "#33b7fa" },
-    { title: "Nutrition and Mental Health Connection", category: "Wellness", readTime: "10 min read", date: "March 28, 2026", accent: "#4cd7ef" },
-    { title: "Workplace Stress Management Strategies", category: "Work-Life Balance", readTime: "8 min read", date: "March 25, 2026", accent: "#ab92f1" },
-  ];
+  const { data, loading } = useWellnessContent();
+  const resources = data?.resources ?? [];
+  const articles = data?.articles ?? [];
+  const dailyTips = data?.dailyTips ?? [];
 
   return (
     <div className="min-h-screen bg-background">
@@ -49,30 +48,36 @@ export default function WellnessCenter() {
       {/* Resources Overview */}
       <section className="py-16">
         <div className="container">
-          <StaggerContainer className="grid md:grid-cols-4 gap-6" staggerDelay={0.1}>
-            {resources.map((resource) => {
-              const Icon = resource.icon;
-              return (
-                <StaggerItem key={resource.id}>
-                  <motion.div
-                    whileHover={{ y: -4 }}
-                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                    className="p-6 rounded-2xl glass-card cursor-pointer"
-                  >
-                    <div
-                      className="w-12 h-12 rounded-xl flex items-center justify-center mb-4"
-                      style={{ background: `${resource.accent}18`, border: `1px solid ${resource.accent}30` }}
+          {loading ? (
+            <div className="grid md:grid-cols-4 gap-6">
+              {[...Array(4)].map((_, i) => <Skeleton key={i} className="h-40 rounded-2xl" />)}
+            </div>
+          ) : (
+            <StaggerContainer className="grid md:grid-cols-4 gap-6" staggerDelay={0.1}>
+              {resources.map((resource) => {
+                const Icon = ICON_MAP[resource.iconName] ?? BookOpen;
+                return (
+                  <StaggerItem key={resource.id}>
+                    <motion.div
+                      whileHover={{ y: -4 }}
+                      transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                      className="p-6 rounded-2xl glass-card cursor-pointer"
                     >
-                      <Icon className="w-6 h-6" style={{ color: resource.accent }} />
-                    </div>
-                    <h3 className="text-lg font-bold text-white mb-2">{resource.title}</h3>
-                    <p className="text-sm text-white/50 mb-3">{resource.description}</p>
-                    <p className="text-sm font-semibold" style={{ color: resource.accent }}>{resource.count}</p>
-                  </motion.div>
-                </StaggerItem>
-              );
-            })}
-          </StaggerContainer>
+                      <div
+                        className="w-12 h-12 rounded-xl flex items-center justify-center mb-4"
+                        style={{ background: `${resource.accent}18`, border: `1px solid ${resource.accent}30` }}
+                      >
+                        <Icon className="w-6 h-6" style={{ color: resource.accent }} />
+                      </div>
+                      <h3 className="text-lg font-bold text-white mb-2">{resource.title}</h3>
+                      <p className="text-sm text-white/50 mb-3">{resource.description}</p>
+                      <p className="text-sm font-semibold" style={{ color: resource.accent }}>{resource.count}</p>
+                    </motion.div>
+                  </StaggerItem>
+                );
+              })}
+            </StaggerContainer>
+          )}
         </div>
       </section>
 
@@ -88,31 +93,37 @@ export default function WellnessCenter() {
             </p>
           </AnimatedSection>
 
-          <StaggerContainer className="grid md:grid-cols-2 gap-6" staggerDelay={0.08}>
-            {articles.map((article, idx) => (
-              <StaggerItem key={idx}>
-                <motion.div
-                  whileHover={{ y: -3 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                  className="p-6 rounded-2xl glass-card cursor-pointer group"
-                >
-                  <div className="flex items-start justify-between mb-4">
-                    <span
-                      className="inline-block px-3 py-1 text-xs font-semibold rounded-full"
-                      style={{ background: `${article.accent}18`, color: article.accent }}
-                    >
-                      {article.category}
-                    </span>
-                    <span className="text-xs text-white/30">{article.date}</span>
-                  </div>
-                  <h3 className="text-base font-bold text-white mb-2 group-hover:text-primary transition-colors">
-                    {article.title}
-                  </h3>
-                  <p className="text-xs text-white/40">{article.readTime}</p>
-                </motion.div>
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
+          {loading ? (
+            <div className="grid md:grid-cols-2 gap-6">
+              {[...Array(6)].map((_, i) => <Skeleton key={i} className="h-32 rounded-2xl" />)}
+            </div>
+          ) : (
+            <StaggerContainer className="grid md:grid-cols-2 gap-6" staggerDelay={0.08}>
+              {articles.map((article) => (
+                <StaggerItem key={article.id}>
+                  <motion.div
+                    whileHover={{ y: -3 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                    className="p-6 rounded-2xl glass-card cursor-pointer group"
+                  >
+                    <div className="flex items-start justify-between mb-4">
+                      <span
+                        className="inline-block px-3 py-1 text-xs font-semibold rounded-full"
+                        style={{ background: `${article.accent}18`, color: article.accent }}
+                      >
+                        {article.category}
+                      </span>
+                      <span className="text-xs text-white/30">{article.date}</span>
+                    </div>
+                    <h3 className="text-base font-bold text-white mb-2 group-hover:text-primary transition-colors">
+                      {article.title}
+                    </h3>
+                    <p className="text-xs text-white/40">{article.readTime}</p>
+                  </motion.div>
+                </StaggerItem>
+              ))}
+            </StaggerContainer>
+          )}
 
           <AnimatedSection delay={0.2} className="mt-12 text-center">
             <Button
@@ -133,30 +144,32 @@ export default function WellnessCenter() {
               Daily Wellness <span className="gradient-text-purple">Tips</span>
             </h2>
           </AnimatedSection>
-          <StaggerContainer className="grid md:grid-cols-3 gap-8" staggerDelay={0.1}>
-            {[
-              { title: "Morning Routine", tips: ["Start with 5 minutes of meditation", "Drink water before coffee", "Set daily intentions"], accent: "#33b7fa" },
-              { title: "During the Day", tips: ["Take regular breaks", "Practice deep breathing", "Move your body regularly"], accent: "#4cd7ef" },
-              { title: "Evening Routine", tips: ["Limit screen time", "Reflect on your day", "Prepare for quality sleep"], accent: "#ab92f1" },
-            ].map((section, idx) => (
-              <StaggerItem key={idx}>
-                <div
-                  className="p-8 rounded-2xl glass-card"
-                  style={{ borderColor: `${section.accent}20` }}
-                >
-                  <h3 className="text-lg font-bold mb-5" style={{ color: section.accent }}>{section.title}</h3>
-                  <ul className="space-y-3">
-                    {section.tips.map((tip, tipIdx) => (
-                      <li key={tipIdx} className="flex items-start gap-3">
-                        <span className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0" style={{ background: section.accent }} />
-                        <span className="text-white/60 text-sm">{tip}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
+          {loading ? (
+            <div className="grid md:grid-cols-3 gap-8">
+              {[...Array(3)].map((_, i) => <Skeleton key={i} className="h-48 rounded-2xl" />)}
+            </div>
+          ) : (
+            <StaggerContainer className="grid md:grid-cols-3 gap-8" staggerDelay={0.1}>
+              {dailyTips.map((section) => (
+                <StaggerItem key={section.id}>
+                  <div
+                    className="p-8 rounded-2xl glass-card"
+                    style={{ borderColor: `${section.accent}20` }}
+                  >
+                    <h3 className="text-lg font-bold mb-5" style={{ color: section.accent }}>{section.title}</h3>
+                    <ul className="space-y-3">
+                      {section.tips.map((tip, tipIdx) => (
+                        <li key={tipIdx} className="flex items-start gap-3">
+                          <span className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0" style={{ background: section.accent }} />
+                          <span className="text-white/60 text-sm">{tip}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </StaggerItem>
+              ))}
+            </StaggerContainer>
+          )}
         </div>
       </section>
 

@@ -1,10 +1,27 @@
 import { Button } from "@/components/ui/button";
 import Navigation from "@/components/Navigation";
 import { Heart, Target, Users, Award } from "lucide-react";
+import type { ComponentType } from "react";
 import { motion } from "framer-motion";
 import { AnimatedSection, StaggerContainer, StaggerItem } from "@/components/AnimatedSection";
+import { useAboutContent } from "@/hooks/useContent";
+import { Skeleton } from "@/components/ui/skeleton";
+
+const ICON_MAP: Record<string, ComponentType<{ className?: string; style?: React.CSSProperties }>> = {
+  Heart,
+  Target,
+  Users,
+  Award,
+};
 
 export default function AboutUs() {
+  const { data, loading } = useAboutContent();
+  const values = data?.values ?? [];
+  const team = data?.team ?? [];
+  const stats = data?.stats ?? [];
+  const offerings = data?.offerings ?? [];
+  const mission = data?.mission;
+
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
@@ -36,14 +53,20 @@ export default function AboutUs() {
           <div className="grid md:grid-cols-2 gap-16 items-center">
             <AnimatedSection className="space-y-6">
               <h2 className="text-3xl md:text-4xl font-bold">
-                Our <span className="gradient-text-blue">Mission</span>
+                {mission?.heading ?? "Our"}{" "}
+                <span className="gradient-text-blue">{mission?.headingHighlight ?? "Mission"}</span>
               </h2>
-              <p className="text-lg text-white/60 leading-relaxed">
-                At Re:Life, we believe in the transformative power of technology to address pressing mental health challenges. Our mission is to make comprehensive mental health support and wellness resources accessible to everyone, everywhere.
-              </p>
-              <p className="text-lg text-white/60 leading-relaxed">
-                Founded by Avrina Lanka, Re:Life combines cutting-edge technology with compassionate care to create a platform that truly understands and supports your mental health journey.
-              </p>
+              {loading ? (
+                <div className="space-y-3">
+                  <Skeleton className="h-6 w-full" />
+                  <Skeleton className="h-6 w-5/6" />
+                  <Skeleton className="h-6 w-full" />
+                </div>
+              ) : (
+                (mission?.paragraphs ?? []).map((p, i) => (
+                  <p key={i} className="text-lg text-white/60 leading-relaxed">{p}</p>
+                ))
+              )}
               <Button
                 className="rounded-full px-8 text-black font-semibold hover:opacity-90"
                 style={{ background: "linear-gradient(135deg, #33b7fa, #4cd7ef)" }}
@@ -79,30 +102,31 @@ export default function AboutUs() {
               Our Core <span className="gradient-text-blue">Values</span>
             </h2>
           </AnimatedSection>
-          <StaggerContainer className="grid md:grid-cols-4 gap-8" staggerDelay={0.1}>
-            {[
-              { icon: Heart, title: "Compassion", description: "We approach every interaction with empathy and understanding", accent: "#33b7fa" },
-              { icon: Target, title: "Excellence", description: "We strive for the highest standards in everything we do", accent: "#4cd7ef" },
-              { icon: Users, title: "Community", description: "We believe in the power of connection and shared experiences", accent: "#ab92f1" },
-              { icon: Award, title: "Innovation", description: "We continuously innovate to improve mental health care", accent: "#33b7fa" },
-            ].map((value, idx) => {
-              const Icon = value.icon;
-              return (
-                <StaggerItem key={idx}>
-                  <div className="text-center">
-                    <div
-                      className="w-14 h-14 rounded-xl mx-auto mb-4 flex items-center justify-center"
-                      style={{ background: `${value.accent}18`, border: `1px solid ${value.accent}30` }}
-                    >
-                      <Icon className="w-7 h-7" style={{ color: value.accent }} />
+          {loading ? (
+            <div className="grid md:grid-cols-4 gap-8">
+              {[...Array(4)].map((_, i) => <Skeleton key={i} className="h-40 rounded-2xl" />)}
+            </div>
+          ) : (
+            <StaggerContainer className="grid md:grid-cols-4 gap-8" staggerDelay={0.1}>
+              {values.map((value, idx) => {
+                const Icon = ICON_MAP[value.iconName] ?? Heart;
+                return (
+                  <StaggerItem key={idx}>
+                    <div className="text-center">
+                      <div
+                        className="w-14 h-14 rounded-xl mx-auto mb-4 flex items-center justify-center"
+                        style={{ background: `${value.accent}18`, border: `1px solid ${value.accent}30` }}
+                      >
+                        <Icon className="w-7 h-7" style={{ color: value.accent }} />
+                      </div>
+                      <h3 className="text-lg font-bold text-white mb-2">{value.title}</h3>
+                      <p className="text-white/50 text-sm">{value.description}</p>
                     </div>
-                    <h3 className="text-lg font-bold text-white mb-2">{value.title}</h3>
-                    <p className="text-white/50 text-sm">{value.description}</p>
-                  </div>
-                </StaggerItem>
-              );
-            })}
-          </StaggerContainer>
+                  </StaggerItem>
+                );
+              })}
+            </StaggerContainer>
+          )}
         </div>
       </section>
 
@@ -114,44 +138,29 @@ export default function AboutUs() {
               What We <span className="gradient-text-blue">Offer</span>
             </h2>
           </AnimatedSection>
-          <StaggerContainer className="grid md:grid-cols-2 gap-8" staggerDelay={0.08}>
-            {[
-              {
-                title: "Comprehensive Platform",
-                items: ["AI-powered mental health chatbot", "Professional consultation services", "Patient record management", "Prescription tracking"],
-                accent: "#33b7fa",
-              },
-              {
-                title: "Community & Support",
-                items: ["Support group programs", "Mental health seminars", "Wellness workshops", "CSR initiatives"],
-                accent: "#4cd7ef",
-              },
-              {
-                title: "Wellness Products",
-                items: ["Premium sleeping solutions", "Therapeutic wellness products", "Herbal wellness items", "Meditation accessories"],
-                accent: "#ab92f1",
-              },
-              {
-                title: "Technology Solutions",
-                items: ["Web application", "Mobile app (coming soon)", "Video conferencing", "Secure data management"],
-                accent: "#33b7fa",
-              },
-            ].map((section, idx) => (
-              <StaggerItem key={idx}>
-                <div className="p-8 rounded-2xl glass-card">
-                  <h3 className="text-lg font-bold text-white mb-5" style={{ color: section.accent }}>{section.title}</h3>
-                  <ul className="space-y-3">
-                    {section.items.map((item, itemIdx) => (
-                      <li key={itemIdx} className="flex items-center gap-3">
-                        <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: section.accent }} />
-                        <span className="text-white/60 text-sm">{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
+          {loading ? (
+            <div className="grid md:grid-cols-2 gap-8">
+              {[...Array(4)].map((_, i) => <Skeleton key={i} className="h-48 rounded-2xl" />)}
+            </div>
+          ) : (
+            <StaggerContainer className="grid md:grid-cols-2 gap-8" staggerDelay={0.08}>
+              {offerings.map((section, idx) => (
+                <StaggerItem key={idx}>
+                  <div className="p-8 rounded-2xl glass-card">
+                    <h3 className="text-lg font-bold text-white mb-5" style={{ color: section.accent }}>{section.title}</h3>
+                    <ul className="space-y-3">
+                      {section.items.map((item, itemIdx) => (
+                        <li key={itemIdx} className="flex items-center gap-3">
+                          <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: section.accent }} />
+                          <span className="text-white/60 text-sm">{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </StaggerItem>
+              ))}
+            </StaggerContainer>
+          )}
         </div>
       </section>
 
@@ -166,52 +175,59 @@ export default function AboutUs() {
               Re:Life is built by a dedicated team of mental health professionals, technology experts, and wellness advocates committed to making a difference.
             </p>
           </AnimatedSection>
-          <StaggerContainer className="grid md:grid-cols-3 gap-8" staggerDelay={0.12}>
-            {[
-              { name: "Avrina Lanka", role: "Founder & CEO", bio: "Mental health advocate with 10+ years of experience in healthcare technology", accent: "#33b7fa" },
-              { name: "Dr. Sarah Johnson", role: "Chief Medical Officer", bio: "Licensed psychiatrist specializing in digital mental health solutions", accent: "#4cd7ef" },
-              { name: "Michael Chen", role: "Chief Technology Officer", bio: "Tech innovator passionate about accessible healthcare technology", accent: "#ab92f1" },
-            ].map((member, idx) => (
-              <StaggerItem key={idx}>
-                <motion.div
-                  whileHover={{ y: -4 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                  className="text-center p-8 rounded-2xl glass-card"
-                >
-                  <div
-                    className="w-20 h-20 rounded-full mx-auto mb-5 flex items-center justify-center"
-                    style={{ background: `linear-gradient(135deg, ${member.accent}20, rgba(0,0,0,0.3))`, border: `1px solid ${member.accent}30` }}
+          {loading ? (
+            <div className="grid md:grid-cols-3 gap-8">
+              {[...Array(3)].map((_, i) => <Skeleton key={i} className="h-48 rounded-2xl" />)}
+            </div>
+          ) : (
+            <StaggerContainer className="grid md:grid-cols-3 gap-8" staggerDelay={0.12}>
+              {team.map((member) => (
+                <StaggerItem key={member.id}>
+                  <motion.div
+                    whileHover={{ y: -4 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                    className="text-center p-8 rounded-2xl glass-card"
                   >
-                    <Users className="w-10 h-10" style={{ color: member.accent }} />
-                  </div>
-                  <h3 className="text-lg font-bold text-white mb-1">{member.name}</h3>
-                  <p className="text-sm font-semibold mb-3" style={{ color: member.accent }}>{member.role}</p>
-                  <p className="text-sm text-white/50">{member.bio}</p>
-                </motion.div>
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
+                    <div
+                      className="w-20 h-20 rounded-full mx-auto mb-5 flex items-center justify-center overflow-hidden"
+                      style={{ background: `linear-gradient(135deg, ${member.accent}20, rgba(0,0,0,0.3))`, border: `1px solid ${member.accent}30` }}
+                    >
+                      {member.imageUrl ? (
+                        <img src={member.imageUrl} alt={member.name} className="w-full h-full object-cover" />
+                      ) : (
+                        <Users className="w-10 h-10" style={{ color: member.accent }} />
+                      )}
+                    </div>
+                    <h3 className="text-lg font-bold text-white mb-1">{member.name}</h3>
+                    <p className="text-sm font-semibold mb-3" style={{ color: member.accent }}>{member.role}</p>
+                    <p className="text-sm text-white/50">{member.bio}</p>
+                  </motion.div>
+                </StaggerItem>
+              ))}
+            </StaggerContainer>
+          )}
         </div>
       </section>
 
       {/* Stats Section */}
       <section className="py-20">
         <div className="container">
-          <StaggerContainer className="grid md:grid-cols-4 gap-8 text-center" staggerDelay={0.1}>
-            {[
-              { number: "50K+", label: "Active Users", accent: "#33b7fa" },
-              { number: "500+", label: "Mental Health Professionals", accent: "#4cd7ef" },
-              { number: "1000+", label: "Success Stories", accent: "#ab92f1" },
-              { number: "24/7", label: "Support Available", accent: "#33b7fa" },
-            ].map((stat, idx) => (
-              <StaggerItem key={idx}>
-                <div className="p-8">
-                  <p className="text-4xl font-bold mb-2" style={{ color: stat.accent }}>{stat.number}</p>
-                  <p className="text-white/50">{stat.label}</p>
-                </div>
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
+          {loading ? (
+            <div className="grid md:grid-cols-4 gap-8">
+              {[...Array(4)].map((_, i) => <Skeleton key={i} className="h-32 rounded-2xl" />)}
+            </div>
+          ) : (
+            <StaggerContainer className="grid md:grid-cols-4 gap-8 text-center" staggerDelay={0.1}>
+              {stats.map((stat, idx) => (
+                <StaggerItem key={idx}>
+                  <div className="p-8">
+                    <p className="text-4xl font-bold mb-2" style={{ color: stat.accent }}>{stat.number}</p>
+                    <p className="text-white/50">{stat.label}</p>
+                  </div>
+                </StaggerItem>
+              ))}
+            </StaggerContainer>
+          )}
         </div>
       </section>
 

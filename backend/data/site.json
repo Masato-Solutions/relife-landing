@@ -1,0 +1,13 @@
+{
+  "siteName": "Re:Life Health",
+  "logo": "RL",
+  "tagline": "Your partner in mental health and wellness",
+  "footerText": "© 2026 Re:Life Health. All rights reserved.",
+  "navigation": [
+    { "label": "Products", "href": "/products" },
+    { "label": "Services", "href": "/services" },
+    { "label": "Wellness Center", "href": "/wellness-center" },
+    { "label": "About Us", "href": "/about-us" },
+    { "label": "Contact", "href": "/contact-us" }
+  ]
+}

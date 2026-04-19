@@ -1,23 +1,43 @@
 import { Button } from "@/components/ui/button";
 import Navigation from "@/components/Navigation";
 import { Mail, Phone, MapPin, Clock } from "lucide-react";
+import type { ComponentType } from "react";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { AnimatedSection, StaggerContainer, StaggerItem } from "@/components/AnimatedSection";
+import { useContactContent } from "@/hooks/useContent";
+import { submitContactForm } from "@/lib/api";
+import { toast } from "sonner";
+import { Skeleton } from "@/components/ui/skeleton";
+
+const ICON_MAP: Record<string, ComponentType<{ className?: string; style?: React.CSSProperties }>> = {
+  Mail,
+  Phone,
+  MapPin,
+  Clock,
+};
 
 export default function ContactUs() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
-  });
+  const { data, loading } = useContactContent();
+  const cards = data?.cards ?? [];
+  const whyContactUs = data?.whyContactUs ?? [];
+  const faq = data?.faq ?? [];
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [formData, setFormData] = useState({ name: "", email: "", subject: "", message: "" });
+  const [submitting, setSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-    alert("Thank you for your message! We'll get back to you soon.");
-    setFormData({ name: "", email: "", subject: "", message: "" });
+    setSubmitting(true);
+    try {
+      await submitContactForm(formData);
+      toast.success("Thank you! We'll get back to you soon.");
+      setFormData({ name: "", email: "", subject: "", message: "" });
+    } catch {
+      toast.error("Failed to send message. Please try again.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -48,35 +68,36 @@ export default function ContactUs() {
       {/* Contact Information */}
       <section className="py-16">
         <div className="container">
-          <StaggerContainer className="grid md:grid-cols-4 gap-6 mb-20" staggerDelay={0.08}>
-            {[
-              { icon: Mail, title: "Email", content: "hello@relife.health", subtext: "We respond within 24 hours", accent: "#33b7fa" },
-              { icon: Phone, title: "Phone", content: "+94 (0) 123 456 789", subtext: "Monday to Friday, 9 AM - 6 PM", accent: "#4cd7ef" },
-              { icon: MapPin, title: "Location", content: "Dambulla, Sri Lanka", subtext: "Visit our wellness center", accent: "#ab92f1" },
-              { icon: Clock, title: "Support Hours", content: "24/7 Available", subtext: "Via chat and email", accent: "#33b7fa" },
-            ].map((info, idx) => {
-              const Icon = info.icon;
-              return (
-                <StaggerItem key={idx}>
-                  <motion.div
-                    whileHover={{ y: -4 }}
-                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                    className="text-center p-6 rounded-2xl glass-card"
-                  >
-                    <div
-                      className="w-12 h-12 rounded-xl mx-auto mb-4 flex items-center justify-center"
-                      style={{ background: `${info.accent}18`, border: `1px solid ${info.accent}30` }}
+          {loading ? (
+            <div className="grid md:grid-cols-4 gap-6 mb-20">
+              {[...Array(4)].map((_, i) => <Skeleton key={i} className="h-36 rounded-2xl" />)}
+            </div>
+          ) : (
+            <StaggerContainer className="grid md:grid-cols-4 gap-6 mb-20" staggerDelay={0.08}>
+              {cards.map((info, idx) => {
+                const Icon = ICON_MAP[info.iconName] ?? Mail;
+                return (
+                  <StaggerItem key={idx}>
+                    <motion.div
+                      whileHover={{ y: -4 }}
+                      transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                      className="text-center p-6 rounded-2xl glass-card"
                     >
-                      <Icon className="w-6 h-6" style={{ color: info.accent }} />
-                    </div>
-                    <h3 className="text-lg font-bold text-white mb-1">{info.title}</h3>
-                    <p className="font-semibold text-white/80 text-sm mb-1">{info.content}</p>
-                    <p className="text-xs text-white/40">{info.subtext}</p>
-                  </motion.div>
-                </StaggerItem>
-              );
-            })}
-          </StaggerContainer>
+                      <div
+                        className="w-12 h-12 rounded-xl mx-auto mb-4 flex items-center justify-center"
+                        style={{ background: `${info.accent}18`, border: `1px solid ${info.accent}30` }}
+                      >
+                        <Icon className="w-6 h-6" style={{ color: info.accent }} />
+                      </div>
+                      <h3 className="text-lg font-bold text-white mb-1">{info.title}</h3>
+                      <p className="font-semibold text-white/80 text-sm mb-1">{info.content}</p>
+                      <p className="text-xs text-white/40">{info.subtext}</p>
+                    </motion.div>
+                  </StaggerItem>
+                );
+              })}
+            </StaggerContainer>
+          )}
 
           {/* Contact Form and Info */}
           <div className="grid md:grid-cols-2 gap-12">
@@ -122,10 +143,11 @@ export default function ContactUs() {
                   </div>
                   <Button
                     type="submit"
+                    disabled={submitting}
                     className="w-full rounded-full h-12 text-base text-black font-semibold hover:opacity-90"
                     style={{ background: "linear-gradient(135deg, #33b7fa, #4cd7ef)" }}
                   >
-                    Send Message
+                    {submitting ? "Sending..." : "Send Message"}
                   </Button>
                 </form>
               </div>
@@ -138,14 +160,7 @@ export default function ContactUs() {
                   Why Contact Us?
                 </h3>
                 <ul className="space-y-3">
-                  {[
-                    "Product inquiries and support",
-                    "Partnership and collaboration opportunities",
-                    "Feedback and suggestions",
-                    "Media and press inquiries",
-                    "Corporate wellness programs",
-                    "General questions about our services",
-                  ].map((reason, idx) => (
+                  {whyContactUs.map((reason, idx) => (
                     <li key={idx} className="flex items-start gap-3">
                       <span className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0" style={{ background: "#33b7fa" }} />
                       <span className="text-white/60 text-sm">{reason}</span>
@@ -181,23 +196,22 @@ export default function ContactUs() {
               Frequently Asked <span className="gradient-text-blue">Questions</span>
             </h2>
           </AnimatedSection>
-          <StaggerContainer className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto" staggerDelay={0.08}>
-            {[
-              { q: "How do I create an account?", a: "Visit our web app and click 'Sign Up'. Follow the simple registration process to get started." },
-              { q: "Are your products covered by insurance?", a: "Some products may be eligible for insurance coverage. Contact us for specific details." },
-              { q: "What is your refund policy?", a: "We offer a 30-day satisfaction guarantee on all products. Contact us for refund requests." },
-              { q: "How do I join a support group?", a: "Visit the Services page to see upcoming programs and register for groups that interest you." },
-              { q: "Is my data secure?", a: "Yes, we use enterprise-grade encryption and comply with all healthcare data protection regulations." },
-              { q: "When will the mobile app be available?", a: "The mobile app is coming soon! Sign up on the Application page to be notified at launch." },
-            ].map((faq, idx) => (
-              <StaggerItem key={idx}>
-                <div className="p-6 rounded-2xl glass-card">
-                  <h3 className="font-bold text-white mb-2 text-sm">{faq.q}</h3>
-                  <p className="text-white/50 text-sm">{faq.a}</p>
-                </div>
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
+          {loading ? (
+            <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+              {[...Array(6)].map((_, i) => <Skeleton key={i} className="h-24 rounded-2xl" />)}
+            </div>
+          ) : (
+            <StaggerContainer className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto" staggerDelay={0.08}>
+              {faq.map((item) => (
+                <StaggerItem key={item.id}>
+                  <div className="p-6 rounded-2xl glass-card">
+                    <h3 className="font-bold text-white mb-2 text-sm">{item.q}</h3>
+                    <p className="text-white/50 text-sm">{item.a}</p>
+                  </div>
+                </StaggerItem>
+              ))}
+            </StaggerContainer>
+          )}
         </div>
       </section>
 
