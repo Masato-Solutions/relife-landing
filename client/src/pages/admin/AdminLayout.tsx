@@ -117,7 +117,6 @@ const NAV_ITEMS = [
   { href: "/admin/contact", label: "Contact Info", icon: Phone },
   { href: "/admin/privacy-policy", label: "Privacy Policy", icon: Shield },
   { href: "/admin/site", label: "Site Settings", icon: Settings },
-  { href: "/admin/privacy-policy", label: "Privacy Policy", icon: Shield },
   { href: "/admin/submissions", label: "Form Submissions", icon: Inbox },
 ];
 

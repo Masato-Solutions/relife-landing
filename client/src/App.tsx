@@ -37,7 +37,6 @@ function AdminRouter() {
         <Route path="/admin/contact" component={AdminContact} />
         <Route path="/admin/privacy-policy" component={AdminPrivacyPolicy} />
         <Route path="/admin/site" component={AdminSite} />
-        <Route path="/admin/privacy-policy" component={AdminPrivacyPolicy} />
         <Route path="/admin/submissions" component={AdminSubmissions} />
       </Switch>
     </AdminLayout>

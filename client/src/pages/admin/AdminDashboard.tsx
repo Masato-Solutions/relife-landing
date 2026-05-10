@@ -10,7 +10,6 @@ const SECTIONS = [
   { href: "/admin/contact", label: "Contact Info", icon: Phone, desc: "Update contact details and FAQs" },
   { href: "/admin/privacy-policy", label: "Privacy Policy", icon: Shield, desc: "Edit privacy policy content" },
   { href: "/admin/site", label: "Site Settings", icon: Settings, desc: "Manage branding, logo, and site-wide details" },
-  { href: "/admin/privacy-policy", label: "Privacy Policy", icon: Shield, desc: "Edit privacy policy content" },
   { href: "/admin/submissions", label: "Form Submissions", icon: Inbox, desc: "View contact form submissions" },
 ];
 
