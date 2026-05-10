@@ -4,10 +4,14 @@ import { Menu, Moon, Sun, X } from "lucide-react";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "@/contexts/ThemeContext";
+import { useSiteContent } from "@/hooks/useContent";
+
+const LOGO_URL_PATTERN = /^(https?:\/\/|\/|data:image\/)/i;
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
+  const { data: site } = useSiteContent();
 
   const navLinks = [
     { label: "Home", href: "/" },
@@ -18,6 +22,10 @@ export default function Navigation() {
     { label: "About Us", href: "/about-us" },
     { label: "Contact Us", href: "/contact-us" },
   ];
+
+  const logoValue = (site?.logo ?? "RL").trim();
+  const hasImageLogo = LOGO_URL_PATTERN.test(logoValue);
+  const brandName = site?.siteName?.trim() || "Re:Life";
 
   return (
     <nav
@@ -31,13 +39,17 @@ export default function Navigation() {
         {/* Logo */}
         <Link href="/">
           <a className="flex items-center gap-2 text-2xl font-bold hover:opacity-80 transition-opacity">
-            <div
-              className="w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold text-white"
-              style={{ background: "linear-gradient(135deg, #ab92f1, #c4aef5)" }}
-            >
-              RL
-            </div>
-            <span className="gradient-text-purple">Re:Life</span>
+            {hasImageLogo ? (
+              <img src={logoValue} alt={`${brandName} logo`} className="w-8 h-8 rounded-lg object-cover" />
+            ) : (
+              <div
+                className="w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold text-white"
+                style={{ background: "linear-gradient(135deg, #ab92f1, #c4aef5)" }}
+              >
+                {(logoValue || "RL").slice(0, 3)}
+              </div>
+            )}
+            <span className="gradient-text-purple">{brandName}</span>
           </a>
         </Link>
 
