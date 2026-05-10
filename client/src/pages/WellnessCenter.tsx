@@ -9,9 +9,22 @@ import {
   Activity,
   Mountain,
   Briefcase,
+  BookOpen,
+  Lightbulb,
+  TrendingUp,
 } from "lucide-react";
+import type { ComponentType } from "react";
 import { motion } from "framer-motion";
 import { AnimatedSection, StaggerContainer, StaggerItem } from "@/components/AnimatedSection";
+import { useWellnessContent } from "@/hooks/useContent";
+import { Skeleton } from "@/components/ui/skeleton";
+
+const ICON_MAP: Record<string, ComponentType<{ className?: string; style?: React.CSSProperties }>> = {
+  BookOpen,
+  Lightbulb,
+  Users,
+  TrendingUp,
+};
 
 const services = [
   {
@@ -97,6 +110,11 @@ const services = [
 ];
 
 export default function WellnessCenter() {
+  const { data, loading } = useWellnessContent();
+  const resources = data?.resources ?? [];
+  const articles = data?.articles ?? [];
+  const dailyTips = data?.dailyTips ?? [];
+
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
@@ -242,6 +260,145 @@ export default function WellnessCenter() {
           </section>
         );
       })}
+
+      {/* Wellness Resources — CMS-managed */}
+      {(loading || resources.length > 0) && (
+        <section className="py-16 alt-section">
+          <div className="container">
+            <AnimatedSection className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold mb-3">
+                Wellness <span className="gradient-text-purple">Resources</span>
+              </h2>
+            </AnimatedSection>
+            {loading ? (
+              <div className="grid md:grid-cols-4 gap-6">
+                {[...Array(4)].map((_, i) => <Skeleton key={i} className="h-40 rounded-2xl" />)}
+              </div>
+            ) : (
+              <StaggerContainer className="grid md:grid-cols-4 gap-6" staggerDelay={0.1}>
+                {resources.map((resource) => {
+                  const Icon = ICON_MAP[resource.iconName] ?? BookOpen;
+                  return (
+                    <StaggerItem key={resource.id}>
+                      <motion.div
+                        whileHover={{ y: -4 }}
+                        transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                        className="p-6 rounded-2xl glass-card cursor-pointer"
+                      >
+                        <div
+                          className="w-12 h-12 rounded-xl flex items-center justify-center mb-4"
+                          style={{ background: `${resource.accent}18`, border: `1px solid ${resource.accent}30` }}
+                        >
+                          <Icon className="w-6 h-6" style={{ color: resource.accent }} />
+                        </div>
+                        <h3 className="text-lg font-bold text-foreground mb-2">{resource.title}</h3>
+                        <p className="text-sm text-foreground/50 mb-3">{resource.description}</p>
+                        <p className="text-sm font-semibold" style={{ color: resource.accent }}>{resource.count}</p>
+                      </motion.div>
+                    </StaggerItem>
+                  );
+                })}
+              </StaggerContainer>
+            )}
+          </div>
+        </section>
+      )}
+
+      {/* Featured Articles — CMS-managed */}
+      {(loading || articles.length > 0) && (
+        <section className="py-20" style={{ background: "rgba(255,255,255,0.02)" }}>
+          <div className="container">
+            <AnimatedSection className="mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold mb-3">
+                Latest <span className="gradient-text-blue">Articles</span>
+              </h2>
+              <p className="text-lg text-foreground/50">
+                Stay informed with our latest wellness content and expert insights
+              </p>
+            </AnimatedSection>
+
+            {loading ? (
+              <div className="grid md:grid-cols-2 gap-6">
+                {[...Array(6)].map((_, i) => <Skeleton key={i} className="h-32 rounded-2xl" />)}
+              </div>
+            ) : (
+              <StaggerContainer className="grid md:grid-cols-2 gap-6" staggerDelay={0.08}>
+                {articles.map((article) => (
+                  <StaggerItem key={article.id}>
+                    <motion.div
+                      whileHover={{ y: -3 }}
+                      transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                      className="p-6 rounded-2xl glass-card cursor-pointer group"
+                    >
+                      <div className="flex items-start justify-between mb-4">
+                        <span
+                          className="inline-block px-3 py-1 text-xs font-semibold rounded-full"
+                          style={{ background: `${article.accent}18`, color: article.accent }}
+                        >
+                          {article.category}
+                        </span>
+                        <span className="text-xs text-foreground/30">{article.date}</span>
+                      </div>
+                      <h3 className="text-base font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
+                        {article.title}
+                      </h3>
+                      <p className="text-xs text-foreground/40">{article.readTime}</p>
+                    </motion.div>
+                  </StaggerItem>
+                ))}
+              </StaggerContainer>
+            )}
+
+            <AnimatedSection delay={0.2} className="mt-12 text-center">
+              <Button
+                className="rounded-full px-8 h-12 text-base text-black font-semibold hover:opacity-90"
+                style={{ background: "linear-gradient(135deg, #33b7fa, #4cd7ef)" }}
+              >
+                View All Articles
+              </Button>
+            </AnimatedSection>
+          </div>
+        </section>
+      )}
+
+      {/* Wellness Tips — CMS-managed */}
+      {(loading || dailyTips.length > 0) && (
+        <section className="py-20">
+          <div className="container">
+            <AnimatedSection className="text-center mb-14">
+              <h2 className="text-3xl md:text-4xl font-bold">
+                Daily Wellness <span className="gradient-text-purple">Tips</span>
+              </h2>
+            </AnimatedSection>
+            {loading ? (
+              <div className="grid md:grid-cols-3 gap-8">
+                {[...Array(3)].map((_, i) => <Skeleton key={i} className="h-48 rounded-2xl" />)}
+              </div>
+            ) : (
+              <StaggerContainer className="grid md:grid-cols-3 gap-8" staggerDelay={0.1}>
+                {dailyTips.map((section) => (
+                  <StaggerItem key={section.id}>
+                    <div
+                      className="p-8 rounded-2xl glass-card"
+                      style={{ borderColor: `${section.accent}20` }}
+                    >
+                      <h3 className="text-lg font-bold mb-5" style={{ color: section.accent }}>{section.title}</h3>
+                      <ul className="space-y-3">
+                        {section.tips.map((tip, tipIdx) => (
+                          <li key={tipIdx} className="flex items-start gap-3">
+                            <span className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0" style={{ background: section.accent }} />
+                            <span className="text-foreground/60 text-sm">{tip}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </StaggerItem>
+                ))}
+              </StaggerContainer>
+            )}
+          </div>
+        </section>
+      )}
 
       {/* CTA Section */}
       <section className="py-24 relative overflow-hidden alt-section">

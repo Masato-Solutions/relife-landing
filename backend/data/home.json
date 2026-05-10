@@ -1,0 +1,56 @@
+{
+  "hero": {
+    "badge": "Mental Health & Wellness Platform",
+    "titleLine1": "Your Wellness",
+    "titleHighlight": "Journey",
+    "titleLine2": "Starts Here",
+    "subtitle": "Discover holistic wellness solutions combining mental health support, premium wellness products, and community programs designed for your wellbeing.",
+    "primaryButton": "Explore Products",
+    "secondaryButton": "Join Our Programs",
+    "stats": [
+      { "number": "50K+", "label": "Active Users" },
+      { "number": "500+", "label": "Professionals" },
+      { "number": "24/7", "label": "Support" }
+    ]
+  },
+  "features": {
+    "heading": "What We",
+    "headingHighlight": "Offer",
+    "subheading": "Comprehensive wellness solutions tailored to support your mental and physical health",
+    "items": [
+      {
+        "iconName": "Pill",
+        "title": "Premium Products",
+        "description": "Wellness products like sleeping boxes and poppy pads designed for your comfort",
+        "href": "/products",
+        "color": "#33b7fa"
+      },
+      {
+        "iconName": "Users",
+        "title": "Community Programs",
+        "description": "Join CSR events, seminars, and mental health programs with like-minded individuals",
+        "href": "/services",
+        "color": "#4cd7ef"
+      },
+      {
+        "iconName": "Leaf",
+        "title": "Wellness Center",
+        "description": "Access resources and guidance for your holistic wellness journey",
+        "href": "/wellness-center",
+        "color": "#ab92f1"
+      },
+      {
+        "iconName": "Heart",
+        "title": "Mobile App",
+        "description": "Download our app for mental health support and wellness tracking on the go",
+        "href": "/application",
+        "color": "#33b7fa"
+      }
+    ]
+  },
+  "cta": {
+    "heading": "Ready to Transform Your",
+    "headingHighlight": "Wellness?",
+    "subtext": "Join thousands of people taking control of their mental and physical health with Re:Life"
+  }
+}

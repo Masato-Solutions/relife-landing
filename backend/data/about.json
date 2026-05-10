@@ -1,0 +1,49 @@
+{
+  "mission": {
+    "heading": "Our",
+    "headingHighlight": "Mission",
+    "paragraphs": [
+      "At Re:Life, we believe in the transformative power of technology to address pressing mental health challenges. Our mission is to make comprehensive mental health support and wellness resources accessible to everyone, everywhere.",
+      "Founded by Avrina Lanka, Re:Life combines cutting-edge technology with compassionate care to create a platform that truly understands and supports your mental health journey."
+    ]
+  },
+  "values": [
+    { "iconName": "Heart", "title": "Compassion", "description": "We approach every interaction with empathy and understanding", "accent": "#33b7fa" },
+    { "iconName": "Target", "title": "Excellence", "description": "We strive for the highest standards in everything we do", "accent": "#4cd7ef" },
+    { "iconName": "Users", "title": "Community", "description": "We believe in the power of connection and shared experiences", "accent": "#ab92f1" },
+    { "iconName": "Award", "title": "Innovation", "description": "We continuously innovate to improve mental health care", "accent": "#33b7fa" }
+  ],
+  "team": [
+    { "id": "1", "name": "Avrina Lanka", "role": "Founder & CEO", "bio": "Mental health advocate with 10+ years of experience in healthcare technology", "accent": "#33b7fa", "imageUrl": "" },
+    { "id": "2", "name": "Dr. Sarah Johnson", "role": "Chief Medical Officer", "bio": "Licensed psychiatrist specializing in digital mental health solutions", "accent": "#4cd7ef", "imageUrl": "" },
+    { "id": "3", "name": "Michael Chen", "role": "Chief Technology Officer", "bio": "Tech innovator passionate about accessible healthcare technology", "accent": "#ab92f1", "imageUrl": "" }
+  ],
+  "stats": [
+    { "number": "50K+", "label": "Active Users", "accent": "#33b7fa" },
+    { "number": "500+", "label": "Mental Health Professionals", "accent": "#4cd7ef" },
+    { "number": "1000+", "label": "Success Stories", "accent": "#ab92f1" },
+    { "number": "24/7", "label": "Support Available", "accent": "#33b7fa" }
+  ],
+  "offerings": [
+    {
+      "title": "Comprehensive Platform",
+      "accent": "#33b7fa",
+      "items": ["AI-powered mental health chatbot", "Professional consultation services", "Patient record management", "Prescription tracking"]
+    },
+    {
+      "title": "Community & Support",
+      "accent": "#4cd7ef",
+      "items": ["Support group programs", "Mental health seminars", "Wellness workshops", "CSR initiatives"]
+    },
+    {
+      "title": "Wellness Products",
+      "accent": "#ab92f1",
+      "items": ["Premium sleeping solutions", "Therapeutic wellness products", "Herbal wellness items", "Meditation accessories"]
+    },
+    {
+      "title": "Technology Solutions",
+      "accent": "#33b7fa",
+      "items": ["Web application", "Mobile app (coming soon)", "Video conferencing", "Secure data management"]
+    }
+  ]
+}
