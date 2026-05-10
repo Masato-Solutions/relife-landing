@@ -22,6 +22,7 @@ import AdminWellness from "./pages/admin/AdminWellness";
 import AdminContact from "./pages/admin/AdminContact";
 import AdminSubmissions from "./pages/admin/AdminSubmissions";
 import AdminPrivacyPolicy from "./pages/admin/AdminPrivacyPolicy";
+import AdminSite from "./pages/admin/AdminSite";
 
 function AdminRouter() {
   return (
@@ -34,6 +35,8 @@ function AdminRouter() {
         <Route path="/admin/about" component={AdminAbout} />
         <Route path="/admin/wellness" component={AdminWellness} />
         <Route path="/admin/contact" component={AdminContact} />
+        <Route path="/admin/privacy-policy" component={AdminPrivacyPolicy} />
+        <Route path="/admin/site" component={AdminSite} />
         <Route path="/admin/privacy-policy" component={AdminPrivacyPolicy} />
         <Route path="/admin/submissions" component={AdminSubmissions} />
       </Switch>
