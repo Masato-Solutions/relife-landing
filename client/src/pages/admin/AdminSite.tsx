@@ -5,7 +5,7 @@ import type { SiteContent } from "@/types/content";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { DEFAULT_LOGO_TEXT, isSafeLogoImageUrl } from "@/lib/siteBranding";
+import { DEFAULT_LOGO_TEXT, toSafeUploadsLogoSrc } from "@/lib/siteBranding";
 import { toast } from "sonner";
 import { ImageIcon } from "lucide-react";
 
@@ -35,6 +35,11 @@ export default function AdminSite() {
   const handleLogoUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file || !form) return;
+    if (file.size > 10 * 1024 * 1024) {
+      toast.error("Logo must be 10 MB or smaller.");
+      e.target.value = "";
+      return;
+    }
     setUploading(true);
     try {
       const url = await uploadImage(file);
@@ -51,7 +56,8 @@ export default function AdminSite() {
   if (loading || !form) return <div className="text-gray-500">Loading...</div>;
 
   const logoValue = (form.logo ?? "").trim();
-  const hasImageLogo = isSafeLogoImageUrl(logoValue);
+  const safeLogoSrc = toSafeUploadsLogoSrc(logoValue);
+  const hasImageLogo = Boolean(safeLogoSrc);
 
   return (
     <div className="space-y-8 max-w-2xl">
@@ -114,7 +120,11 @@ export default function AdminSite() {
           <Label className="text-gray-700">Preview (navbar look)</Label>
           <div className="mt-2 rounded-lg border border-gray-200 px-3 py-2 inline-flex items-center gap-2 bg-white">
             {hasImageLogo ? (
-              <img src={logoValue} alt="Site logo preview" className="w-8 h-8 rounded-lg object-cover border border-gray-100" />
+              <img
+                src={safeLogoSrc ?? undefined}
+                alt={`${form.siteName || "Site"} logo preview`}
+                className="w-8 h-8 rounded-lg object-cover border border-gray-100"
+              />
             ) : (
               <div
                 className="w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold text-white"
