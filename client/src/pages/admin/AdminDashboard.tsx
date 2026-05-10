@@ -1,5 +1,5 @@
 import { Link } from "wouter";
-import { Package, Calendar, Home, Users, Leaf, Phone, Settings, Inbox, ArrowRight } from "lucide-react";
+import { Package, Calendar, Home, Users, Leaf, Phone, Shield, Settings, Inbox, ArrowRight } from "lucide-react";
 
 const SECTIONS = [
   { href: "/admin/products", label: "Products", icon: Package, desc: "Manage your wellness product catalog" },
@@ -8,6 +8,7 @@ const SECTIONS = [
   { href: "/admin/about", label: "About Us", icon: Users, desc: "Update mission, team, and values" },
   { href: "/admin/wellness", label: "Wellness Center", icon: Leaf, desc: "Manage resources, articles, and tips" },
   { href: "/admin/contact", label: "Contact Info", icon: Phone, desc: "Update contact details and FAQs" },
+  { href: "/admin/privacy-policy", label: "Privacy Policy", icon: Shield, desc: "Edit privacy policy content" },
   { href: "/admin/site", label: "Site Settings", icon: Settings, desc: "Manage branding, logo, and site-wide details" },
   { href: "/admin/submissions", label: "Form Submissions", icon: Inbox, desc: "View contact form submissions" },
 ];

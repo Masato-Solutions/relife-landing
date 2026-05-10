@@ -166,6 +166,12 @@ export interface ContactContent {
   faq: FaqItem[];
 }
 
+export interface PrivacyPolicyContent {
+  title: string;
+  lastUpdated: string;
+  content: string;
+}
+
 export interface SiteContent {
   siteName: string;
   logo: string;

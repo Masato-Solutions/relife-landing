@@ -62,6 +62,12 @@ function adminAuth(req: Request, res: Response, next: NextFunction): void {
 async function startServer() {
   const app = express();
   const server = createServer(app);
+  const defaultPrivacyPolicy = {
+    title: "Privacy Policy",
+    lastUpdated: "2026-05-10",
+    content:
+      "<h2>1. Information We Collect</h2><p>We collect personal details you provide directly, such as your name, email address, and any details submitted through contact forms.</p><h2>2. How We Use Information</h2><p>We use your information to respond to inquiries, improve our services, and communicate important updates related to Re:Life Health.</p><h2>3. Data Security</h2><p>We implement reasonable safeguards to protect your information from unauthorized access, use, or disclosure.</p><h2>4. Contact Us</h2><p>If you have privacy-related questions, please contact us via the Contact page.</p>",
+  };
 
   app.use(express.json({ limit: "10mb" }));
   app.use(express.urlencoded({ extended: true, limit: "10mb" }));
@@ -161,6 +167,14 @@ async function startServer() {
       res.json(req.body);
     });
   }
+
+  app.get("/api/privacy-policy", (_req, res) => {
+    res.json(readJson("privacy-policy.json", defaultPrivacyPolicy));
+  });
+  app.put("/api/privacy-policy", adminAuth, (req, res) => {
+    writeJson("privacy-policy.json", req.body);
+    res.json(req.body);
+  });
 
   // ─── Contact form submission ─────────────────────────────────────────────────
   app.post("/api/contact/submit", (req, res) => {
