@@ -5,8 +5,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "@/contexts/ThemeContext";
 import { useSiteContent } from "@/hooks/useContent";
-
-const LOGO_URL_PATTERN = /^(https?:\/\/|\/|data:image\/)/i;
+import { DEFAULT_LOGO_TEXT, isSafeLogoImageUrl } from "@/lib/siteBranding";
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
@@ -23,8 +22,8 @@ export default function Navigation() {
     { label: "Contact Us", href: "/contact-us" },
   ];
 
-  const logoValue = (site?.logo ?? "RL").trim();
-  const hasImageLogo = LOGO_URL_PATTERN.test(logoValue);
+  const logoValue = (site?.logo ?? DEFAULT_LOGO_TEXT).trim();
+  const hasImageLogo = isSafeLogoImageUrl(logoValue);
   const brandName = site?.siteName?.trim() || "Re:Life";
 
   return (
@@ -46,7 +45,7 @@ export default function Navigation() {
                 className="w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold text-white"
                 style={{ background: "linear-gradient(135deg, #ab92f1, #c4aef5)" }}
               >
-                {(logoValue || "RL").slice(0, 3)}
+                {(logoValue || DEFAULT_LOGO_TEXT).slice(0, 3)}
               </div>
             )}
             <span className="gradient-text-purple">{brandName}</span>

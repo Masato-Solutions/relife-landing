@@ -5,14 +5,9 @@ import type { SiteContent } from "@/types/content";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { DEFAULT_LOGO_TEXT, isSafeLogoImageUrl } from "@/lib/siteBranding";
 import { toast } from "sonner";
 import { ImageIcon } from "lucide-react";
-
-const LOGO_URL_PATTERN = /^(https?:\/\/|\/|data:image\/)/i;
-
-function isLogoImageUrl(value: string): boolean {
-  return LOGO_URL_PATTERN.test(value.trim());
-}
 
 export default function AdminSite() {
   const { data, loading } = useSiteContent();
@@ -56,7 +51,7 @@ export default function AdminSite() {
   if (loading || !form) return <div className="text-gray-500">Loading...</div>;
 
   const logoValue = (form.logo ?? "").trim();
-  const hasImageLogo = isLogoImageUrl(logoValue);
+  const hasImageLogo = isSafeLogoImageUrl(logoValue);
 
   return (
     <div className="space-y-8 max-w-2xl">
@@ -101,7 +96,7 @@ export default function AdminSite() {
         <div>
           <Label className="text-gray-700">Logo URL</Label>
           <Input
-            value={form.logo}
+            value={form.logo ?? ""}
             onChange={(e) => setForm({ ...form, logo: e.target.value })}
             placeholder="/uploads/your-logo.png"
             className="mt-1"
@@ -125,7 +120,7 @@ export default function AdminSite() {
                 className="w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold text-white"
                 style={{ background: "linear-gradient(135deg, #ab92f1, #c4aef5)" }}
               >
-                {(logoValue || "RL").slice(0, 3)}
+                {(logoValue || DEFAULT_LOGO_TEXT).slice(0, 3)}
               </div>
             )}
             <span className="font-bold text-gray-900">{form.siteName || "Re:Life"}</span>
