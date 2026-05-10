@@ -1,13 +1,17 @@
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Menu, Moon, Sun, X } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "@/contexts/ThemeContext";
+import { useSiteContent } from "@/hooks/useContent";
+import { DEFAULT_LOGO_TEXT, toSafeUploadsLogoSrc } from "@/lib/siteBranding";
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
+  const [logoLoadFailed, setLogoLoadFailed] = useState(false);
   const { theme, toggleTheme } = useTheme();
+  const { data: site } = useSiteContent();
 
   const navLinks = [
     { label: "Home", href: "/" },
@@ -18,6 +22,15 @@ export default function Navigation() {
     { label: "About Us", href: "/about-us" },
     { label: "Contact Us", href: "/contact-us" },
   ];
+
+  const logoValue = (site?.logo ?? "").trim();
+  const safeLogoSrc = toSafeUploadsLogoSrc(logoValue);
+  const hasImageLogo = Boolean(safeLogoSrc) && !logoLoadFailed;
+  const brandName = site?.siteName?.trim() || "Re:Life";
+
+  useEffect(() => {
+    setLogoLoadFailed(false);
+  }, [safeLogoSrc]);
 
   return (
     <nav
@@ -31,13 +44,22 @@ export default function Navigation() {
         {/* Logo */}
         <Link href="/">
           <a className="flex items-center gap-2 text-2xl font-bold hover:opacity-80 transition-opacity">
-            <div
-              className="w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold text-white"
-              style={{ background: "linear-gradient(135deg, #ab92f1, #c4aef5)" }}
-            >
-              RL
-            </div>
-            <span className="gradient-text-purple">Re:Life</span>
+            {hasImageLogo ? (
+              <img
+                src={safeLogoSrc ?? undefined}
+                alt={`${brandName} logo`}
+                className="w-8 h-8 rounded-lg object-cover"
+                onError={() => setLogoLoadFailed(true)}
+              />
+            ) : (
+              <div
+                className="w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold text-white"
+                style={{ background: "linear-gradient(135deg, #ab92f1, #c4aef5)" }}
+              >
+                {DEFAULT_LOGO_TEXT}
+              </div>
+            )}
+            <span className="gradient-text-purple">{brandName}</span>
           </a>
         </Link>
 
