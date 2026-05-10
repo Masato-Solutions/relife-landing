@@ -40,7 +40,7 @@ export default function AboutUs() {
             <h1 className="text-4xl md:text-5xl font-bold">
               About <span className="gradient-text-purple">Re:Life</span>
             </h1>
-            <p className="text-lg text-white/50 max-w-2xl">
+            <p className="text-lg text-foreground/50 max-w-2xl">
               Transforming mental health and wellness through technology and compassion
             </p>
           </AnimatedSection>
@@ -64,12 +64,12 @@ export default function AboutUs() {
                 </div>
               ) : (
                 (mission?.paragraphs ?? []).map((p, i) => (
-                  <p key={i} className="text-lg text-white/60 leading-relaxed">{p}</p>
+                  <p key={i} className="text-lg text-foreground/60 leading-relaxed">{p}</p>
                 ))
               )}
               <Button
                 className="rounded-full px-8 text-black font-semibold hover:opacity-90"
-                style={{ background: "linear-gradient(135deg, #33b7fa, #4cd7ef)" }}
+                style={{ background: "linear-gradient(135deg, #ab92f1, #c4aef5)" }}
               >
                 Learn More
               </Button>
@@ -95,7 +95,7 @@ export default function AboutUs() {
       </section>
 
       {/* Values Section */}
-      <section className="py-20" style={{ background: "rgba(255,255,255,0.02)" }}>
+      <section className="py-20 alt-section">
         <div className="container">
           <AnimatedSection className="text-center mb-14">
             <h2 className="text-3xl md:text-4xl font-bold">
@@ -119,8 +119,8 @@ export default function AboutUs() {
                       >
                         <Icon className="w-7 h-7" style={{ color: value.accent }} />
                       </div>
-                      <h3 className="text-lg font-bold text-white mb-2">{value.title}</h3>
-                      <p className="text-white/50 text-sm">{value.description}</p>
+                      <h3 className="text-lg font-bold text-foreground mb-2">{value.title}</h3>
+                      <p className="text-blue-accent text-sm">{value.description}</p>
                     </div>
                   </StaggerItem>
                 );
@@ -147,12 +147,12 @@ export default function AboutUs() {
               {offerings.map((section, idx) => (
                 <StaggerItem key={idx}>
                   <div className="p-8 rounded-2xl glass-card">
-                    <h3 className="text-lg font-bold text-white mb-5" style={{ color: section.accent }}>{section.title}</h3>
+                    <h3 className="text-lg font-bold mb-5" style={{ color: section.accent }}>{section.title}</h3>
                     <ul className="space-y-3">
                       {section.items.map((item, itemIdx) => (
                         <li key={itemIdx} className="flex items-center gap-3">
                           <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: section.accent }} />
-                          <span className="text-white/60 text-sm">{item}</span>
+                          <span className="text-blue-accent text-sm">{item}</span>
                         </li>
                       ))}
                     </ul>
@@ -165,13 +165,13 @@ export default function AboutUs() {
       </section>
 
       {/* Team Section */}
-      <section className="py-20" style={{ background: "rgba(255,255,255,0.02)" }}>
+      <section className="py-20 alt-section">
         <div className="container">
           <AnimatedSection className="text-center mb-14">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
               Our <span className="gradient-text-purple">Team</span>
             </h2>
-            <p className="text-lg text-white/50 max-w-2xl mx-auto">
+            <p className="text-lg text-foreground/50 max-w-2xl mx-auto">
               Re:Life is built by a dedicated team of mental health professionals, technology experts, and wellness advocates committed to making a difference.
             </p>
           </AnimatedSection>
@@ -198,9 +198,9 @@ export default function AboutUs() {
                         <Users className="w-10 h-10" style={{ color: member.accent }} />
                       )}
                     </div>
-                    <h3 className="text-lg font-bold text-white mb-1">{member.name}</h3>
+                    <h3 className="text-lg font-bold text-foreground mb-1">{member.name}</h3>
                     <p className="text-sm font-semibold mb-3" style={{ color: member.accent }}>{member.role}</p>
-                    <p className="text-sm text-white/50">{member.bio}</p>
+                    <p className="text-sm text-blue-accent">{member.bio}</p>
                   </motion.div>
                 </StaggerItem>
               ))}
@@ -222,7 +222,7 @@ export default function AboutUs() {
                 <StaggerItem key={idx}>
                   <div className="p-8">
                     <p className="text-4xl font-bold mb-2" style={{ color: stat.accent }}>{stat.number}</p>
-                    <p className="text-white/50">{stat.label}</p>
+                    <p className="text-foreground/50">{stat.label}</p>
                   </div>
                 </StaggerItem>
               ))}
@@ -232,7 +232,7 @@ export default function AboutUs() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 relative overflow-hidden" style={{ background: "rgba(255,255,255,0.02)" }}>
+      <section className="py-20 relative overflow-hidden alt-section">
         <div
           className="absolute inset-0 pointer-events-none"
           style={{ background: "radial-gradient(ellipse at center, rgba(51,183,250,0.06) 0%, transparent 70%)" }}
@@ -242,14 +242,14 @@ export default function AboutUs() {
             <h2 className="text-3xl md:text-4xl font-bold">
               Join Our <span className="gradient-text-blue">Mission</span>
             </h2>
-            <p className="text-lg text-white/50 max-w-2xl mx-auto">
+            <p className="text-lg text-foreground/50 max-w-2xl mx-auto">
               Be part of the mental health revolution. Together, we can create a world where mental health support is accessible to everyone.
             </p>
           </AnimatedSection>
           <AnimatedSection delay={0.15}>
             <Button
               className="rounded-full px-10 h-12 text-base text-black font-semibold hover:opacity-90"
-              style={{ background: "linear-gradient(135deg, #33b7fa, #4cd7ef)" }}
+              style={{ background: "linear-gradient(135deg, #ab92f1, #c4aef5)" }}
             >
               Get Started Now
             </Button>
@@ -258,8 +258,8 @@ export default function AboutUs() {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-white/8 py-10">
-        <div className="container text-center text-sm text-white/30">
+      <footer className="border-t border-border py-10">
+        <div className="container text-center text-sm text-foreground/30">
           <p>&copy; 2026 Re:Life Health. All rights reserved.</p>
         </div>
       </footer>

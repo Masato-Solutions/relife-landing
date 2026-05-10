@@ -16,6 +16,7 @@ export interface Service {
   iconName: string;
   title: string;
   description: string;
+  example?: string;
   schedule: string;
   participants: string;
   duration: string;

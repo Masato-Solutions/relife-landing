@@ -48,17 +48,17 @@ export default function ContactUs() {
       <section className="py-20 relative overflow-hidden">
         <div
           className="absolute inset-0 pointer-events-none"
-          style={{ background: "radial-gradient(ellipse at top left, rgba(51,183,250,0.08) 0%, transparent 60%)" }}
+          style={{ background: "radial-gradient(ellipse at top left, rgba(171,146,241,0.08) 0%, transparent 60%)" }}
         />
         <div className="container relative z-10">
           <AnimatedSection className="space-y-4">
-            <span className="text-xs font-semibold tracking-widest uppercase" style={{ color: "#33b7fa" }}>
+            <span className="text-xs font-semibold tracking-widest uppercase" style={{ color: "#ab92f1" }}>
               Contact Us
             </span>
             <h1 className="text-4xl md:text-5xl font-bold">
               Get In <span className="gradient-text-blue">Touch</span>
             </h1>
-            <p className="text-lg text-white/50 max-w-2xl">
+            <p className="text-lg text-foreground/50 max-w-2xl">
               Have questions or feedback? We'd love to hear from you. Contact us anytime.
             </p>
           </AnimatedSection>
@@ -89,9 +89,9 @@ export default function ContactUs() {
                       >
                         <Icon className="w-6 h-6" style={{ color: info.accent }} />
                       </div>
-                      <h3 className="text-lg font-bold text-white mb-1">{info.title}</h3>
-                      <p className="font-semibold text-white/80 text-sm mb-1">{info.content}</p>
-                      <p className="text-xs text-white/40">{info.subtext}</p>
+                      <h3 className="text-lg font-bold text-foreground mb-1">{info.title}</h3>
+                      <p className="font-semibold text-foreground/80 text-sm mb-1">{info.content}</p>
+                      <p className="text-xs text-foreground/40">{info.subtext}</p>
                     </motion.div>
                   </StaggerItem>
                 );
@@ -105,8 +105,8 @@ export default function ContactUs() {
             <AnimatedSection>
               <div className="space-y-6">
                 <div>
-                  <h2 className="text-2xl font-bold text-white mb-2">Send Us a Message</h2>
-                  <p className="text-white/50 text-sm">
+                  <h2 className="text-2xl font-bold text-foreground mb-2">Send Us a Message</h2>
+                  <p className="text-foreground/50 text-sm">
                     Fill out the form below and we'll get back to you as soon as possible.
                   </p>
                 </div>
@@ -117,25 +117,23 @@ export default function ContactUs() {
                     { label: "Subject", type: "text", key: "subject", placeholder: "How can we help?" },
                   ].map(({ label, type, key, placeholder }) => (
                     <div key={key}>
-                      <label className="block text-sm font-semibold text-white/70 mb-2">{label}</label>
+                      <label className="block text-sm font-semibold text-foreground/70 mb-2">{label}</label>
                       <input
                         type={type}
                         value={formData[key as keyof typeof formData]}
                         onChange={(e) => setFormData({ ...formData, [key]: e.target.value })}
-                        className="w-full px-4 py-3 rounded-xl text-white placeholder-white/30 text-sm focus:outline-none focus:ring-1 focus:ring-primary transition-all"
-                        style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)" }}
+                        className="w-full px-4 py-3 rounded-xl bg-input border border-border text-foreground placeholder-muted-foreground/60 text-sm focus:outline-none focus:ring-1 focus:ring-primary transition-all"
                         placeholder={placeholder}
                         required
                       />
                     </div>
                   ))}
                   <div>
-                    <label className="block text-sm font-semibold text-white/70 mb-2">Message</label>
+                    <label className="block text-sm font-semibold text-foreground/70 mb-2">Message</label>
                     <textarea
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl text-white placeholder-white/30 text-sm focus:outline-none focus:ring-1 focus:ring-primary resize-none transition-all"
-                      style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)" }}
+                      className="w-full px-4 py-3 rounded-xl bg-input border border-border text-foreground placeholder-muted-foreground/60 text-sm focus:outline-none focus:ring-1 focus:ring-primary resize-none transition-all"
                       rows={5}
                       placeholder="Your message here..."
                       required
@@ -145,7 +143,7 @@ export default function ContactUs() {
                     type="submit"
                     disabled={submitting}
                     className="w-full rounded-full h-12 text-base text-black font-semibold hover:opacity-90"
-                    style={{ background: "linear-gradient(135deg, #33b7fa, #4cd7ef)" }}
+                    style={{ background: "linear-gradient(135deg, #ab92f1, #c4aef5)" }}
                   >
                     {submitting ? "Sending..." : "Send Message"}
                   </Button>
@@ -156,14 +154,14 @@ export default function ContactUs() {
             {/* Info Box */}
             <AnimatedSection delay={0.15} className="space-y-6">
               <div className="p-8 rounded-2xl glass-card">
-                <h3 className="text-xl font-bold text-white mb-5">
+                <h3 className="text-xl font-bold text-foreground mb-5">
                   Why Contact Us?
                 </h3>
                 <ul className="space-y-3">
                   {whyContactUs.map((reason, idx) => (
                     <li key={idx} className="flex items-start gap-3">
-                      <span className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0" style={{ background: "#33b7fa" }} />
-                      <span className="text-white/60 text-sm">{reason}</span>
+                      <span className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0" style={{ background: "#ab92f1" }} />
+                      <span className="text-blue-accent text-sm">{reason}</span>
                     </li>
                   ))}
                 </ul>
@@ -173,13 +171,13 @@ export default function ContactUs() {
                 className="p-8 rounded-2xl"
                 style={{ background: "rgba(51,183,250,0.06)", border: "1px solid rgba(51,183,250,0.15)" }}
               >
-                <h3 className="text-lg font-bold text-white mb-3">
+                <h3 className="text-lg font-bold text-foreground mb-3">
                   Quick Response Time
                 </h3>
-                <p className="text-white/50 text-sm mb-3">
+                <p className="text-foreground/50 text-sm mb-3">
                   We value your time and aim to respond to all inquiries within 24 hours during business days.
                 </p>
-                <p className="text-xs text-white/40">
+                <p className="text-xs text-foreground/40">
                   For urgent matters, please call our support line or use the chat feature in the web app.
                 </p>
               </div>
@@ -189,7 +187,7 @@ export default function ContactUs() {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-20" style={{ background: "rgba(255,255,255,0.02)" }}>
+      <section className="py-20 alt-section">
         <div className="container">
           <AnimatedSection className="text-center mb-14">
             <h2 className="text-3xl md:text-4xl font-bold">
@@ -205,8 +203,8 @@ export default function ContactUs() {
               {faq.map((item) => (
                 <StaggerItem key={item.id}>
                   <div className="p-6 rounded-2xl glass-card">
-                    <h3 className="font-bold text-white mb-2 text-sm">{item.q}</h3>
-                    <p className="text-white/50 text-sm">{item.a}</p>
+                    <h3 className="font-bold text-foreground mb-2 text-sm">{item.q}</h3>
+                    <p className="text-blue-accent text-sm">{item.a}</p>
                   </div>
                 </StaggerItem>
               ))}
@@ -216,8 +214,8 @@ export default function ContactUs() {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-white/8 py-10">
-        <div className="container text-center text-sm text-white/30">
+      <footer className="border-t border-border py-10">
+        <div className="container text-center text-sm text-foreground/30">
           <p>&copy; 2026 Re:Life Health. All rights reserved.</p>
         </div>
       </footer>

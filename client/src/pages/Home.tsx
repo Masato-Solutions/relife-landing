@@ -84,7 +84,7 @@ function MouseParallaxHero() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: 0.1 }}
                 className="inline-block text-xs font-semibold tracking-widest uppercase mb-2"
-                style={{ color: "#33b7fa" }}
+                style={{ color: "#ab92f1" }}
               >
                 Mental Health &amp; Wellness Platform
               </motion.span>
@@ -93,7 +93,7 @@ function MouseParallaxHero() {
                 <span className="gradient-text-blue">Journey</span>{" "}
                 Starts Here
               </h1>
-              <p className="text-lg text-white/60 leading-relaxed max-w-lg">
+              <p className="text-lg text-foreground/60 leading-relaxed max-w-lg">
                 Discover holistic wellness solutions combining mental health support, premium wellness products, and community programs designed for your wellbeing.
               </p>
             </motion.div>
@@ -106,7 +106,7 @@ function MouseParallaxHero() {
               <Link href="/products">
                 <Button
                   className="rounded-full px-8 h-12 text-base text-black font-semibold hover:opacity-90 transition-opacity"
-                  style={{ background: "linear-gradient(135deg, #33b7fa, #4cd7ef)" }}
+                  style={{ background: "linear-gradient(135deg, #ab92f1, #c4aef5)" }}
                 >
                   Explore Products
                 </Button>
@@ -114,7 +114,7 @@ function MouseParallaxHero() {
               <Link href="/services">
                 <Button
                   variant="outline"
-                  className="rounded-full px-8 h-12 text-base border-white/20 text-white hover:border-primary hover:text-primary bg-transparent"
+                  className="rounded-full px-8 h-12 text-base border-border text-foreground hover:border-primary hover:text-primary bg-transparent"
                 >
                   Join Our Programs
                 </Button>
@@ -135,7 +135,7 @@ function MouseParallaxHero() {
               ].map((s, idx) => (
                 <div key={idx}>
                   <p className="text-2xl font-bold gradient-text-blue">{s.number}</p>
-                  <p className="text-xs text-white/50 mt-0.5">{s.label}</p>
+                  <p className="text-xs text-foreground/50 mt-0.5">{s.label}</p>
                 </div>
               ))}
             </motion.div>
@@ -176,9 +176,9 @@ function MouseParallaxHero() {
                   className="w-24 h-24 rounded-full mx-auto flex items-center justify-center"
                   style={{ background: "linear-gradient(135deg, rgba(51,183,250,0.2), rgba(171,146,241,0.2))", border: "1px solid rgba(51,183,250,0.3)" }}
                 >
-                  <Heart className="w-12 h-12" style={{ color: "#33b7fa" }} />
+                  <Heart className="w-12 h-12" style={{ color: "#ab92f1" }} />
                 </div>
-                <p className="text-white/60 font-semibold text-sm">Wellness Awaits</p>
+                <p className="text-foreground/60 font-semibold text-sm">Wellness Awaits</p>
               </motion.div>
             </div>
           </motion.div>
@@ -195,13 +195,13 @@ export default function Home() {
       <MouseParallaxHero />
 
       {/* Features Section */}
-      <section className="py-24" style={{ background: "rgba(255,255,255,0.02)" }}>
+      <section className="py-24 alt-section">
         <div className="container">
           <AnimatedSection className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
               What We <span className="gradient-text-blue">Offer</span>
             </h2>
-            <p className="text-lg text-white/50 max-w-2xl mx-auto">
+            <p className="text-lg text-foreground/50 max-w-2xl mx-auto">
               Comprehensive wellness solutions tailored to support your mental and physical health
             </p>
           </AnimatedSection>
@@ -213,14 +213,14 @@ export default function Home() {
                 title: "Premium Products",
                 description: "Wellness products like sleeping boxes and poppy pads designed for your comfort",
                 href: "/products",
-                color: "#33b7fa",
+                color: "#ab92f1",
               },
               {
                 icon: Users,
                 title: "Community Programs",
                 description: "Join CSR events, seminars, and mental health programs with like-minded individuals",
                 href: "/services",
-                color: "#4cd7ef",
+                color: "#c4aef5",
               },
               {
                 icon: Leaf,
@@ -234,7 +234,7 @@ export default function Home() {
                 title: "Mobile App",
                 description: "Download our app for mental health support and wellness tracking on the go",
                 href: "/application",
-                color: "#33b7fa",
+                color: "#ab92f1",
               },
             ].map((feature, idx) => {
               const Icon = feature.icon;
@@ -248,8 +248,8 @@ export default function Home() {
                       >
                         <Icon className="w-7 h-7" style={{ color: feature.color }} />
                       </div>
-                      <h3 className="text-lg font-bold text-white mb-2">{feature.title}</h3>
-                      <p className="text-white/50 text-sm leading-relaxed">{feature.description}</p>
+                      <h3 className="text-lg font-bold text-foreground mb-2">{feature.title}</h3>
+                      <p className="text-blue-accent text-sm leading-relaxed">{feature.description}</p>
                     </a>
                   </Link>
                 </StaggerItem>
@@ -271,14 +271,14 @@ export default function Home() {
               Ready to Transform Your{" "}
               <span className="gradient-text-purple">Wellness?</span>
             </h2>
-            <p className="text-lg text-white/50 max-w-2xl mx-auto">
+            <p className="text-lg text-foreground/50 max-w-2xl mx-auto">
               Join thousands of people taking control of their mental and physical health with Re:Life
             </p>
           </AnimatedSection>
           <AnimatedSection delay={0.15}>
             <Button
               className="rounded-full px-10 h-12 text-base text-black font-semibold hover:opacity-90 transition-opacity"
-              style={{ background: "linear-gradient(135deg, #33b7fa, #4cd7ef)" }}
+              style={{ background: "linear-gradient(135deg, #ab92f1, #c4aef5)" }}
               onClick={() => window.location.href = "#register"}
             >
               Get Started Now
@@ -288,44 +288,44 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-white/8 py-14">
+      <footer className="border-t border-border py-14">
         <div className="container">
           <div className="grid md:grid-cols-4 gap-8 mb-10">
             <div>
               <div className="flex items-center gap-2 mb-3">
                 <div
                   className="w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold text-black"
-                  style={{ background: "linear-gradient(135deg, #33b7fa, #4cd7ef)" }}
+                  style={{ background: "linear-gradient(135deg, #ab92f1, #c4aef5)" }}
                 >
                   RL
                 </div>
                 <h4 className="font-bold gradient-text-blue">Re:Life</h4>
               </div>
-              <p className="text-sm text-white/40">Your partner in mental health and wellness</p>
+              <p className="text-sm text-foreground/40">Your partner in mental health and wellness</p>
             </div>
             <div>
-              <h4 className="font-bold text-white/80 mb-4">Products</h4>
-              <ul className="space-y-2 text-sm text-white/40">
+              <h4 className="font-bold text-foreground/80 mb-4">Products</h4>
+              <ul className="space-y-2 text-sm text-foreground/40">
                 <li><a href="/products" className="hover:text-primary transition">Wellness Products</a></li>
                 <li><a href="/products" className="hover:text-primary transition">Shop Now</a></li>
               </ul>
             </div>
             <div>
-              <h4 className="font-bold text-white/80 mb-4">Services</h4>
-              <ul className="space-y-2 text-sm text-white/40">
+              <h4 className="font-bold text-foreground/80 mb-4">Services</h4>
+              <ul className="space-y-2 text-sm text-foreground/40">
                 <li><a href="/services" className="hover:text-primary transition">Programs</a></li>
                 <li><a href="/services" className="hover:text-primary transition">Events</a></li>
               </ul>
             </div>
             <div>
-              <h4 className="font-bold text-white/80 mb-4">Company</h4>
-              <ul className="space-y-2 text-sm text-white/40">
+              <h4 className="font-bold text-foreground/80 mb-4">Company</h4>
+              <ul className="space-y-2 text-sm text-foreground/40">
                 <li><a href="/about-us" className="hover:text-primary transition">About Us</a></li>
                 <li><a href="/contact-us" className="hover:text-primary transition">Contact</a></li>
               </ul>
             </div>
           </div>
-          <div className="border-t border-white/8 pt-8 text-center text-sm text-white/30">
+          <div className="border-t border-border pt-8 text-center text-sm text-foreground/30">
             <p>&copy; 2026 Re:Life Health. All rights reserved.</p>
           </div>
         </div>
