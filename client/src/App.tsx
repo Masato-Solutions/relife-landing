@@ -11,6 +11,7 @@ import Application from "./pages/Application";
 import WellnessCenter from "./pages/WellnessCenter";
 import AboutUs from "./pages/AboutUs";
 import ContactUs from "./pages/ContactUs";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 import AdminLayout from "./pages/admin/AdminLayout";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import AdminProducts from "./pages/admin/AdminProducts";
@@ -20,6 +21,7 @@ import AdminAbout from "./pages/admin/AdminAbout";
 import AdminWellness from "./pages/admin/AdminWellness";
 import AdminContact from "./pages/admin/AdminContact";
 import AdminSubmissions from "./pages/admin/AdminSubmissions";
+import AdminPrivacyPolicy from "./pages/admin/AdminPrivacyPolicy";
 
 function AdminRouter() {
   return (
@@ -32,6 +34,7 @@ function AdminRouter() {
         <Route path="/admin/about" component={AdminAbout} />
         <Route path="/admin/wellness" component={AdminWellness} />
         <Route path="/admin/contact" component={AdminContact} />
+        <Route path="/admin/privacy-policy" component={AdminPrivacyPolicy} />
         <Route path="/admin/submissions" component={AdminSubmissions} />
       </Switch>
     </AdminLayout>
@@ -48,6 +51,7 @@ function Router() {
       <Route path={"/wellness-center"} component={WellnessCenter} />
       <Route path={"/about-us"} component={AboutUs} />
       <Route path={"/contact-us"} component={ContactUs} />
+      <Route path={"/privacy-policy"} component={PrivacyPolicy} />
       <Route path={"/admin"} component={AdminRouter} />
       <Route path={"/admin/:rest*"} component={AdminRouter} />
       <Route path={"/404"} component={NotFound} />

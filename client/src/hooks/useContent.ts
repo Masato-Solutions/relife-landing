@@ -6,6 +6,7 @@ import {
   fetchAbout,
   fetchWellness,
   fetchContact,
+  fetchPrivacyPolicy,
   fetchSite,
   fetchSubmissions,
 } from "@/lib/api";
@@ -16,6 +17,7 @@ import type {
   AboutContent,
   WellnessContent,
   ContactContent,
+  PrivacyPolicyContent,
   SiteContent,
   ContactSubmission,
 } from "@/types/content";
@@ -83,6 +85,10 @@ export function useWellnessContent(): UseContentResult<WellnessContent> {
 
 export function useContactContent(): UseContentResult<ContactContent> {
   return useContent(fetchContact);
+}
+
+export function usePrivacyPolicyContent(): UseContentResult<PrivacyPolicyContent> {
+  return useContent(fetchPrivacyPolicy);
 }
 
 export function useSiteContent(): UseContentResult<SiteContent> {

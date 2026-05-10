@@ -17,6 +17,7 @@ export default function Navigation() {
     { label: "Wellness Center", href: "/wellness-center" },
     { label: "About Us", href: "/about-us" },
     { label: "Contact Us", href: "/contact-us" },
+    { label: "Privacy Policy", href: "/privacy-policy" },
   ];
 
   return (

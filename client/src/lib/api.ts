@@ -5,6 +5,7 @@ import type {
   AboutContent,
   WellnessContent,
   ContactContent,
+  PrivacyPolicyContent,
   SiteContent,
   ContactSubmission,
 } from "@/types/content";
@@ -122,6 +123,13 @@ export async function fetchContact(): Promise<ContactContent> {
 }
 export async function saveContact(data: ContactContent): Promise<ContactContent> {
   return apiFetch<ContactContent>(`${BASE}/contact`, { method: "PUT", body: JSON.stringify(data) });
+}
+
+export async function fetchPrivacyPolicy(): Promise<PrivacyPolicyContent> {
+  return apiFetch<PrivacyPolicyContent>(`${BASE}/privacy-policy`);
+}
+export async function savePrivacyPolicy(data: PrivacyPolicyContent): Promise<PrivacyPolicyContent> {
+  return apiFetch<PrivacyPolicyContent>(`${BASE}/privacy-policy`, { method: "PUT", body: JSON.stringify(data) });
 }
 
 export async function fetchSite(): Promise<SiteContent> {

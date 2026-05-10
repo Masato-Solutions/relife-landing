@@ -13,6 +13,7 @@ import {
   Users,
   Leaf,
   Phone,
+  Shield,
   Inbox,
   LogOut,
   Menu,
@@ -113,6 +114,7 @@ const NAV_ITEMS = [
   { href: "/admin/about", label: "About Us", icon: Users },
   { href: "/admin/wellness", label: "Wellness Center", icon: Leaf },
   { href: "/admin/contact", label: "Contact Info", icon: Phone },
+  { href: "/admin/privacy-policy", label: "Privacy Policy", icon: Shield },
   { href: "/admin/submissions", label: "Form Submissions", icon: Inbox },
 ];
 
