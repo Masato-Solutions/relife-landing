@@ -23,7 +23,7 @@ export default function Navigation() {
     { label: "Contact Us", href: "/contact-us" },
   ];
 
-  const logoValue = (site?.logo ?? DEFAULT_LOGO_TEXT).trim();
+  const logoValue = (site?.logo ?? "").trim();
   const safeLogoSrc = toSafeUploadsLogoSrc(logoValue);
   const hasImageLogo = Boolean(safeLogoSrc) && !logoLoadFailed;
   const brandName = site?.siteName?.trim() || "Re:Life";
@@ -56,7 +56,7 @@ export default function Navigation() {
                 className="w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold text-white"
                 style={{ background: "linear-gradient(135deg, #ab92f1, #c4aef5)" }}
               >
-                {(logoValue || DEFAULT_LOGO_TEXT).slice(0, 3)}
+                {DEFAULT_LOGO_TEXT}
               </div>
             )}
             <span className="gradient-text-purple">{brandName}</span>

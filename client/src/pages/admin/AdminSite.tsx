@@ -5,7 +5,7 @@ import type { SiteContent } from "@/types/content";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { DEFAULT_LOGO_TEXT, toSafeUploadsLogoSrc } from "@/lib/siteBranding";
+import { DEFAULT_LOGO_TEXT, MAX_LOGO_FILE_SIZE_BYTES, toSafeUploadsLogoSrc } from "@/lib/siteBranding";
 import { toast } from "sonner";
 import { ImageIcon } from "lucide-react";
 
@@ -35,7 +35,7 @@ export default function AdminSite() {
   const handleLogoUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file || !form) return;
-    if (file.size > 10 * 1024 * 1024) {
+    if (file.size > MAX_LOGO_FILE_SIZE_BYTES) {
       toast.error("Logo must be 10 MB or smaller.");
       e.target.value = "";
       return;
@@ -58,6 +58,7 @@ export default function AdminSite() {
   const logoValue = (form.logo ?? "").trim();
   const safeLogoSrc = toSafeUploadsLogoSrc(logoValue);
   const hasImageLogo = Boolean(safeLogoSrc);
+  const maxLogoSizeMb = Math.floor(MAX_LOGO_FILE_SIZE_BYTES / (1024 * 1024));
 
   return (
     <div className="space-y-8 max-w-2xl">
@@ -97,7 +98,7 @@ export default function AdminSite() {
       <section className="bg-white rounded-xl border border-gray-200 p-6 space-y-4">
         <h3 className="font-semibold text-gray-900 text-lg">Main Site Logo</h3>
         <p className="text-sm text-gray-500">
-          Required display size: 32×32 px in the navbar. Recommended upload: square PNG/SVG at 256×256 px or larger. Max file size: 10 MB.
+          Required display size: 32×32 px in the navbar. Recommended upload: square PNG/SVG at 256×256 px or larger. Max file size: {maxLogoSizeMb} MB.
         </p>
         <div>
           <Label className="text-gray-700">Logo URL</Label>
